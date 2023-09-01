@@ -15,3 +15,7 @@ body {
     background-color: lightcoral;
     height: 10%;
 }
+.col{
+    border: 2px solid black;
+    height: 10vh;
+}
