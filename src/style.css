@@ -1,0 +1,17 @@
+body {
+    background-color: antiquewhite;
+    height: 100vh;
+}
+
+#header {
+    background-color:lightcoral;
+    height: 10%;
+}
+#main {
+    height: 80%;
+}
+
+#footer {
+    background-color: lightcoral;
+    height: 10%;
+}
