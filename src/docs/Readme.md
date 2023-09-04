@@ -10,3 +10,7 @@ Learn to validate forms using Javascript
 Learn to work with JSON format
 Learn how to implement the basics of typescript
 
+## Konwledge Implementation ##
+* **HTML:** Implementation of new structure of Bootstrap, new tags, organization.
+* **CSS:** Implement css styles and combine them with Bootstrap's
+* **TS:** Becoming familiar with all concepts of typing information
