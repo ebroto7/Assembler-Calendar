@@ -11,7 +11,11 @@ export function getToday() {
 }
 export function getMonth() {
     const date = new Date;
-    return date.getMonth() + 1;
+    const month = date.getMonth() + 1;
+}
+export function getYear() {
+    const date = new Date;
+    return date.getFullYear();
 }
 export function getDay() {
     const day = getToday().getDate();
