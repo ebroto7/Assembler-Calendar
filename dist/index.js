@@ -12,14 +12,21 @@ function getToday() {
 }
 function getMonth() {
     const date = new Date;
-    return date.getMonth() + 1;
+    const month = date.getMonth() + 1;
+}
+function getYear() {
+    const date = new Date;
+    return date.getFullYear();
 }
 function getDay() {
     const day = getToday().getDate();
     return day;
 }
+const calendarTitle = document.querySelector('#calendarTitle');
+const calendarDay = document.createElement('div');
+calendarDay.textContent = `${getDay().toString()} of ${getMonth()}`;
+calendarTitle === null || calendarTitle === void 0 ? void 0 : calendarTitle.appendChild(calendarDay);
 console.log(getToday());
 console.log(getMonth());
+console.log(getYear());
 console.log(getDay());
-console.log(Date.now());
-console.log(getDate(Date.now()));
