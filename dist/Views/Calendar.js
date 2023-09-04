@@ -23,7 +23,6 @@ let Y = getYear();
 export function printMonth() {
     const Month = ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"];
     const calendarTitle = document.querySelector('#calendarTitle');
-    const calendarDay = document.createElement('div');
     calendarTitle.textContent = `${Month[M]} of ${Y}`;
 }
 const buttonLeft = document.getElementById('button-left');
@@ -34,16 +33,14 @@ buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventLi
         M = 0;
         Y++;
     }
-    getMonth();
     printMonth();
 });
 buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListener('click', () => {
     M--;
-    if (M == 0) {
-        M = 12;
+    if (M == (-1)) {
+        M = 11;
         Y--;
     }
-    getMonth();
     printMonth();
 });
 export function getDay() {
