@@ -1,4 +1,3 @@
-"use strict";
 function getDate(dateKey) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
