@@ -9,24 +9,30 @@ export function getToday() {
     const date = new Date;
     return date;
 }
+let numberMonth = 1;
 export function getMonth() {
     const date = new Date;
-    const month = date.getMonth() + 1;
-    switch (month) {
-        case 1: return "January";
-        case 2: return "February";
-        case 3: return "March";
-        case 4: return "April";
-        case 5: return "May";
-        case 6: return "June";
-        case 7: return "July";
-        case 8: return "August";
-        case 9: return "September";
-        case 10: return "Octuber";
-        case 11: return "November";
-        case 12: return "December";
-    }
+    return date.getMonth();
 }
+let M = getMonth();
+export function printMonth() {
+    const Month = ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"];
+    const calendarTitle = document.querySelector('#calendarTitle');
+    const calendarDay = document.createElement('div');
+    calendarTitle.textContent = `${Month[M]} of ${getYear()}`;
+}
+const buttonLeft = document.getElementById('button-left');
+const buttonRight = document.getElementById('button-right');
+buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventListener('click', () => {
+    M++;
+    getMonth();
+    printMonth();
+});
+buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListener('click', () => {
+    M--;
+    getMonth();
+    printMonth();
+});
 export function getYear() {
     const date = new Date;
     return date.getFullYear();

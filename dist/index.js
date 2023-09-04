@@ -1,8 +1,5 @@
-import { getDate, getDay, getMonth, getYear, getToday } from './Views/Calendar.js';
-const calendarTitle = document.querySelector('#calendarTitle');
-const calendarDay = document.createElement('div');
-calendarDay.textContent = `${getMonth()} of ${getYear()}`;
-calendarTitle === null || calendarTitle === void 0 ? void 0 : calendarTitle.appendChild(calendarDay);
+import { getDate, getDay, getMonth, getYear, getToday, printMonth } from './Views/Calendar.js';
+window.addEventListener('DOMContentLoaded', printMonth);
 console.log(getDate(12));
 console.log(getToday());
 console.log(getMonth());
