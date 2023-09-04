@@ -2,11 +2,10 @@
 
 const calendarTitle = document.querySelector('#calendarTitle');
 const calendarDay = document.createElement('div');
-calendarDay.textContent = `${getDay().toString()} of ${getMonth()}`;
+calendarDay.textContent = `${getMonth()} of ${getYear()}`;
 calendarTitle?.appendChild(calendarDay);
 
-
-console.log(getDate(123456));
+console.log(getDate(12));
 console.log(getToday());
 console.log(getMonth());
 console.log(getYear());
