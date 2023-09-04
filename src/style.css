@@ -19,3 +19,54 @@ body {
     border: 2px solid black;
     height: 10vh; 
 }
+
+
+
+.tittle-section {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.arrow-button-left {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #007bff00; /* Button background color */
+  color: #fff; /* Text color */
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.arrow-button-left::before {
+  content: "";
+  position: absolute;
+  left: -10px; /* Ajustalo para cambiar la posicion de la flecha */
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent transparent #007bff; /* Arrow color */
+  transform: translateY(-50%);
+  transform: rotate(180deg);
+}
+
+.arrow-button-right {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #007bff00; /* Button background color */
+  color: #fff; /* Text color */
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.arrow-button-right::before {
+  content: "";
+  position: absolute;
+  top: 3em;
+  left: -10px; /* Ajustalo para cambiar la posicion de la flecha */
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent transparent #007bff; /* Arrow color */
+  transform: translateY(-50%);
+}
