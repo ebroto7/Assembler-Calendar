@@ -1,5 +1,3 @@
-
-
 export function getDate(dateKey:number) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
@@ -8,11 +6,17 @@ export function getDate(dateKey:number) {
     return new Date(year + 1970, month, day);
 }
 
+const stringDay = new Date().toString().slice(0,3);
+
 export function getToday(){
     const date = new Date;
     return date;
 }
- let numberMonth = 1
+
+export function getDay(){
+    const day = getToday().getDate();
+    return day;
+}
 
 export function getMonth(){
     const date = new Date;
@@ -27,7 +31,7 @@ export function getYear(){
 let M = getMonth();
 let Y = getYear();
 export function printMonth(){
-    const Month = ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"] 
+    const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle!.textContent = `${Month[M]} of ${Y}`;
 }
@@ -59,11 +63,10 @@ buttonLeft?.addEventListener('click', () => {
 
 
 
+console.log(getDate(123456));
+console.log(getDay());
+console.log(getMonth());
+console.log(getYear());
 
-
-export function getDay(){
-    const day = getToday().getDate();
-    return day;
-}
 
 

@@ -21,7 +21,7 @@ export function getYear() {
 let M = getMonth();
 let Y = getYear();
 export function printMonth() {
-    const Month = ["January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"];
+    const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle.textContent = `${Month[M]} of ${Y}`;
 }
