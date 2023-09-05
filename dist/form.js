@@ -1,47 +1,104 @@
-import { Type } from "./types/Task.js";
-const types = Object.keys(Type);
-const modalReminderSwitch = document.querySelector('#modalReminderSwitch');
-const modalAllDayEventSwitch = document.querySelector('#modalAllDayEventSwitch');
-const modalReminderOptions_container = document.querySelector('#modalReminderOptions_container');
-const form_startDate_container = document.querySelector('#form_startDate_container');
-const modalReminderSwitch_options = document.querySelector('#modalReminderSwitch_options');
-const form_startDate_hourInput = document.querySelector('#form_startDate_hourInput');
+import { Type, ReminderTime } from "./types/Event.js";
+const calendarTypes = Object.keys(Type);
+const reminderTimes = Object.keys(ReminderTime);
+const modalForm_eventTitle = document.querySelector('#modalForm_eventTitle');
+const modalForm_AllDayEventSwitch = document.querySelector('#modalForm_AllDayEventSwitch');
+const modalForm_startDate_container = document.querySelector('#form_startDate_container');
+const modalForm_startDate_dateInput = document.querySelector('#form_startDate_dateInput');
+const modalForm_startDate_hourInput = document.querySelector('#form_startDate_hourInput');
+const modalForm_endDate_dateInput = document.querySelector('#form_endDate_dateInput');
+const modalForm_endDate_hourInput = document.querySelector('#form_endDate_hourInput');
+const modalForm_ReminderCheckbox = document.querySelector('#modalReminderSwitch');
+const modalForm_ReminderOptions_container = document.querySelector('#modalReminderOptions_container');
+const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminderSwitch_options');
+const modalForm_description = document.querySelector('#modalForm_description');
 const modalForm_EventType = document.querySelector('#modalForm_EventType');
 function createTypeFormView() {
-    types.forEach((type) => {
+    calendarTypes.forEach((type) => {
         const typeFormView = document.createElement('option');
         typeFormView.innerText = type;
         modalForm_EventType.appendChild(typeFormView);
     });
 }
 createTypeFormView();
-const event = {
-    id: 3,
-    name: "chanchito",
-};
-modalReminderSwitch.addEventListener('change', () => {
+function createReminderTimesFormView() {
+    reminderTimes.forEach((e) => {
+        const reminderFormView = document.createElement('option');
+        reminderFormView.innerText = e;
+        modalForm_ReminderCheckbox_options.appendChild(reminderFormView);
+    });
+}
+createReminderTimesFormView();
+modalForm_ReminderCheckbox.addEventListener('change', () => {
     hiddenReminderInput();
 });
-modalAllDayEventSwitch.addEventListener('change', () => {
+modalForm_AllDayEventSwitch.addEventListener('change', () => {
     hiddenDateInput();
 });
 function hiddenReminderInput() {
-    if (modalReminderSwitch.checked == true) {
-        modalReminderSwitch_options.disabled = false;
-        modalReminderOptions_container.hidden = false;
+    if (modalForm_ReminderCheckbox.checked == true) {
+        modalForm_ReminderCheckbox_options.disabled = false;
+        modalForm_ReminderOptions_container.hidden = false;
     }
     else {
-        modalReminderSwitch_options.disabled = true;
-        modalReminderOptions_container.hidden = true;
+        modalForm_ReminderCheckbox_options.disabled = true;
+        modalForm_ReminderOptions_container.hidden = true;
     }
 }
 function hiddenDateInput() {
-    if (modalAllDayEventSwitch.checked == true) {
-        form_startDate_container.hidden = true;
-        form_startDate_hourInput.hidden = true;
+    if (modalForm_AllDayEventSwitch.checked == true) {
+        modalForm_startDate_container.hidden = true;
+        modalForm_startDate_hourInput.hidden = true;
     }
     else {
-        form_startDate_container.hidden = false;
-        form_startDate_hourInput.hidden = false;
+        modalForm_startDate_container.hidden = false;
+        modalForm_startDate_hourInput.hidden = false;
     }
+}
+let eventsList = [];
+export function isValidForm() {
+    let isValid = true;
+    const title = modalForm_eventTitle.value;
+    const isAllDay = modalForm_AllDayEventSwitch.checked;
+    const startDate = modalForm_startDate_dateInput.value;
+    const startHour = modalForm_startDate_hourInput.value;
+    const endDate = modalForm_endDate_dateInput.value;
+    const endHour = modalForm_endDate_hourInput.value;
+    const reminder = modalForm_ReminderCheckbox.checked;
+    const startReminder = modalForm_ReminderCheckbox_options.value;
+    const decription = modalForm_description.value;
+    const calendar = modalForm_EventType.value;
+    if (title.trim().length < 3) {
+        console.log("invalid title");
+        setErrorMessage("formTitleError", "Please enter a valid title");
+        isValid = false;
+    }
+    else {
+        deleteErrorMessage("formTitleError");
+    }
+    return isValid;
+}
+function setErrorMessage(containerID, message) {
+    const container = document.getElementById(`${containerID}`);
+    container.hidden = false;
+    container.innerText = message;
+}
+function deleteErrorMessage(containerID) {
+    const container = document.getElementById(`${containerID}`);
+    container.hidden = true;
+}
+export function saveNewEvent() {
+    let newEvent = {
+        title: modalForm_eventTitle.value,
+        isAllDay: modalForm_AllDayEventSwitch.checked,
+        startDate: modalForm_startDate_dateInput.value,
+        startHour: modalForm_startDate_hourInput.value,
+        endDate: modalForm_endDate_dateInput.value,
+        endHour: modalForm_endDate_hourInput.value,
+        reminder: modalForm_ReminderCheckbox.checked,
+        startReminder: modalForm_ReminderCheckbox_options.value,
+        decription: modalForm_description.value,
+        calendar: modalForm_EventType.value
+    };
+    console.log(newEvent);
 }

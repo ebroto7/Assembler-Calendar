@@ -20,3 +20,8 @@ body {
 #eventTitle_container {
     display: block;
 }
+
+.errorMessage {
+    text-align: left;
+    color: red;
+}
