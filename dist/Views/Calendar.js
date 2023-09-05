@@ -1,5 +1,5 @@
 const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-export function getDate(dateKey) {
+function getDate(dateKey) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
     const day = yearOffset % 32;
@@ -21,29 +21,23 @@ function getDateYear(date) {
 function createDateID(x) {
     return getDateMonth(getDate(x)) + getDateNumDay(getDate(x)) + getDateYear(getDate(x));
 }
-function daysID(Days) {
-    Days.forEach(day => {
-        day.id = createDateID;
-        console.log(day.id);
-    });
-}
-export function getToday() {
+function getToday() {
     const date = new Date;
     return date;
 }
-export function getTodayDay() {
+function getTodayDay() {
     const day = getToday().getDate();
     return day;
 }
-export function getTodayMonth() {
+function getTodayMonth() {
     const date = new Date;
     return date.getMonth();
 }
-export function daysInMonth(month, year) {
+function daysInMonth(month, year) {
     return new Date(year, month, 0).getDate();
 }
 console.log(daysInMonth(9, 2023));
-export function getTodayYear() {
+function getTodayYear() {
     const date = new Date;
     return date.getFullYear();
 }
@@ -74,12 +68,13 @@ buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListe
     printDays();
 });
 export function printDays() {
+    const row = document.querySelector('#days');
+    row === null || row === void 0 ? void 0 : row.replaceChildren();
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
-        const row = document.querySelector('#days');
         const day = document.createElement('div');
         day.setAttribute("class", "col");
         day.innerText = `${i}`;
-        row.appendChild(day);
+        row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
 console.log(getDate(123456));

@@ -86,13 +86,14 @@ buttonLeft?.addEventListener('click', () => {
 });
 
 // print dias
-function printDays(){
-    for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){
+export function printDays(){
     const row = document.querySelector('#days'); 
+    row?.replaceChildren()
+    for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){   
     const day  = document.createElement('div');
     day.setAttribute ("class", "col");
     day.innerText = `${i}`;
-    row.appendChild(day);
+    row?.appendChild(day);
     }
     
     }

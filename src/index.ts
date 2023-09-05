@@ -1,6 +1,9 @@
- import { printMonth  } from './Views/Calendar.js';
+ import { printMonth, printDays  } from './Views/Calendar.js';
  
- window.addEventListener('DOMContentLoaded', printMonth);
+ window.addEventListener('DOMContentLoaded', () => {
+    printMonth();
+    printDays();
+ } );
 
 
 
