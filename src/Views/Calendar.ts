@@ -114,9 +114,15 @@ export function printDays(){
         const today = getTodayDay();
         const day  = document.createElement('div');
         day.setAttribute ("class", "col");
+        if(i < 10){
+            let j = '0' + i;
+            day.setAttribute ("id", `${j}${M+1}${Y}`);
+        }
+        day.setAttribute ("id", `${i}${M+1}${Y}`);
+        
         day.innerText = `${i}`;
         row?.appendChild(day);
-        
+       
     }
     for (let i = lastDay; i < 10 ; i++) {
         const day  = document.createElement('div');
