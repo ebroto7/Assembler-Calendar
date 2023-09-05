@@ -56,6 +56,8 @@ let Y = getTodayYear();
 export function printMonth(){
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle!.textContent = `${Month[M]} of ${Y}`;
+    
+
 }
  
 // funcionalidad de los botones de la calendar
@@ -88,17 +90,43 @@ buttonLeft?.addEventListener('click', () => {
 // print dias
 export function printDays(){
     const row = document.querySelector('#days'); 
+    const lastDayMonth = daysInMonth(Y, M+1)
+    const firstDay = new Date(Y, M, 0).getDay();
+    const lastDay = new Date(Y, M, lastDayMonth).getDay();
     row?.replaceChildren()
-    for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){   
-    const day  = document.createElement('div');
-    day.setAttribute ("class", "col");
-    day.innerText = `${i}`;
-    row?.appendChild(day);
+
+    for (let i = firstDay; i > 0; i--){
+        let previousDays = daysInMonth(M, Y) -i + 1;
+        const day  = document.createElement('div');
+        day.setAttribute ("class", "col");
+        day.setAttribute ("class", "inactive");
+        day.innerText += `${previousDays}`;
+        row?.appendChild(day);
     }
     
+    for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){   
+        const day  = document.createElement('div');
+        day.setAttribute ("class", "col");
+        day.innerText = `${i}`;
+        row?.appendChild(day);
     }
+
+    for (let i = lastDay; i < 7 ; i++) {
+        const day  = document.createElement('div');
+        const nextDays = i - lastDay + 1;
+        day.setAttribute ("class", "col");
+        day.setAttribute ("class", "inactive");
+        day.innerText = `${nextDays}`;
+        row?.appendChild(day);
+    
+    }
+    }
+
+    
    
 
+
+    
 
 
 console.log(getDate(123456));

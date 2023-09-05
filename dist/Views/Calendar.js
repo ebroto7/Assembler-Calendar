@@ -69,11 +69,30 @@ buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListe
 });
 export function printDays() {
     const row = document.querySelector('#days');
+    const lastDayMonth = daysInMonth(Y, M + 1);
+    const firstDay = new Date(Y, M, 0).getDay();
+    const lastDay = new Date(Y, M, lastDayMonth).getDay();
     row === null || row === void 0 ? void 0 : row.replaceChildren();
+    for (let i = firstDay; i > 0; i--) {
+        let previousDays = daysInMonth(M, Y) - i + 1;
+        const day = document.createElement('div');
+        day.setAttribute("class", "col");
+        day.setAttribute("class", "inactive");
+        day.innerText += `${previousDays}`;
+        row === null || row === void 0 ? void 0 : row.appendChild(day);
+    }
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
         const day = document.createElement('div');
         day.setAttribute("class", "col");
         day.innerText = `${i}`;
+        row === null || row === void 0 ? void 0 : row.appendChild(day);
+    }
+    for (let i = lastDay; i < 7; i++) {
+        const day = document.createElement('div');
+        const nextDays = i - lastDay + 1;
+        day.setAttribute("class", "col");
+        day.setAttribute("class", "inactive");
+        day.innerText = `${nextDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
