@@ -49,6 +49,7 @@ export function printMonth() {
 }
 const buttonLeft = document.getElementById('button-left');
 const buttonRight = document.getElementById('button-right');
+const buttonToday = document.getElementById('todayButton');
 buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventListener('click', () => {
     M++;
     if (M == 12) {
@@ -67,11 +68,17 @@ buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListe
     printMonth();
     printDays();
 });
+buttonToday === null || buttonToday === void 0 ? void 0 : buttonToday.addEventListener('click', () => {
+    M = getTodayMonth();
+    Y = getTodayYear();
+    printMonth();
+    printDays();
+});
 export function printDays() {
     const row = document.querySelector('#days');
     const lastDayMonth = daysInMonth(Y, M + 1);
     const firstDay = new Date(Y, M, 0).getDay();
-    const lastDay = new Date(Y, M, lastDayMonth).getDay();
+    const lastDay = new Date(Y, M + 1, lastDayMonth).getDay();
     row === null || row === void 0 ? void 0 : row.replaceChildren();
     for (let i = firstDay; i > 0; i--) {
         let previousDays = daysInMonth(M, Y) - i + 1;
@@ -82,12 +89,13 @@ export function printDays() {
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
+        const today = getTodayDay();
         const day = document.createElement('div');
         day.setAttribute("class", "col");
         day.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
-    for (let i = lastDay; i < 7; i++) {
+    for (let i = lastDay; i < 10; i++) {
         const day = document.createElement('div');
         const nextDays = i - lastDay + 1;
         day.setAttribute("class", "col");
