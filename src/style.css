@@ -15,10 +15,20 @@ body {
     background-color: lightcoral;
     height: 10%;
 }
+.container-days{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  
+}
 .col{
     border: 2px solid black;
-    height: 10vh; 
+    height: 12vh;
+    width: 100%;
+    border: 2px solid black;
 }
+
+
 
 
 

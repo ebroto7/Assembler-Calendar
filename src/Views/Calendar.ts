@@ -1,4 +1,5 @@
-export function getDate(dateKey:number) {
+const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
+function getDate(dateKey:number) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
     const day = yearOffset % 32;
@@ -6,32 +7,53 @@ export function getDate(dateKey:number) {
     return new Date(year + 1970, month, day);
 }
 
-const stringDay = new Date().toString().slice(0,3);
+function getDateDay(date:Date){
+    return date.toString().slice(0,3);
+    // new Date().toString().slice(0,3);
+    }
+function getDateMonth(date:Date){
+    return date.toString().slice(4,7)
+    }
+function getDateNumDay(date:Date){
+    return date.toString().slice(8,10);
+    }
 
-export function getToday(){
+function getDateYear(date:Date){
+    return date.toString().slice(11,15);
+    }
+
+function createDateID(x:number){
+        return getDateMonth(getDate(x)) + getDateNumDay(getDate(x)) + getDateYear(getDate(x));
+}
+
+function getToday(){
     const date = new Date;
     return date;
 }
 
-export function getDay(){
+function getTodayDay(){
     const day = getToday().getDate();
     return day;
 }
 
-export function getMonth(){
+function getTodayMonth(){
     const date = new Date;
     return date.getMonth();
 }
 
-export function getYear(){
+function daysInMonth(month:number , year:number){
+    return new Date(year, month, 0).getDate();    
+}
+console.log(daysInMonth(9, 2023));
+
+function getTodayYear(){
     const date = new Date;
     return date.getFullYear();
 }
 
-let M = getMonth();
-let Y = getYear();
+let M = getTodayMonth();
+let Y = getTodayYear();
 export function printMonth(){
-    const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle!.textContent = `${Month[M]} of ${Y}`;
 }
@@ -48,7 +70,8 @@ buttonRight?.addEventListener('click', () => {
         M = 0;
         Y++;
     }
-    printMonth()
+    printMonth();
+    printDays();
 });
 
 buttonLeft?.addEventListener('click', () => {
@@ -57,16 +80,31 @@ buttonLeft?.addEventListener('click', () => {
         M = 11;
         Y--;
     }
-    printMonth()
+    
+    printMonth();
+    printDays();
 });
 
+// print dias
+function printDays(){
+    for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){
+    const row = document.querySelector('#days'); 
+    const day  = document.createElement('div');
+    day.setAttribute ("class", "col");
+    day.innerText = `${i}`;
+    row.appendChild(day);
+    }
+    
+    }
+   
 
 
 
 console.log(getDate(123456));
-console.log(getDay());
-console.log(getMonth());
-console.log(getYear());
+console.log(getTodayDay());
+console.log(getTodayMonth());
+console.log(getTodayYear());
+
 
 
 

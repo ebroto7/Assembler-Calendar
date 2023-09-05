@@ -11,3 +11,17 @@ Next, we brainstorm to start shaping the project.
     * Amina has not attended
 
 Now we have to create the branches in which we are going to work and start
+
+## Monday 4th September
+
+Amina was rejoined and assigned a few tasks with Enric. 
+They made the title and descriptions's regex with a max lenght. 
+Meanwhile, Aday e Ian were doing the calendar display. 
+Ian does a lot of research of how can we put the days of the month.
+
+## Tuesday 5th September
+
+
+    * Amina sidebar
+    * Enric Local storage form
+    * Aday and Ian continues working with main calendar display and functionalities of it.
