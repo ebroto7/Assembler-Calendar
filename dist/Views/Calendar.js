@@ -119,11 +119,9 @@ function createActiveDay(row) {
         }
         createDay.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(createDay);
-        createDay.addEventListener('click', () => {
-            console.log(createDay.id);
-            Days.id = createDay.id;
-        });
+        createDay.addEventListener('click', () => { console.log(createDay.id); });
         todayDecoration(i, month, today, createDay);
+        assignDayObject(createDay);
     }
 }
 function createInactivePastDay(firstDay, row) {
@@ -149,7 +147,10 @@ function todayDecoration(i, month, today, createDay) {
         createDay.classList.add("col", "today");
     }
 }
-console.log(Days.id);
+function assignDayObject(createDay) {
+    Days.id = createDay.id;
+    console.log(Days.id);
+}
 console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());

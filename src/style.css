@@ -15,26 +15,35 @@ body {
     background-color: lightcoral;
     height: 10%;
 }
-.container-days{
+.container{
+  padding: 0;
   width: 100%;
+}
+.container-days{
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  
 }
 .col{
-    border: 2px solid black;
+    border: 1px solid black;
     height: 10vh;
-    width: 100%;
+
     background-color: white;
 }
-
+.row{
+  
+  background-color: red;
+}
 .inactive{
   border: 1px solid black;
-  height: 10vh;
+  
   background-color: lightgrey;
 }
 .today{
 background-color: pink;
+border: 0.15rem solid black;
 }
 .weekDay{
   background-color: lightblue;
