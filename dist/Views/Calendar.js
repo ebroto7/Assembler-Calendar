@@ -94,7 +94,7 @@ export function printDays() {
         day.setAttribute("class", "col");
         if (i < 10) {
             let j = '0' + i;
-            day.setAttribute("id", `${j}${M + 1}${Y}`);
+            day.setAttribute("id", `${Y}${M + 1}${j}`);
         }
         day.setAttribute("id", `${i}${M + 1}${Y}`);
         day.innerText = `${i}`;
