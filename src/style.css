@@ -88,4 +88,15 @@ background-color: pink;
   border-style: solid;
   border-color: transparent transparent transparent #007bff; /* Arrow color */
   transform: translateY(-50%);
+
+
+#eventTitle_container {
+    display: block;
+}
+
+.errorMessage {
+    text-align: left;
+    font-size: smaller;
+    color: red;
+    
 }
