@@ -1,3 +1,12 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { Type, ReminderTime } from "./types/Event.js";
 const calendarTypes = Object.keys(Type);
 const reminderTimes = Object.keys(ReminderTime);
@@ -13,6 +22,20 @@ const modalForm_ReminderOptions_container = document.querySelector('#modalRemind
 const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminderSwitch_options');
 const modalForm_description = document.querySelector('#modalForm_description');
 const modalForm_EventType = document.querySelector('#modalForm_EventType');
+let eventsList = [];
+window.addEventListener("load", init);
+function init() {
+    return __awaiter(this, void 0, void 0, function* () {
+        createTypeFormView();
+        createReminderTimesFormView();
+    });
+}
+modalForm_ReminderCheckbox.addEventListener('change', () => {
+    hiddenReminderInput();
+});
+modalForm_AllDayEventSwitch.addEventListener('change', () => {
+    hiddenDateInput();
+});
 function createTypeFormView() {
     calendarTypes.forEach((type) => {
         const typeFormView = document.createElement('option');
@@ -20,7 +43,6 @@ function createTypeFormView() {
         modalForm_EventType.appendChild(typeFormView);
     });
 }
-createTypeFormView();
 function createReminderTimesFormView() {
     reminderTimes.forEach((e) => {
         const reminderFormView = document.createElement('option');
@@ -28,13 +50,6 @@ function createReminderTimesFormView() {
         modalForm_ReminderCheckbox_options.appendChild(reminderFormView);
     });
 }
-createReminderTimesFormView();
-modalForm_ReminderCheckbox.addEventListener('change', () => {
-    hiddenReminderInput();
-});
-modalForm_AllDayEventSwitch.addEventListener('change', () => {
-    hiddenDateInput();
-});
 function hiddenReminderInput() {
     if (modalForm_ReminderCheckbox.checked == true) {
         modalForm_ReminderCheckbox_options.disabled = false;
@@ -55,19 +70,23 @@ function hiddenDateInput() {
         modalForm_startDate_hourInput.hidden = false;
     }
 }
-let eventsList = [];
 export function isValidForm() {
-    let isValid = true;
-    const title = modalForm_eventTitle.value;
-    const isAllDay = modalForm_AllDayEventSwitch.checked;
-    const startDate = modalForm_startDate_dateInput.value;
-    const startHour = modalForm_startDate_hourInput.value;
-    const endDate = modalForm_endDate_dateInput.value;
-    const endHour = modalForm_endDate_hourInput.value;
+    let isValid = false;
     const reminder = modalForm_ReminderCheckbox.checked;
     const startReminder = modalForm_ReminderCheckbox_options.value;
     const decription = modalForm_description.value;
-    const calendar = modalForm_EventType.value;
+    validateTitle();
+    validateDate();
+    validateCalendar();
+    if (validateTitle() == true && validateDate() == true && validateCalendar() == true) {
+        isValid = true;
+    }
+    console.log("validating form:" + validateTitle() + validateDate() + validateCalendar());
+    return isValid;
+}
+function validateTitle() {
+    let isValid = true;
+    const title = modalForm_eventTitle.value;
     if (title.trim().length < 3) {
         setErrorMessage("formTitleError", "Please enter a valid title");
         isValid = false;
@@ -75,9 +94,65 @@ export function isValidForm() {
     else {
         deleteErrorMessage("formTitleError");
     }
+    return isValid;
+}
+function validateDate() {
+    let isValid = true;
+    const isAllDay = modalForm_AllDayEventSwitch.checked;
+    const startDate = modalForm_startDate_dateInput.value;
+    const startHour = modalForm_startDate_hourInput.value;
+    const endDate = modalForm_endDate_dateInput.value;
+    const endHour = modalForm_endDate_hourInput.value;
+    if (isAllDay == false) {
+        if (startDate == '' && startHour == '') {
+            isValid = false;
+            setErrorMessage("modalForm_startDate_errorMessage", "Please select a initial date & hour");
+        }
+        else if (startDate == '' && startHour != '') {
+            isValid = false;
+            setErrorMessage("modalForm_startDate_errorMessage", "Please select a initial date");
+        }
+        else if (startDate != '' && startHour == '') {
+            isValid = false;
+            setErrorMessage("modalForm_startDate_errorMessage", "Please select a initial hour");
+        }
+        else {
+            deleteErrorMessage("modalForm_startDate_errorMessage");
+        }
+        if (endDate == '' && endHour == '') {
+            isValid = false;
+            setErrorMessage("modalForm_endDate_errorMessage", "Please select a end date & hour");
+        }
+        else if (endDate == '' && endHour != '') {
+            isValid = false;
+            setErrorMessage("modalForm_endDate_errorMessage", "Please select a end date");
+        }
+        else if (endDate != '' && endHour == '') {
+            isValid = false;
+            setErrorMessage("modalForm_endDate_errorMessage", "Please select a end hour");
+        }
+        else {
+            deleteErrorMessage("modalForm_endDate_errorMessage");
+        }
+    }
+    else {
+        if (startDate == '') {
+            isValid = false;
+            setErrorMessage("modalForm_startDate_errorMessage", "Please select a initial date");
+        }
+        else {
+            deleteErrorMessage("modalForm_startDate_errorMessage");
+            deleteErrorMessage("modalForm_endDate_errorMessage");
+        }
+    }
+    return isValid;
+}
+function validateCalendar() {
+    let isValid = true;
+    const calendar = modalForm_EventType.value;
     if (calendar == "Choose...") {
         isValid = false;
-        setErrorMessage("modalForm_calendarError", "Plese select a calendar");
+        setErrorMessage("modalForm_calendarError", "Please select a calendar");
     }
     else {
         deleteErrorMessage("modalForm_calendarError");
@@ -94,15 +169,23 @@ function deleteErrorMessage(containerID) {
     container.hidden = true;
 }
 export function saveNewEvent() {
+    let reminder = '';
+    if (modalForm_ReminderCheckbox.checked == true) {
+        reminder = modalForm_ReminderCheckbox_options.value;
+    }
+    let endDate = modalForm_endDate_dateInput.value;
+    if (modalForm_AllDayEventSwitch.checked == true) {
+        endDate = modalForm_startDate_dateInput.value;
+    }
     let newEvent = {
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value,
         startHour: modalForm_startDate_hourInput.value,
-        endDate: modalForm_endDate_dateInput.value,
+        endDate: endDate,
         endHour: modalForm_endDate_hourInput.value,
         reminder: modalForm_ReminderCheckbox.checked,
-        startReminder: modalForm_ReminderCheckbox_options.value,
+        startReminder: reminder,
         decription: modalForm_description.value,
         calendar: modalForm_EventType.value
     };

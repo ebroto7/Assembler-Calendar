@@ -21,9 +21,14 @@ body {
     display: block;
 }
 
+.formArticle {
+    display:block;
+    padding: 0.5rem;
+    gap: 0;
+}
 .errorMessage {
+    margin: 0;
     text-align: left;
     font-size: smaller;
     color: red;
-    
 }
