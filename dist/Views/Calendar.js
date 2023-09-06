@@ -1,4 +1,13 @@
-const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const Days = {
+    id: '',
+    dayNum: 0,
+    dayStr: '',
+    mthNum: 0,
+    mthStr: '',
+    year: 0,
+};
+const Month = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
 function getDate(dateKey) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
@@ -80,37 +89,67 @@ export function printDays() {
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, M + 1, lastDayMonth).getDay();
     row === null || row === void 0 ? void 0 : row.replaceChildren();
+    createInactivePastDay(firstDay, row);
+    createActiveDay(row);
+    createInactiveNextDay(lastDay, row);
+}
+function createActiveDay(row) {
+    for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
+        const today = getTodayDay();
+        const createDay = document.createElement('div');
+        createDay.classList.add("col", "colHov");
+        let day = i;
+        let month = M + 1;
+        let zeroDay = '0' + day;
+        let zeroMonth = '0' + month;
+        if (month < 10) {
+            createDay.id = `${Y}-${zeroMonth}-${day}`;
+            if (day < 10) {
+                createDay.id = `${Y}-${zeroMonth}-${zeroDay}`;
+            }
+        }
+        else if (day < 10) {
+            createDay.id = `${Y}-${month}-${zeroDay}`;
+            if (month < 10) {
+                createDay.id = `${Y}-${zeroMonth}-${zeroDay}`;
+            }
+        }
+        else {
+            createDay.id = `${Y}-${month}-${day}`;
+        }
+        createDay.innerText = `${i}`;
+        row === null || row === void 0 ? void 0 : row.appendChild(createDay);
+        createDay.addEventListener('click', () => {
+            console.log(createDay.id);
+            Days.id = createDay.id;
+        });
+        todayDecoration(i, month, today, createDay);
+    }
+}
+function createInactivePastDay(firstDay, row) {
     for (let i = firstDay; i > 0; i--) {
         let previousDays = daysInMonth(M, Y) - i + 1;
         const day = document.createElement('div');
-        day.setAttribute("class", "col");
-        day.setAttribute("class", "inactive");
+        day.classList.add("col", "inactive");
         day.innerText += `${previousDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
-    for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
-        const today = getTodayDay();
-        const day = document.createElement('div');
-        day.setAttribute("class", "col");
-        if (i < 10) {
-            let j = '0' + i;
-            day.setAttribute("id", `${Y}-${M + 1}-${j}`);
-        }
-        else {
-            day.id = `${Y}-${M + 1}-${i}`;
-        }
-        day.innerText = `${i}`;
-        row === null || row === void 0 ? void 0 : row.appendChild(day);
-    }
+}
+function createInactiveNextDay(lastDay, row) {
     for (let i = lastDay; i < 10; i++) {
         const day = document.createElement('div');
         const nextDays = i - lastDay + 1;
-        day.setAttribute("class", "col");
-        day.setAttribute("class", "inactive");
+        day.classList.add("col", "inactive");
         day.innerText = `${nextDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
+function todayDecoration(i, month, today, createDay) {
+    if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
+        createDay.classList.add("col", "today");
+    }
+}
+console.log(Days.id);
 console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());

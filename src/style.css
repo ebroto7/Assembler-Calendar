@@ -19,23 +19,30 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  
+  border: 1px solid black;
 }
 .col{
     border: 2px solid black;
     height: 10vh;
     width: 100%;
     background-color: white;
-    
 }
+
 .inactive{
-  
   border: 1px solid black;
   height: 10vh;
   background-color: lightgrey;
 }
 .today{
 background-color: pink;
+}
+.weekDay{
+  background-color: lightblue;
+}
+.colHov:hover{
+  cursor: pointer;
+  transform: scale(1.0, 1.05);
+
 }
 
 
@@ -99,5 +106,5 @@ background-color: pink;
     text-align: left;
     font-size: smaller;
     color: red;
-    
+  
 }

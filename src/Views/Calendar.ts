@@ -1,4 +1,18 @@
-const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
+import { Days } from "../Days.js";
+
+const Days:Days = {
+    id    : '' ,
+    dayNum: 0,
+    dayStr: '',
+    mthNum: 0,
+    mthStr: '',
+    year  : 0,
+}
+
+
+
+const Month = ["January", "February", "March", "April", "May", "June", "July", 
+"August", "September", "October", "November", "December"] 
 function getDate(dateKey:number) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
@@ -95,59 +109,79 @@ buttonToday?.addEventListener('click', () => {
     printDays();
 })
 
+
+//////////////////////////////////////////////////////////////////////////////////////
 // print dias
 export function printDays(){
-    const row = document.querySelector('#days'); 
+    const row = document.querySelector('#days') as HTMLDivElement; 
     const lastDayMonth = daysInMonth(Y, M+1)
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, M+1, lastDayMonth).getDay();
     row?.replaceChildren()
-    for (let i = firstDay; i > 0; i--){
-        let previousDays = daysInMonth(M, Y) -i + 1;
-        const day  = document.createElement('div');
-        day.className = "col"
-        day.className = "inactive"
-        day.innerText += `${previousDays}`;
-        row?.appendChild(day);
+    createInactivePastDay(firstDay, row);
+    createActiveDay(row);
+    createInactiveNextDay(lastDay, row);
+    
     }
+
+function createActiveDay(row: HTMLDivElement){
     for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){ 
         const today = getTodayDay();
-        const day  = document.createElement('div');
-        day.className = "col"
-        if(i < 10){
-            let j = '0' + i;
-            day.id =   `${Y}-${M+1}-${j}`
-        }else {
-             day.id = `${Y}-${M+1}-${i}`
+        const createDay  = document.createElement('div');
+        createDay.classList.add("col", "colHov");
+        let day = i;
+        let month = M+1;
+        let zeroDay = '0' + day;
+        let zeroMonth = '0' + month;
+        if(month < 10){ createDay.id = `${Y}-${zeroMonth}-${day}`;
+            if(day < 10){createDay.id = `${Y}-${zeroMonth}-${zeroDay}`
+                }
         }
-       
-        
-        day.innerText = `${i}`;
-        row?.appendChild(day);
-       
+        else if(day < 10){createDay.id = `${Y}-${month}-${zeroDay}`
+            if(month < 10){createDay.id = `${Y}-${zeroMonth}-${zeroDay}`
+                }     
+        }
+        else {createDay.id = `${Y}-${month}-${day}`
+            }
+        createDay.innerText = `${i}`;
+        row?.appendChild(createDay);
+        createDay.addEventListener('click', () => {
+            console.log(createDay.id);
+            Days.id = createDay.id});
+        todayDecoration(i,month,  today, createDay);
     }
+}
+function createInactivePastDay(firstDay:number, row:HTMLDivElement){
+for (let i = firstDay; i > 0; i--){
+    let previousDays = daysInMonth(M, Y) -i + 1;
+    const day  = document.createElement('div');
+    day.classList.add("col",  "inactive");
+    day.innerText += `${previousDays}`;
+    row?.appendChild(day);
+}
+} 
+function createInactiveNextDay(lastDay:number, row:HTMLDivElement){
     for (let i = lastDay; i < 10 ; i++) {
         const day  = document.createElement('div');
         const nextDays = i -lastDay + 1;
-        day.className = "col"
-        day.className = "inactive"
+        day.classList.add("col", "inactive");
         day.innerText = `${nextDays}`;
         row?.appendChild(day);
     }
-    }
+}
+function todayDecoration(i:number,month:number, today:number, createDay:HTMLDivElement){
+    if(i == today && month == getTodayMonth()+1 && Y == getTodayYear()){
+        createDay.classList.add("col", "today") }
+}
+
 
     
-   
-
-
-    
-
+console.log(Days.id);
 
 console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
-
 
 
 
