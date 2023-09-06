@@ -8,11 +8,9 @@ const Days:Days = {
     mthStr: '',
     year  : 0,
 }
-
-
-
 const Month = ["January", "February", "March", "April", "May", "June", "July", 
 "August", "September", "October", "November", "December"] 
+
 function getDate(dateKey:number) {
     const yearOffset = (dateKey - 32) % 512;
     const year = (dateKey - 32 - yearOffset) / 512;
@@ -145,10 +143,9 @@ function createActiveDay(row: HTMLDivElement){
             }
         createDay.innerText = `${i}`;
         row?.appendChild(createDay);
-        createDay.addEventListener('click', () => {
-            console.log(createDay.id);
-            Days.id = createDay.id});
+        createDay.addEventListener('click', () => {console.log(createDay.id);});
         todayDecoration(i,month,  today, createDay);
+        assignDayObject(createDay);
     }
 }
 function createInactivePastDay(firstDay:number, row:HTMLDivElement){
@@ -174,9 +171,13 @@ function todayDecoration(i:number,month:number, today:number, createDay:HTMLDivE
         createDay.classList.add("col", "today") }
 }
 
-
+function assignDayObject(createDay:HTMLDivElement){
+    Days.id = createDay.id;
+    console.log(Days.id);
     
-console.log(Days.id);
+}
+    
+
 
 console.log(getDate(123456));
 console.log(getTodayDay());
