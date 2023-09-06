@@ -80,16 +80,6 @@ export function isValidForm(): boolean {
         const calendar = modalForm_EventType.value
 
 
-    // if (title.trim() == "") {
-    //     displayError(title, "Introduce a envent title")
-    //     console.log("title error")
-    // } else {
-    //     saveNewEvent()
-    //     console.log("title ok")
-
-    // }
-
-  
     if (title.trim().length < 3) {
         setErrorMessage("formTitleError", "Please enter a valid title")
         isValid = false
