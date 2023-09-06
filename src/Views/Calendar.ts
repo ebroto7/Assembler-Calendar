@@ -105,20 +105,22 @@ export function printDays(){
     for (let i = firstDay; i > 0; i--){
         let previousDays = daysInMonth(M, Y) -i + 1;
         const day  = document.createElement('div');
-        day.setAttribute ("class", "col");
-        day.setAttribute ("class", "inactive");
+        day.className = "col"
+        day.className = "inactive"
         day.innerText += `${previousDays}`;
         row?.appendChild(day);
     }
     for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){ 
         const today = getTodayDay();
         const day  = document.createElement('div');
-        day.setAttribute ("class", "col");
+        day.className = "col"
         if(i < 10){
             let j = '0' + i;
-            day.setAttribute ("id", `${Y}${M+1}${j}`);
+            day.id =   `${Y}-${M+1}-${j}`
+        }else {
+             day.id = `${Y}-${M+1}-${i}`
         }
-        day.setAttribute ("id", `${i}${M+1}${Y}`);
+       
         
         day.innerText = `${i}`;
         row?.appendChild(day);
@@ -127,8 +129,8 @@ export function printDays(){
     for (let i = lastDay; i < 10 ; i++) {
         const day  = document.createElement('div');
         const nextDays = i -lastDay + 1;
-        day.setAttribute ("class", "col");
-        day.setAttribute ("class", "inactive");
+        day.className = "col"
+        day.className = "inactive"
         day.innerText = `${nextDays}`;
         row?.appendChild(day);
     }

@@ -94,9 +94,11 @@ export function printDays() {
         day.setAttribute("class", "col");
         if (i < 10) {
             let j = '0' + i;
-            day.setAttribute("id", `${Y}${M + 1}${j}`);
+            day.setAttribute("id", `${Y}-${M + 1}-${j}`);
         }
-        day.setAttribute("id", `${i}${M + 1}${Y}`);
+        else {
+            day.id = `${Y}-${M + 1}-${i}`;
+        }
         day.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
