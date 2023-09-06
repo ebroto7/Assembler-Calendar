@@ -20,8 +20,8 @@ Meanwhile, Aday e Ian were doing the calendar display.
 Ian does a lot of research of how can we put the days of the month.
 
 ## Tuesday 5th September
-
-
-    * Amina sidebar
-    * Enric Local storage form
-    * Aday and Ian continues working with main calendar display and functionalities of it.
+*We continue our work after daily meet.
+    *Amina sidebar with mini calendar and filters
+    *Enric Local storage and validation form
+    *Aday and Ian continues working with main calendar display and functionalities of it. They solved problems
+     to display days and position of first day of every month. Also set ID to everyday to work with it.

@@ -96,7 +96,7 @@ export function printDays() {
             let j = '0' + i;
             day.setAttribute("id", `${j}${M + 1}${Y}`);
         }
-        day.setAttribute("id", `${i}${M + 1}${Y}`);
+        day.setAttribute("id", `${'0' + i}${M + 1}${Y}`);
         day.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }

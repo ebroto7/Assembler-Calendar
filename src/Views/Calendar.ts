@@ -117,6 +117,7 @@ export function printDays(){
         if(i < 10){
             let j = '0' + i;
             day.setAttribute ("id", `${j}${M+1}${Y}`);
+            
         }
         day.setAttribute ("id", `${i}${M+1}${Y}`);
         
