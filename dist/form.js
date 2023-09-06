@@ -69,12 +69,18 @@ export function isValidForm() {
     const decription = modalForm_description.value;
     const calendar = modalForm_EventType.value;
     if (title.trim().length < 3) {
-        console.log("invalid title");
         setErrorMessage("formTitleError", "Please enter a valid title");
         isValid = false;
     }
     else {
         deleteErrorMessage("formTitleError");
+    }
+    if (calendar == "Choose...") {
+        isValid = false;
+        setErrorMessage("modalForm_calendarError", "Plese select a calendar");
+    }
+    else {
+        deleteErrorMessage("modalForm_calendarError");
     }
     return isValid;
 }

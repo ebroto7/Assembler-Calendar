@@ -23,5 +23,7 @@ body {
 
 .errorMessage {
     text-align: left;
+    font-size: smaller;
     color: red;
+    
 }
