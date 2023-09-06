@@ -27,3 +27,9 @@ Now we have to create the branches in which we are going to work and start
     * Aday and Ian continues working with main calendar display and functionalities of it.
 The first problems arise when considering how to organize the main view of the calendar and how to organize the days and their information.
 
+## Tuesday 6th September
+
+* Amina sidebar 
+* Enric local storage form but he needs to create a new one from 0
+* Ian continues working with main calendar display and functionalities of it. ( Days id, motnh id, selected day of today remarcable.)
+* Aday, help ian, save in storage form and a try of an interval checkbox.
