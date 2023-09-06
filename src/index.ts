@@ -1,3 +1,15 @@
+ import { printMonth, printDays  } from './Views/Calendar.js';
+ 
+ window.addEventListener('DOMContentLoaded', () => {
+    printMonth();
+    printDays();
+ } );
+
+
+
+
+
+
 import { isValidForm } from "./form.js"
 import { Type } from "./types/Event.js"
 

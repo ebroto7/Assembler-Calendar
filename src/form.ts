@@ -131,7 +131,7 @@ export function saveNewEvent() {
         calendar: modalForm_EventType.value
     }
     console.log(newEvent)
-
+    console.log(newEvent.startDate, newEvent.startHour)
  } 
 
 
