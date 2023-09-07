@@ -1,5 +1,5 @@
 import { Days } from "../Days.js";
-
+import { EventCal } from "../types/EventCal.js";
 let Days:Days = {
     id    : '' ,
     dayNum: 0,
@@ -121,7 +121,6 @@ export function printDays(){
     createInactiveNextDay(lastDay, row);
     
     }
-
 function createActiveDay(row: HTMLDivElement){
     for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){ 
         const today = getTodayDay();
@@ -144,7 +143,8 @@ function createActiveDay(row: HTMLDivElement){
         createDay.innerText = `${i}`;
         row?.appendChild(createDay);
         assignDayObject(createDay, month, i);
-        createDay.addEventListener('click', () => {console.log(createDay.id);});
+        createDay.addEventListener('click', () => {console.log(createDay.id);
+                                                    openModalInDay()});
         todayDecoration(i,month,  today, createDay);
         
     }
@@ -171,15 +171,21 @@ function todayDecoration(i:number,month:number, today:number, createDay:HTMLDivE
     if(i == today && month == getTodayMonth()+1 && Y == getTodayYear()){
         createDay.classList.add("col", "today") }
 }
-
 function assignDayObject(createDay:HTMLDivElement, month:number, i:number){
     Days.id = createDay.id;
     Days.mthNum = month;
     Days.dayNum = i;
     Days.year = Y;
-    console.log(Days);
 }
- 
+function openModalInDay(){
+
+} 
+export function printEvents(events:EventCal[]){
+        events.forEach(event => {
+            
+        });
+}
+
     
 
 
@@ -187,6 +193,6 @@ console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
-console.log(Days);
+console.log(Days.id);
 
 

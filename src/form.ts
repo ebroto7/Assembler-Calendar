@@ -1,4 +1,4 @@
-import { Event, Type, ReminderTime } from "./types/Event.js";
+import { EventCal, Type, ReminderTime } from "./types/EventCal.js";
 const calendarTypes = Object.keys(Type)
 const reminderTimes = Object.keys(ReminderTime)
 
@@ -63,7 +63,7 @@ function hiddenDateInput() {
     }
 }
 
-let eventsList: Event[] = []
+let eventsList: EventCal[] = []
 
 export function isValidForm(): boolean {
     let isValid: boolean = true
@@ -107,7 +107,7 @@ function deleteErrorMessage(containerID: String) {
 
 export function saveNewEvent() {
 
-    let newEvent: Event =  {
+    let newEvent: EventCal =  {
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value ,

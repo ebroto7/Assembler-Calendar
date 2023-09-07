@@ -1,5 +1,5 @@
 
-export interface Event {
+export interface EventCal {
     id?: number;
     title: string;
     isAllDay?: boolean;

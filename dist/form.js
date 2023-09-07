@@ -1,4 +1,4 @@
-import { Type, ReminderTime } from "./types/Event.js";
+import { Type, ReminderTime } from "./types/EventCal.js";
 const calendarTypes = Object.keys(Type);
 const reminderTimes = Object.keys(ReminderTime);
 const modalForm_eventTitle = document.querySelector('#modalForm_eventTitle');

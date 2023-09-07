@@ -20,7 +20,7 @@ body {
   width: 100%;
 }
 .container-days{
-
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   /* border: 1px solid black; */
@@ -29,13 +29,9 @@ body {
 .col{
     border: 1px solid black;
     height: 10vh;
-
     background-color: white;
 }
-.row{
-  
-  background-color: red;
-}
+
 .inactive{
   border: 1px solid black;
   
@@ -53,8 +49,6 @@ border: 0.15rem solid black;
   transform: scale(1.0, 1.05);
 
 }
-
-
 
 
 .tittle-section {

@@ -120,7 +120,10 @@ function createActiveDay(row) {
         createDay.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(createDay);
         assignDayObject(createDay, month, i);
-        createDay.addEventListener('click', () => { console.log(createDay.id); });
+        createDay.addEventListener('click', () => {
+            console.log(createDay.id);
+            openModalInDay();
+        });
         todayDecoration(i, month, today, createDay);
     }
 }
@@ -152,10 +155,15 @@ function assignDayObject(createDay, month, i) {
     Days.mthNum = month;
     Days.dayNum = i;
     Days.year = Y;
-    console.log(Days);
+}
+function openModalInDay() {
+}
+export function printEvents(events) {
+    events.forEach(event => {
+    });
 }
 console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
-console.log(Days);
+console.log(Days.id);
