@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="../dist/index.js" defer></script>
-  <script type="module" src="../dist/form.js" defer></script>
+  <!-- <script type="module" src="../dist/form.js" defer></script> -->
 
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 </head>
@@ -17,7 +17,7 @@
 <body>
   <header id="header">
     Calendar
-    <button id="openAddTaskModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
+    <button id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
       data-bs-target="#createEvent_Modal">
       New Task
     </button>
@@ -31,15 +31,14 @@
             <h1 class="modal-title fs-5" id="newEventModal">Add new event</h1>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           </div>
-          <div class="modal-body">
+          <div id="modalForm_bodyContainer" class="modal-body">
 
 
 
-            <form class="needs-validation" novalidate>
-
+            <form id="formModal" class="needs-validation" novalidate>
               <div id="eventTitle_container" class="input-group-text mb-3">
-                <label for="eventTitle" class="form-label">Title:</label>
-                <input id="modalForm_eventTitle" type="text" class="form-control" minlength="3" maxlength="50" required>
+                <label for="modalForm_eventTitle" class="form-label">Title:</label>
+                <input id="modalForm_eventTitle" type="text" class="form-control" minlength="3" maxlength="50">
                 <div id="formTitleError" class="errorMessage" hidden></div>
               </div>
 
@@ -54,8 +53,8 @@
                 <article class="formArticle">
                     <div class="input-group mb-3">
                       <span class="input-group-text" id="form_startDate">Inital date</span>
-                      <input id="form_startDate_dateInput" type="date" class="form-control" required>
-                      <input id="form_startDate_hourInput" type="time" class="form-control" required>
+                      <input id="form_startDate_dateInput" type="date" class="form-control">
+                      <input id="form_startDate_hourInput" type="time" class="form-control">
                     </div>
                     <div id="modalForm_startDate_errorMessage" class="errorMessage" hidden></div>
                 </article>
@@ -64,8 +63,8 @@
                 <article class="formArticle">
                   <div id="form_startDate_container" class="input-group mb-3">
                     <span class="input-group-text" id="form_EndDate">End date</span>
-                    <input id="form_endDate_dateInput" type="date" class="form-control" required>
-                    <input id="form_endDate_hourInput" type="time" class="form-control" required>
+                    <input id="form_endDate_dateInput" type="date" class="form-control">
+                    <input id="form_endDate_hourInput" type="time" class="form-control">
                   </div>
                   <div id="modalForm_endDate_errorMessage" class="errorMessage" hidden></div>
                 </article>
@@ -106,7 +105,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+            <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>

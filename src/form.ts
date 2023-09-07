@@ -1,13 +1,16 @@
-
-
+// save at localStorage
 // compare start and end dates 
 // hidden error messages at init modal
 // array allDays for compare id's w/ calendar
 
-import { Event, Type, ReminderTime } from "./types/Event.js";
+import { EventCal, Type, ReminderTime } from "./types/EventCal.js";
 const calendarTypes = Object.keys(Type)
 const reminderTimes = Object.keys(ReminderTime)
 
+
+const openAddEventModal_btn = document.querySelector("#openAddEventModal_btn") as HTMLButtonElement;
+const createEvent_Modal = document.querySelector("#createEvent_Modal") as HTMLDivElement;
+const modalForm_bodyContainer = document.querySelector("#modalForm_bodyContainer") as HTMLDivElement;
 
 const modalForm_eventTitle = document.querySelector('#modalForm_eventTitle') as HTMLInputElement
 const modalForm_AllDayEventSwitch = document.querySelector('#modalForm_AllDayEventSwitch') as HTMLInputElement
@@ -22,14 +25,18 @@ const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminde
 const modalForm_description = document.querySelector('#modalForm_description') as HTMLTextAreaElement
 const modalForm_EventType = document.querySelector('#modalForm_EventType') as HTMLSelectElement
 
-let eventsList: Event[] = []
+let eventsList: EventCal[] = []
 
 window.addEventListener("load", init)
-
 async function init() {
     createTypeFormView()
     createReminderTimesFormView()   
 }
+
+openAddEventModal_btn.addEventListener('click', () => {
+    createModalFormView()
+})
+
 
 
 modalForm_ReminderCheckbox.addEventListener('change', ()=> {
@@ -77,15 +84,10 @@ function hiddenDateInput() {
 
 export function isValidForm(): boolean {
     let isValid: boolean = false
-
-       
-        const reminder = modalForm_ReminderCheckbox.checked
-        const startReminder = modalForm_ReminderCheckbox_options.value
-        const decription = modalForm_description.value
   
-        validateTitle()
-        validateDate()
-        validateCalendar()
+    validateTitle()
+    validateDate()
+    validateCalendar()
 
    if (validateTitle() == true && validateDate() == true &&  validateCalendar() == true ) {
         isValid = true
@@ -192,7 +194,7 @@ export function saveNewEvent() {
         endDate = modalForm_startDate_dateInput.value
     }
 
-    let newEvent: Event =  {
+    let newEvent: EventCal =  {
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value ,
@@ -210,4 +212,25 @@ export function saveNewEvent() {
  } 
 
 
- 
+ export function closeModal() {
+    createEvent_Modal.hidden = true
+ }
+
+
+
+
+ function createModalFormView(event?: EventCal) {
+    // modalForm_bodyContainer.replaceChildren()
+
+    // const form = document.createElement("form") as HTMLFormElement
+    // form.innerText = "hello world"
+
+    // modalForm_bodyContainer.appendChild(form)
+
+    // console.log("load modal")
+
+    // if (event != undefined)
+    // console.log(event)
+
+
+ }

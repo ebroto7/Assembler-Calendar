@@ -1,5 +1,5 @@
-import { isValidForm, saveNewEvent } from "./form.js"
-import { Type } from "./types/Event.js" 
+import { isValidForm, saveNewEvent, closeModal } from "./form.js"
+import { Type, EventCal } from "./types/EventCal.js" 
 
 
 const main = document.querySelector("#main") as HTMLDivElement
@@ -9,10 +9,8 @@ const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn')
 modalForm_saveEventBtn.addEventListener('click', ()=> {
     if (isValidForm() == true) {
         saveNewEvent()
-     //   createEvent_Modal.setAttribute("data-bs-dismiss", "modal")
-
+        closeModal()
     }
     console.log("is valid form?" + isValidForm())
-
 
 })
