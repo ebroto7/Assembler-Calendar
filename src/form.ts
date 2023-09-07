@@ -11,6 +11,7 @@ const reminderTimes = Object.keys(ReminderTime)
 const openAddEventModal_btn = document.querySelector("#openAddEventModal_btn") as HTMLButtonElement;
 const createEvent_Modal = document.querySelector("#createEvent_Modal") as HTMLDivElement;
 const modalForm_bodyContainer = document.querySelector("#modalForm_bodyContainer") as HTMLDivElement;
+const formModal = document.querySelector("#formModal") as HTMLFormElement;
 
 const modalForm_eventTitle = document.querySelector('#modalForm_eventTitle') as HTMLInputElement
 const modalForm_AllDayEventSwitch = document.querySelector('#modalForm_AllDayEventSwitch') as HTMLInputElement
@@ -26,6 +27,53 @@ const modalForm_description = document.querySelector('#modalForm_description') a
 const modalForm_EventType = document.querySelector('#modalForm_EventType') as HTMLSelectElement
 
 let eventsList: EventCal[] = []
+const testDate: string = '2023-09-07'
+const testEvent: EventCal = {
+    title: "testing",
+    
+}
+
+
+const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle') as HTMLHeadingElement;
+const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
+
+function openModal(initialDate?: string, event?: EventCal) {
+    console.log("open new modal")
+
+
+    if (initialDate != undefined && initialDate != "") {
+        modalForm_startDate_dateInput.value = initialDate
+    }
+
+    if (event != undefined) {
+        newEventModal_headerTitle.innerText = "Edit event"
+        modalForm_saveEventBtn.innerText = "Edit"
+
+        modalForm_eventTitle.value = event.title
+    }
+    console.log(event)
+    console.log(initialDate)
+}
+function resetModal() {
+    formModal.reset()
+
+
+    // modalForm_eventTitle.value = "";
+    // modalForm_AllDayEventSwitch.checked = false;
+    // modalForm_startDate_dateInput.value = "";
+    // modalForm_endDate_hourInput.value = "";
+    // modalForm_startDate_hourInput.value = "";
+    // modalForm_endDate_dateInput.value = "";
+    // modalForm_endDate_hourInput.value = "";
+    // modalForm_ReminderCheckbox.checked = false;
+    // modalForm_description.value = "";
+    // modalForm_EventType.value = "Choose...";
+
+    deleteErrorMessage('formTitleError')
+    deleteErrorMessage('modalForm_startDate_errorMessage')
+    deleteErrorMessage('modalForm_endDate_errorMessage')
+    deleteErrorMessage('modalForm_calendarError')
+}
 
 window.addEventListener("load", init)
 async function init() {
@@ -34,7 +82,7 @@ async function init() {
 }
 
 openAddEventModal_btn.addEventListener('click', () => {
-    createModalFormView()
+    openModal(testDate, testEvent)
 })
 
 
@@ -211,26 +259,8 @@ export function saveNewEvent() {
 
  } 
 
-
- export function closeModal() {
+export function closeModal() {
     createEvent_Modal.hidden = true
- }
+    resetModal()
+}
 
-
-
-
- function createModalFormView(event?: EventCal) {
-    // modalForm_bodyContainer.replaceChildren()
-
-    // const form = document.createElement("form") as HTMLFormElement
-    // form.innerText = "hello world"
-
-    // modalForm_bodyContainer.appendChild(form)
-
-    // console.log("load modal")
-
-    // if (event != undefined)
-    // console.log(event)
-
-
- }

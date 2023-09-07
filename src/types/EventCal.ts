@@ -21,7 +21,6 @@ export enum Type {
     Personal = "personal",
     Gimnasio = "gimnasio",
     Assembler = "assembler",
-    
 }
 
 export enum ReminderTime {

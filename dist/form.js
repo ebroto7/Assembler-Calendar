@@ -13,6 +13,7 @@ const reminderTimes = Object.keys(ReminderTime);
 const openAddEventModal_btn = document.querySelector("#openAddEventModal_btn");
 const createEvent_Modal = document.querySelector("#createEvent_Modal");
 const modalForm_bodyContainer = document.querySelector("#modalForm_bodyContainer");
+const formModal = document.querySelector("#formModal");
 const modalForm_eventTitle = document.querySelector('#modalForm_eventTitle');
 const modalForm_AllDayEventSwitch = document.querySelector('#modalForm_AllDayEventSwitch');
 const modalForm_startDate_container = document.querySelector('#form_startDate_container');
@@ -26,6 +27,32 @@ const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminde
 const modalForm_description = document.querySelector('#modalForm_description');
 const modalForm_EventType = document.querySelector('#modalForm_EventType');
 let eventsList = [];
+const testDate = '2023-09-07';
+const testEvent = {
+    title: "testing",
+};
+const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle');
+const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
+function openModal(initialDate, event) {
+    console.log("open new modal");
+    if (initialDate != undefined && initialDate != "") {
+        modalForm_startDate_dateInput.value = initialDate;
+    }
+    if (event != undefined) {
+        newEventModal_headerTitle.innerText = "Edit event";
+        modalForm_saveEventBtn.innerText = "Edit";
+        modalForm_eventTitle.value = event.title;
+    }
+    console.log(event);
+    console.log(initialDate);
+}
+function resetModal() {
+    formModal.reset();
+    deleteErrorMessage('formTitleError');
+    deleteErrorMessage('modalForm_startDate_errorMessage');
+    deleteErrorMessage('modalForm_endDate_errorMessage');
+    deleteErrorMessage('modalForm_calendarError');
+}
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -34,7 +61,7 @@ function init() {
     });
 }
 openAddEventModal_btn.addEventListener('click', () => {
-    createModalFormView();
+    openModal(testDate, testEvent);
 });
 modalForm_ReminderCheckbox.addEventListener('change', () => {
     hiddenReminderInput();
@@ -196,6 +223,5 @@ export function saveNewEvent() {
 }
 export function closeModal() {
     createEvent_Modal.hidden = true;
-}
-function createModalFormView(event) {
+    resetModal();
 }
