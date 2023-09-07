@@ -1,6 +1,6 @@
 import { Days } from "../Days.js";
 
-const Days:Days = {
+let Days:Days = {
     id    : '' ,
     dayNum: 0,
     dayStr: '',
@@ -143,9 +143,10 @@ function createActiveDay(row: HTMLDivElement){
             }
         createDay.innerText = `${i}`;
         row?.appendChild(createDay);
+        assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {console.log(createDay.id);});
         todayDecoration(i,month,  today, createDay);
-        assignDayObject(createDay);
+        
     }
 }
 function createInactivePastDay(firstDay:number, row:HTMLDivElement){
@@ -171,11 +172,14 @@ function todayDecoration(i:number,month:number, today:number, createDay:HTMLDivE
         createDay.classList.add("col", "today") }
 }
 
-function assignDayObject(createDay:HTMLDivElement){
+function assignDayObject(createDay:HTMLDivElement, month:number, i:number){
     Days.id = createDay.id;
-    console.log(Days.id);
-    
+    Days.mthNum = month;
+    Days.dayNum = i;
+    Days.year = Y;
+    console.log(Days);
 }
+ 
     
 
 
@@ -183,6 +187,6 @@ console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
-
+console.log(Days);
 
 
