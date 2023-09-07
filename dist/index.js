@@ -1,8 +1,8 @@
 "use strict";
 const asideBar = document.querySelector("#aside");
 const createArray = ["trabajo", "gimnasio", "cumple"];
+const checkboxCalendar = document.createElement("div");
 function createCheckboxCalendar() {
-    const checkboxCalendar = document.createElement("div");
     asideBar.appendChild(checkboxCalendar);
     createArray.forEach((element) => {
         const InputyLabel = document.createElement("div");
@@ -31,3 +31,18 @@ function createCheckboxCalendar() {
     });
 }
 createCheckboxCalendar();
+function nextEvents() {
+    const titleNE = document.createElement("h6");
+    titleNE.setAttribute("id", "titleNE");
+    titleNE.innerHTML = " Next Events:";
+    asideBar.appendChild(titleNE);
+    titleNE.style.backgroundColor = "red";
+    const createEvent = ["comida familiar", "excursion amigos"];
+    createEvent.forEach((element) => {
+        const listEvent = document.createElement("ul");
+        listEvent.classList.add('list-group');
+        listEvent.textContent = `${element}`;
+        asideBar === null || asideBar === void 0 ? void 0 : asideBar.appendChild(listEvent);
+    });
+}
+nextEvents();

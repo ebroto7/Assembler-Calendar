@@ -3,10 +3,11 @@ const createArray = ["trabajo", "gimnasio", "cumple"];
 
 
 
+const checkboxCalendar = document.createElement("div");
+
 function createCheckboxCalendar (){
    
-    const checkboxCalendar = document.createElement("div");
-
+   
     asideBar!.appendChild(checkboxCalendar);
    
  
@@ -45,3 +46,28 @@ function createCheckboxCalendar (){
 
 
 createCheckboxCalendar();
+
+function nextEvents(){
+    const titleNE = document.createElement("h6");
+    titleNE.setAttribute("id", "titleNE")
+    titleNE.innerHTML=" Next Events:";
+    asideBar!.appendChild(titleNE);
+    titleNE.style.backgroundColor = "red";
+
+
+    const createEvent = ["comida familiar","excursion amigos"];
+
+    createEvent.forEach((element)=>{
+        const listEvent = document.createElement("ul");
+        listEvent.classList.add('list-group');
+        listEvent.textContent= `${element}`;
+        asideBar?.appendChild(listEvent);
+
+
+
+     })
+
+
+
+}
+nextEvents();
