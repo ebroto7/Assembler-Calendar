@@ -1,8 +1,5 @@
 "use strict";
 const asideBar = document.querySelector("#aside");
-const calendarContainer = document.querySelector("#calendarContainer");
-const selectCalendarContainer = document.querySelector("#selectCalendarContainer");
-selectCalendarContainer.style.backgroundColor = "green";
 const createArray = ["trabajo", "gimnasio", "cumple"];
 function createCheckboxCalendar() {
     const checkboxCalendar = document.createElement("div");
@@ -22,6 +19,15 @@ function createCheckboxCalendar() {
         InputyLabel.appendChild(createInput);
         InputyLabel.appendChild(createLabel);
         checkboxCalendar.appendChild(InputyLabel);
+        createInput.addEventListener("change", () => {
+            if (createInput.checked == true) {
+                createLabel.style.backgroundColor = "grey";
+                console.log("marked");
+            }
+            else {
+                createLabel.style.backgroundColor = "transparent";
+            }
+        });
     });
 }
 createCheckboxCalendar();

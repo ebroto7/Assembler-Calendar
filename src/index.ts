@@ -1,7 +1,4 @@
 const asideBar = document.querySelector("#aside");
-const calendarContainer = document.querySelector("#calendarContainer");
-const selectCalendarContainer = document.querySelector("#selectCalendarContainer") as HTMLDivElement;
-selectCalendarContainer.style.backgroundColor="green";
 const createArray = ["trabajo", "gimnasio", "cumple"];
 
 
@@ -25,17 +22,26 @@ function createCheckboxCalendar (){
         createLabel.setAttribute("class", "form-check-label");
         createLabel.setAttribute("name", "my calendars");
         createLabel.setAttribute("for", "flexCheckDefault");
-    createLabel.innerText= element;
+        createLabel.innerText= element;
 
-   InputyLabel.appendChild(createInput)
-    InputyLabel.appendChild(createLabel);
-    checkboxCalendar.appendChild(InputyLabel);
-    }) 
+        InputyLabel.appendChild(createInput)
+        InputyLabel.appendChild(createLabel);
+        checkboxCalendar.appendChild(InputyLabel);
+            createInput.addEventListener("change" ,()=>{
+                    if (createInput.checked == true ) {
+                        createLabel.style.backgroundColor= "grey";
+                        console.log("marked");
+                    } else {
+                        createLabel.style.backgroundColor = "transparent";
+                    }
+                   
+            })
+     
+    })
 }
 
-createCheckboxCalendar();
 
-//add title html 
-//const title = document.createElement("h5")
-//title.innerHTML="my calendar";
-//checkboxCalendar.appendChild(title);
+
+
+
+createCheckboxCalendar();
