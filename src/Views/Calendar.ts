@@ -164,7 +164,15 @@ function createInactivePastDay(firstDay:number, row:HTMLDivElement){
     for (let i = firstDay; i > 0; i--){
         let previousDays = daysInMonth(M, Y) -i + 1;
         const day  = document.createElement('button');
+<<<<<<< Updated upstream
         day.classList.add("col",  "inactive");
+=======
+        if (row.id == "days"){
+            day.classList.add("col", "inactive");
+        } else if(row.id == "days2"){
+           day.classList.add("col2", "inactive");
+        }
+>>>>>>> Stashed changes
 
         day.addEventListener('click', () => {
             changeMinusMonth();
@@ -181,7 +189,11 @@ function createInactiveNextDay(lastDay:number, row:HTMLDivElement){
     for (let i = lastDay; i < 10 ; i++) {
         const day  = document.createElement('button');
         const nextDays = i -lastDay + 1;
-        day.classList.add("col", "inactive");
+         if (row.id == "days"){
+            day.classList.add("col", "inactive");
+        } else if(row.id == "days2"){
+           day.classList.add("col2", "inactive");
+        }
 
         day.addEventListener('click', () => {
             changePlusMonth();
