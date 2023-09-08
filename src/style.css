@@ -31,7 +31,9 @@ padding: 0;
 
     background-color: white;
 }
-
+.modal{
+  position: absolute;
+}
 .today{
 background-color: rgba(0, 255, 174, 0.617) !important;
 border: 0.15rem solid rgb(255, 255, 255);
@@ -57,7 +59,7 @@ border: 0.15rem solid rgb(255, 255, 255);
   -webkit-backdrop-filter: blur(3px) saturate(200%);
   color: white;
   box-shadow: 0px 2px 10px 1px white;
-  padding-left: 1em ;
+  padding-left: 1rem ;
 }
 .colHov{
   background-color: rgba(0, 0, 0, 0.211);

@@ -96,8 +96,10 @@ export function printDays() {
 function createActiveDay(row) {
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
         const today = getTodayDay();
-        const createDay = document.createElement('div');
+        const createDay = document.createElement('button');
         createDay.classList.add("col", "colHov");
+        createDay.setAttribute("data-bs-toggle", "modal");
+        createDay.setAttribute("data-bs-target", "#createEvent_Modal");
         let day = i;
         let month = M + 1;
         let zeroDay = '0' + day;
@@ -160,6 +162,10 @@ function openModalInDay() {
 }
 export function printEvents(events) {
     events.forEach(event => {
+        if (Days.id == event.startDate) {
+            const day = document.getElementById(`${Days.id}`);
+            day.style.backgroundColor = 'red';
+        }
     });
 }
 console.log(getDate(123456));

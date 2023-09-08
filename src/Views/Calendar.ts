@@ -124,8 +124,10 @@ export function printDays(){
 function createActiveDay(row: HTMLDivElement){
     for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){ 
         const today = getTodayDay();
-        const createDay  = document.createElement('div');
+        const createDay  = document.createElement('button');
         createDay.classList.add("col", "colHov");
+        createDay.setAttribute ("data-bs-toggle","modal") 
+        createDay.setAttribute ("data-bs-target", "#createEvent_Modal")
         let day = i;
         let month = M+1;
         let zeroDay = '0' + day;
@@ -167,11 +169,11 @@ function createInactiveNextDay(lastDay:number, row:HTMLDivElement){
         row?.appendChild(day);
     }
 }
-function todayDecoration(i:number,month:number, today:number, createDay:HTMLDivElement){
+function todayDecoration(i:number,month:number, today:number, createDay:HTMLButtonElement){
     if(i == today && month == getTodayMonth()+1 && Y == getTodayYear()){
         createDay.classList.add("col", "today") }
 }
-function assignDayObject(createDay:HTMLDivElement, month:number, i:number){
+function assignDayObject(createDay:HTMLButtonElement, month:number, i:number){
     Days.id = createDay.id;
     Days.mthNum = month;
     Days.dayNum = i;
@@ -182,7 +184,11 @@ function openModalInDay(){
 } 
 export function printEvents(events:EventCal[]){
         events.forEach(event => {
-            
+            if(Days.id == event.startDate){
+                const day = document.getElementById(`${Days.id}`)
+                day.style.backgroundColor = 'red';
+               
+            }
         });
 }
 
