@@ -119,25 +119,6 @@ function createInactivePastDay(firstDay, row) {
         let previousDays = daysInMonth(M, Y) - i + 1;
         const day = document.createElement('button');
         day.classList.add("col", "inactive");
-        let dayInact = i;
-        let month = M + 1;
-        let zeroDay = '0' + dayInact;
-        let zeroMonth = '0' + month;
-        if (month < 10) {
-            day.id = `${Y}-${zeroMonth}-${dayInact}`;
-            if (dayInact < 10) {
-                day.id = `${Y}-${zeroMonth}-${zeroDay}`;
-            }
-        }
-        else if (dayInact < 10) {
-            day.id = `${Y}-${month}-${zeroDay}`;
-            if (month < 10) {
-                day.id = `${Y}-${zeroMonth}-${zeroDay}`;
-            }
-        }
-        else {
-            day.id = `${Y}-${month}-${dayInact}`;
-        }
         day.addEventListener('click', () => {
             changeMinusMonth();
             printMonth();
