@@ -1,3 +1,4 @@
+import { openModal } from "../form.js";
 let Days = {
     id: '',
     dayNum: 0,
@@ -124,7 +125,7 @@ function createActiveDay(row) {
         assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {
             console.log(createDay.id);
-            openModalInDay();
+            setInfoModalDay(createDay.id);
         });
         todayDecoration(i, month, today, createDay);
     }
@@ -158,15 +159,8 @@ function assignDayObject(createDay, month, i) {
     Days.dayNum = i;
     Days.year = Y;
 }
-function openModalInDay() {
-}
-export function printEvents(events) {
-    events.forEach(event => {
-        if (Days.id == event.startDate) {
-            const day = document.getElementById(`${Days.id}`);
-            day.style.backgroundColor = 'red';
-        }
-    });
+function setInfoModalDay(date) {
+    openModal(date);
 }
 console.log(getDate(123456));
 console.log(getTodayDay());

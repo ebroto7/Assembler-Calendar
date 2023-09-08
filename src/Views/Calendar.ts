@@ -1,5 +1,6 @@
 import { Days } from "../Days.js";
 import { EventCal } from "../types/EventCal.js";
+import { openModal } from "../form.js";
 let Days:Days = {
     id    : '' ,
     dayNum: 0,
@@ -146,7 +147,7 @@ function createActiveDay(row: HTMLDivElement){
         row?.appendChild(createDay);
         assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {console.log(createDay.id);
-                                                    openModalInDay()});
+                                    setInfoModalDay(createDay.id)});
         todayDecoration(i,month,  today, createDay);
         
     }
@@ -179,18 +180,19 @@ function assignDayObject(createDay:HTMLButtonElement, month:number, i:number){
     Days.dayNum = i;
     Days.year = Y;
 }
-function openModalInDay(){
+function setInfoModalDay(date:string){
+    openModal(date);
 
 } 
-export function printEvents(events:EventCal[]){
-        events.forEach(event => {
-            if(Days.id == event.startDate){
-                const day = document.getElementById(`${Days.id}`)
-                day.style.backgroundColor = 'red';
+// function printEvents(events:EventCal[], ){
+//         events.forEach(event => {
+//             if(createDay.id == event.startDate){
+//                 const day = document.getElementById(`${Days.id}`)
+//                 day.style.backgroundColor = 'red';
                
-            }
-        });
-}
+//             }
+//         });
+// }
 
     
 

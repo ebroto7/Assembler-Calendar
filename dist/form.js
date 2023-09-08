@@ -35,7 +35,7 @@ const testEvent = {
 };
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle');
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
-function openModal(initialDate, event) {
+export function openModal(initialDate, event) {
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate;
     }

@@ -1,4 +1,4 @@
- import { printMonth, printDays, printEvents  } from './Views/Calendar.js';
+ import { printMonth, printDays  } from './Views/Calendar.js';
 
 import { isValidForm, setEventInfo, closeModal } from "./form.js"
 import { Type, EventCal } from "./types/EventCal.js"
@@ -31,7 +31,7 @@ const events = [event1, event2, event3]
  window.addEventListener('DOMContentLoaded', () => {
     printMonth();
     printDays();
-    printEvents(events);
+    // printEvents(events);
  } );
 
 

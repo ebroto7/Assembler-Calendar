@@ -40,7 +40,7 @@ const testEvent: EventCal = {
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle') as HTMLHeadingElement;
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
 
-function openModal(initialDate?: string, event?: EventCal) {
+export function openModal(initialDate?: string, event?: EventCal) {
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
     }

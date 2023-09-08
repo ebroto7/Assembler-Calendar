@@ -1,4 +1,4 @@
-import { printMonth, printDays, printEvents } from './Views/Calendar.js';
+import { printMonth, printDays } from './Views/Calendar.js';
 import { isValidForm, setEventInfo, closeModal } from "./form.js";
 const event1 = {
     calendar: "Cumpleaños",
@@ -22,7 +22,6 @@ const events = [event1, event2, event3];
 window.addEventListener('DOMContentLoaded', () => {
     printMonth();
     printDays();
-    printEvents(events);
 });
 const main = document.querySelector("#main");
 const createEvent_Modal = document.querySelector('#createEvent_Modal');
