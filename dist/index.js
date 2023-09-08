@@ -45,11 +45,11 @@ function saveNewEvent(event) {
     if (savedEvents !== null) {
         savedEvents.push(event);
         console.log('push: ' + savedEvents);
-        localStorage.setItem("scores", JSON.stringify(savedEvents));
+        localStorage.setItem("events", JSON.stringify(savedEvents));
     }
     else {
         let newArray = [event];
-        localStorage.setItem("scores", JSON.stringify(newArray));
+        localStorage.setItem("events", JSON.stringify(newArray));
         console.log('save: ' + savedEvents);
     }
     console.log(event);

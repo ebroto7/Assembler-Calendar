@@ -555,3 +555,4 @@ function random(min, max, float) {
 
 // init
 if (canvas) init();
+

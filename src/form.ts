@@ -91,7 +91,7 @@ async function init() {
 }
 
 openAddEventModal_btn.addEventListener('click', () => {
-    openModal("", testEvent)
+    openModal()
 })
 
 
@@ -267,10 +267,9 @@ export function setEventInfo(): EventCal {
     console.log(newEvent)
     console.log(newEvent.startDate, newEvent.startHour)
     return newEvent
- } 
+ }
 
 export function closeModal() {
     createEvent_Modal.hidden = true
     resetModal()
 }
-

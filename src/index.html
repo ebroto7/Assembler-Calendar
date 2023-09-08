@@ -22,14 +22,13 @@
   
 
 <header id="header">
-  Calendar
-  <button id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
+  <button  id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
     data-bs-target="#createEvent_Modal">
     New Task
   </button>
   <button  id="todayButton"  class="btn-primary todayButton">Back to the future</button>
   <!-- Modal -->
-  <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <div class="modal fade" id="createEvent_Modal" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="newEventModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -112,7 +111,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
+          <button  id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
         </div>
       </div>
     </div>
@@ -152,12 +151,10 @@
     </main>
     <footer id="footer">copyright september 2023 ©</footer>
 
-    <!-- ---------------------------------------------------------------- -->
-  
-  
+   
   
     <canvas id="stars" width="300" height="300"></canvas>
-<script src='https://rawgit.com/ironwallaby/delaunay/master/delaunay.js'></script><script  src="./stars.js"></script>
+<script src='https://rawgit.com/ironwallaby/delaunay/master/delaunay.js'></script><script src="../dist/stars.js"></script>
 </body>
 
 </html>

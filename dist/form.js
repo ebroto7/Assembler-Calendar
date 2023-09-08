@@ -71,7 +71,7 @@ function init() {
     });
 }
 openAddEventModal_btn.addEventListener('click', () => {
-    openModal("", testEvent);
+    openModal();
 });
 modalForm_ReminderCheckbox.addEventListener('change', () => {
     hiddenReminderInput();
