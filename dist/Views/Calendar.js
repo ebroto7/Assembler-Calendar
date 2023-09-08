@@ -55,21 +55,24 @@ function changePlusMonth() {
 buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventListener('click', () => {
     changePlusMonth();
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListener('click', () => {
     changeMinusMonth();
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 buttonToday === null || buttonToday === void 0 ? void 0 : buttonToday.addEventListener('click', () => {
     M = getTodayMonth();
     Y = getTodayYear();
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
-export function printDays() {
-    const row = document.querySelector('#days');
+export function printDays(id) {
+    const row = document.querySelector(`#${id}`);
     const lastDayMonth = daysInMonth(Y, M + 1);
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, M + 1, lastDayMonth).getDay();
@@ -82,7 +85,12 @@ function createActiveDay(row) {
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
         const today = getTodayDay();
         const createDay = document.createElement('button');
-        createDay.classList.add("col", "colHov");
+        if (row.id == "days") {
+            createDay.classList.add("col", "colHov");
+        }
+        else if (row.id == "days2") {
+            createDay.classList.add("col2", "colHov");
+        }
         createDay.setAttribute("data-bs-toggle", "modal");
         createDay.setAttribute("data-bs-target", "#createEvent_Modal");
         let day = i;
@@ -111,18 +119,24 @@ function createActiveDay(row) {
             console.log(createDay.id);
             setInfoModalDay(createDay.id);
         });
-        todayDecoration(i, month, today, createDay);
+        todayDecoration(i, month, today, createDay, row);
     }
 }
 function createInactivePastDay(firstDay, row) {
     for (let i = firstDay; i > 0; i--) {
         let previousDays = daysInMonth(M, Y) - i + 1;
         const day = document.createElement('button');
-        day.classList.add("col", "inactive");
+        if (row.id == "days") {
+            day.classList.add("col", "colHov");
+        }
+        else if (row.id == "days2") {
+            day.classList.add("col2", "colHov");
+        }
         day.addEventListener('click', () => {
             changeMinusMonth();
             printMonth();
-            printDays();
+            printDays("days");
+            printDays("days2");
         });
         day.innerText += `${previousDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
@@ -132,19 +146,30 @@ function createInactiveNextDay(lastDay, row) {
     for (let i = lastDay; i < 10; i++) {
         const day = document.createElement('button');
         const nextDays = i - lastDay + 1;
-        day.classList.add("col", "inactive");
+        if (row.id == "days") {
+            day.classList.add("col", "colHov");
+        }
+        else if (row.id == "days2") {
+            day.classList.add("col2", "colHov");
+        }
         day.addEventListener('click', () => {
             changePlusMonth();
             printMonth();
-            printDays();
+            printDays("days");
+            printDays("days2");
         });
         day.innerText = `${nextDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
-function todayDecoration(i, month, today, createDay) {
+function todayDecoration(i, month, today, createDay, row) {
     if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
-        createDay.classList.add("col", "today");
+        if (row.id == "days") {
+            createDay.classList.add("col", "colHov");
+        }
+        else if (row.id == "days2") {
+            createDay.classList.add("col2", "colHov");
+        }
     }
 }
 function assignDayObject(createDay, month, i) {

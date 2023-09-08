@@ -98,13 +98,15 @@ function changePlusMonth(){
 buttonRight?.addEventListener('click', () => {
     changePlusMonth();
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 
 buttonLeft?.addEventListener('click', () => {
     changeMinusMonth();
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 
 buttonToday?.addEventListener('click', () => {
@@ -112,14 +114,15 @@ buttonToday?.addEventListener('click', () => {
     Y = getTodayYear();
     
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 })
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 // print dias
-export function printDays(){
-    const row = document.querySelector('#days') as HTMLDivElement; 
+export function printDays(id: string){
+    const row = document.querySelector(`#${id}`) as HTMLDivElement; 
     const lastDayMonth = daysInMonth(Y, M+1)
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, M+1, lastDayMonth).getDay();
@@ -129,11 +132,17 @@ export function printDays(){
     createInactiveNextDay(lastDay, row);
     
     }
+    
+    
 function createActiveDay(row: HTMLDivElement){
     for( let i = 1 ;i <= daysInMonth(M+1, Y); i++){ 
         const today = getTodayDay();
         const createDay  = document.createElement('button');
+        if (row.id == "days"){
         createDay.classList.add("col", "colHov");
+    } else if(row.id == "days2"){
+        createDay.classList.add("col2", "colHov");
+    }
         createDay.setAttribute ("data-bs-toggle","modal") 
         createDay.setAttribute ("data-bs-target", "#createEvent_Modal")
         let day = i;
@@ -155,7 +164,7 @@ function createActiveDay(row: HTMLDivElement){
         assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {console.log(createDay.id);
                                     setInfoModalDay(createDay.id)});
-        todayDecoration(i,month,  today, createDay);
+        todayDecoration(i,month,  today, createDay, row);
         // printEvents(events, createDay);
         
     }
@@ -164,12 +173,17 @@ function createInactivePastDay(firstDay:number, row:HTMLDivElement){
     for (let i = firstDay; i > 0; i--){
         let previousDays = daysInMonth(M, Y) -i + 1;
         const day  = document.createElement('button');
-        day.classList.add("col",  "inactive");
+        if (row.id == "days"){
+            day.classList.add("col", "colHov");
+        } else if(row.id == "days2"){
+           day.classList.add("col2", "colHov");
+        }
 
         day.addEventListener('click', () => {
             changeMinusMonth();
             printMonth();
-            printDays();
+            printDays("days");
+            printDays("days2");
             // setInfoModalDay(day.id);
         });
 
@@ -181,21 +195,30 @@ function createInactiveNextDay(lastDay:number, row:HTMLDivElement){
     for (let i = lastDay; i < 10 ; i++) {
         const day  = document.createElement('button');
         const nextDays = i -lastDay + 1;
-        day.classList.add("col", "inactive");
+         if (row.id == "days"){
+            day.classList.add("col", "colHov");
+        } else if(row.id == "days2"){
+           day.classList.add("col2", "colHov");
+        }
 
         day.addEventListener('click', () => {
             changePlusMonth();
             printMonth();
-            printDays();
+            printDays("days");
+    printDays("days2");
         });
 
         day.innerText = `${nextDays}`;
         row?.appendChild(day);
     }
 }
-function todayDecoration(i:number,month:number, today:number, createDay:HTMLButtonElement){
+function todayDecoration(i:number,month:number, today:number, createDay:HTMLButtonElement, row){
     if(i == today && month == getTodayMonth()+1 && Y == getTodayYear()){
-        createDay.classList.add("col", "today") }
+        if (row.id == "days"){
+            createDay.classList.add("col", "colHov");
+        } else if(row.id == "days2"){
+           createDay.classList.add("col2", "colHov");
+        } }
 }
 function assignDayObject(createDay:HTMLButtonElement, month:number, i:number){
     Days.id = createDay.id;

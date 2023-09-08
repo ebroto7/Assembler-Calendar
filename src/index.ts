@@ -30,7 +30,8 @@ const events = [event1, event2, event3]
 
  window.addEventListener('DOMContentLoaded', () => {
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
     // printEvents();
  } );
 
@@ -80,3 +81,6 @@ function saveNewEvent(event: EventCal) {
 
     console.log(event) 
 }
+
+
+

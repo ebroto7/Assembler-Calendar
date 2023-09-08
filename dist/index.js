@@ -21,7 +21,8 @@ const event3 = {
 const events = [event1, event2, event3];
 window.addEventListener('DOMContentLoaded', () => {
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 const main = document.querySelector("#main");
 const createEvent_Modal = document.querySelector('#createEvent_Modal');
