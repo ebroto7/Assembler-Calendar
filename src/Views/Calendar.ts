@@ -12,32 +12,32 @@ let Days:Days = {
 const Month = ["January", "February", "March", "April", "May", "June", "July", 
 "August", "September", "October", "November", "December"] 
 
-function getDate(dateKey:number) {
-    const yearOffset = (dateKey - 32) % 512;
-    const year = (dateKey - 32 - yearOffset) / 512;
-    const day = yearOffset % 32;
-    const month = (yearOffset - day) / 32;
-    return new Date(year + 1970, month, day);
-}
+// function getDate(dateKey:number) {
+//     const yearOffset = (dateKey - 32) % 512;
+//     const year = (dateKey - 32 - yearOffset) / 512;
+//     const day = yearOffset % 32;
+//     const month = (yearOffset - day) / 32;
+//     return new Date(year + 1970, month, day);
+// }
 
-function getDateDay(date:Date){
-    return date.toString().slice(0,3);
-    // new Date().toString().slice(0,3);
-    }
-function getDateMonth(date:Date){
-    return date.toString().slice(4,7)
-    }
-function getDateNumDay(date:Date){
-    return date.toString().slice(8,10);
-    }
+// function getDateDay(date:Date){
+//     return date.toString().slice(0,3);
+//     // new Date().toString().slice(0,3);
+//     }
+// function getDateMonth(date:Date){
+//     return date.toString().slice(4,7)
+//     }
+// function getDateNumDay(date:Date){
+//     return date.toString().slice(8,10);
+//     }
 
-function getDateYear(date:Date){
-    return date.toString().slice(11,15);
-    }
+// function getDateYear(date:Date){
+//     return date.toString().slice(11,15);
+//     }
 
-function createDateID(x:number){
-        return getDateMonth(getDate(x)) + getDateNumDay(getDate(x)) + getDateYear(getDate(x));
-}
+// function createDateID(x:number){
+//         return getDateMonth(getDate(x)) + getDateNumDay(getDate(x)) + getDateYear(getDate(x));
+// }
 
 function getToday(){
     const date = new Date;
@@ -79,23 +79,30 @@ const buttonLeft = document.getElementById('button-left');
 const buttonRight = document.getElementById('button-right');
 const buttonToday = document.getElementById('todayButton');
 
-buttonRight?.addEventListener('click', () => {
-    M++;
-    if(M == 12){
-        M = 0;
-        Y++;
-    }
-    printMonth();
-    printDays();
-});
-
-buttonLeft?.addEventListener('click', () => {
+function changeMinusMonth(){
     M--;
     if(M == (-1)){
         M = 11;
         Y--;
     }
-    
+}
+function changePlusMonth(){
+    M++;
+    if(M == 12){
+        M = 0;
+        Y++;
+    }
+}
+
+
+buttonRight?.addEventListener('click', () => {
+    changePlusMonth();
+    printMonth();
+    printDays();
+});
+
+buttonLeft?.addEventListener('click', () => {
+    changeMinusMonth();
     printMonth();
     printDays();
 });
@@ -153,19 +160,49 @@ function createActiveDay(row: HTMLDivElement){
     }
 }
 function createInactivePastDay(firstDay:number, row:HTMLDivElement){
-for (let i = firstDay; i > 0; i--){
-    let previousDays = daysInMonth(M, Y) -i + 1;
-    const day  = document.createElement('div');
-    day.classList.add("col",  "inactive");
-    day.innerText += `${previousDays}`;
-    row?.appendChild(day);
-}
+    for (let i = firstDay; i > 0; i--){
+        let previousDays = daysInMonth(M, Y) -i + 1;
+        const day  = document.createElement('button');
+        day.classList.add("col",  "inactive");
+        // day.setAttribute ("data-bs-toggle","modal") 
+        // day.setAttribute ("data-bs-target", "#createEvent_Modal")
+        let dayInact = i;
+        let month = M+1;
+        let zeroDay = '0' + dayInact;
+        let zeroMonth = '0' + month;
+        if(month < 10){ day.id = `${Y}-${zeroMonth}-${dayInact}`;
+            if(dayInact < 10){day.id = `${Y}-${zeroMonth}-${zeroDay}`
+                }
+        }
+        else if(dayInact < 10){day.id = `${Y}-${month}-${zeroDay}`
+            if(month < 10){day.id = `${Y}-${zeroMonth}-${zeroDay}`
+                }     
+        }
+        else {day.id = `${Y}-${month}-${dayInact}`
+            }
+        day.addEventListener('click', () => {
+            changeMinusMonth();
+            printMonth();
+            printDays();
+            // setInfoModalDay(day.id);
+        });
+
+        day.innerText += `${previousDays}`;
+        row?.appendChild(day);
+    }
 } 
 function createInactiveNextDay(lastDay:number, row:HTMLDivElement){
     for (let i = lastDay; i < 10 ; i++) {
-        const day  = document.createElement('div');
+        const day  = document.createElement('button');
         const nextDays = i -lastDay + 1;
         day.classList.add("col", "inactive");
+
+        day.addEventListener('click', () => {
+            changePlusMonth();
+            printMonth();
+            printDays();
+        });
+
         day.innerText = `${nextDays}`;
         row?.appendChild(day);
     }
@@ -184,20 +221,20 @@ function setInfoModalDay(date:string){
     openModal(date);
 
 } 
-// function printEvents(events:EventCal[], ){
-//         events.forEach(event => {
-//             if(createDay.id == event.startDate){
-//                 const day = document.getElementById(`${Days.id}`)
-//                 day.style.backgroundColor = 'red';
+function printEvents(events:EventCal[], createDay:HTMLButtonElement){
+        events.forEach(event => {
+            if(createDay.id == event.startDate){
+                const day = document.getElementById(`${Days.id}`)
+                day.style.backgroundColor = 'red';
                
-//             }
-//         });
-// }
+            }
+        });
+}
 
     
 
 
-console.log(getDate(123456));
+// console.log(getDate(123456));
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());

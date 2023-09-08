@@ -9,28 +9,6 @@ let Days = {
 };
 const Month = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
-function getDate(dateKey) {
-    const yearOffset = (dateKey - 32) % 512;
-    const year = (dateKey - 32 - yearOffset) / 512;
-    const day = yearOffset % 32;
-    const month = (yearOffset - day) / 32;
-    return new Date(year + 1970, month, day);
-}
-function getDateDay(date) {
-    return date.toString().slice(0, 3);
-}
-function getDateMonth(date) {
-    return date.toString().slice(4, 7);
-}
-function getDateNumDay(date) {
-    return date.toString().slice(8, 10);
-}
-function getDateYear(date) {
-    return date.toString().slice(11, 15);
-}
-function createDateID(x) {
-    return getDateMonth(getDate(x)) + getDateNumDay(getDate(x)) + getDateYear(getDate(x));
-}
 function getToday() {
     const date = new Date;
     return date;
@@ -60,21 +38,27 @@ export function printMonth() {
 const buttonLeft = document.getElementById('button-left');
 const buttonRight = document.getElementById('button-right');
 const buttonToday = document.getElementById('todayButton');
-buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventListener('click', () => {
-    M++;
-    if (M == 12) {
-        M = 0;
-        Y++;
-    }
-    printMonth();
-    printDays();
-});
-buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListener('click', () => {
+function changeMinusMonth() {
     M--;
     if (M == (-1)) {
         M = 11;
         Y--;
     }
+}
+function changePlusMonth() {
+    M++;
+    if (M == 12) {
+        M = 0;
+        Y++;
+    }
+}
+buttonRight === null || buttonRight === void 0 ? void 0 : buttonRight.addEventListener('click', () => {
+    changePlusMonth();
+    printMonth();
+    printDays();
+});
+buttonLeft === null || buttonLeft === void 0 ? void 0 : buttonLeft.addEventListener('click', () => {
+    changeMinusMonth();
     printMonth();
     printDays();
 });
@@ -133,17 +117,46 @@ function createActiveDay(row) {
 function createInactivePastDay(firstDay, row) {
     for (let i = firstDay; i > 0; i--) {
         let previousDays = daysInMonth(M, Y) - i + 1;
-        const day = document.createElement('div');
+        const day = document.createElement('button');
         day.classList.add("col", "inactive");
+        let dayInact = i;
+        let month = M + 1;
+        let zeroDay = '0' + dayInact;
+        let zeroMonth = '0' + month;
+        if (month < 10) {
+            day.id = `${Y}-${zeroMonth}-${dayInact}`;
+            if (dayInact < 10) {
+                day.id = `${Y}-${zeroMonth}-${zeroDay}`;
+            }
+        }
+        else if (dayInact < 10) {
+            day.id = `${Y}-${month}-${zeroDay}`;
+            if (month < 10) {
+                day.id = `${Y}-${zeroMonth}-${zeroDay}`;
+            }
+        }
+        else {
+            day.id = `${Y}-${month}-${dayInact}`;
+        }
+        day.addEventListener('click', () => {
+            changeMinusMonth();
+            printMonth();
+            printDays();
+        });
         day.innerText += `${previousDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
 function createInactiveNextDay(lastDay, row) {
     for (let i = lastDay; i < 10; i++) {
-        const day = document.createElement('div');
+        const day = document.createElement('button');
         const nextDays = i - lastDay + 1;
         day.classList.add("col", "inactive");
+        day.addEventListener('click', () => {
+            changePlusMonth();
+            printMonth();
+            printDays();
+        });
         day.innerText = `${nextDays}`;
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
@@ -162,7 +175,14 @@ function assignDayObject(createDay, month, i) {
 function setInfoModalDay(date) {
     openModal(date);
 }
-console.log(getDate(123456));
+function printEvents(events, createDay) {
+    events.forEach(event => {
+        if (createDay.id == event.startDate) {
+            const day = document.getElementById(`${Days.id}`);
+            day.style.backgroundColor = 'red';
+        }
+    });
+}
 console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
