@@ -156,7 +156,7 @@ function assignDayObject(createDay, month, i) {
 function setInfoModalDay(date) {
     openModal(date);
 }
-function printEvents(events, createDay) {
+export function printEvents(events, createDay) {
     events.forEach(event => {
         if (createDay.id == event.startDate) {
             const day = document.getElementById(`${Days.id}`);
