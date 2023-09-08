@@ -1,8 +1,4 @@
-/**
- * Stars
- * Inspired by Steve Courtney's poster art for Celsius GS's Drifter - http://celsiusgs.com/drifter/posters.php
- * by Cory Hughart - http://coryhughart.com
- */
+
 
 // Settings
 var particleCount = 40,
@@ -14,7 +10,7 @@ var particleCount = 40,
 	particleSizeMultiplier = 0.5,
 	flareSizeBase = 20,
 	flareSizeMultiplier = 20,
-	lineWidth = 0.5,
+	lineWidth = 1.5,
 	linkChance = 100, // chance per frame of link, higher = smaller chance
 	linkLengthMin = 5, // min linked vertices
 	linkLengthMax = 10, // max linked vertices

@@ -92,7 +92,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  left: 15vw; 
+  left: 5vw; 
   top: 33vh;
   border-width: 50px;
   border-style: solid;
@@ -114,8 +114,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-right::before {
   content: "";
   position: absolute;
-  top: 3em;
-  left: -17vw; 
+  left: -8vw; 
   top: 37vh;
   border-width: 50px;
   border-style: solid;
