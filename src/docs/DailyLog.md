@@ -18,3 +18,12 @@ The first problems arise when considering how to organize the main view of the c
 * They made the title and descriptions's regex with a max lenght. 
 * Meanwhile, Aday e Yan were doing the calendar display. 
 * Yan does a lot of research of how can we put the days of the month.
+
+
+
+## Thuesday 7 September ##
+
+* Enric has worked with the form again, as some errors need to be corrected (when the form is closed it does not crush the entered values, therefore when the modal is reopened they are still there). After several attempts he manages to solve it with a reset function.
+On the other hand, it also means that depending on which button calls the modal, we can pass certain information as a parameter so that it can be entered into its inputs.
+
+* Aday make styles, and start working with interval

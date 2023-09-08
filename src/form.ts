@@ -28,8 +28,11 @@ const modalForm_EventType = document.querySelector('#modalForm_EventType') as HT
 
 let eventsList: EventCal[] = []
 const testDate: string = '2023-09-07'
+
 const testEvent: EventCal = {
     title: "testing",
+    startDate: '2023-09-07',
+    calendar: "Cumpleaños"
     
 }
 
@@ -38,9 +41,6 @@ const newEventModal_headerTitle = document.querySelector('#newEventModal_headerT
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
 
 function openModal(initialDate?: string, event?: EventCal) {
-    console.log("open new modal")
-
-
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
     }
@@ -50,6 +50,15 @@ function openModal(initialDate?: string, event?: EventCal) {
         modalForm_saveEventBtn.innerText = "Edit"
 
         modalForm_eventTitle.value = event.title
+        modalForm_AllDayEventSwitch.checked = event.isAllDay
+        modalForm_startDate_dateInput.value = event.startDate
+        modalForm_startDate_hourInput.value = event.startHour
+        modalForm_endDate_dateInput.value = event.endDate
+        modalForm_endDate_hourInput.value = event.endHour
+        modalForm_ReminderCheckbox.checked = event.reminder
+        modalForm_ReminderCheckbox_options.value = event.timeReminder
+        modalForm_description.value = event.decription
+        modalForm_EventType.value = event.calendar
     }
     console.log(event)
     console.log(initialDate)
@@ -82,7 +91,7 @@ async function init() {
 }
 
 openAddEventModal_btn.addEventListener('click', () => {
-    openModal(testDate, testEvent)
+    openModal("", testEvent)
 })
 
 
@@ -141,7 +150,7 @@ export function isValidForm(): boolean {
         isValid = true
    }
    console.log("validating form:" +   validateTitle() + validateDate() + validateCalendar())
-
+   console.log("valid??:" + isValid)
   return isValid
 }
 
@@ -230,7 +239,7 @@ function deleteErrorMessage(containerID: String) {
     container.hidden = true
 }
 
-export function saveNewEvent() {
+export function setEventInfo(): EventCal {
 
     let reminder: string = ''
     if (modalForm_ReminderCheckbox.checked == true) {
@@ -250,13 +259,13 @@ export function saveNewEvent() {
         endDate: endDate,
         endHour: modalForm_endDate_hourInput.value,
         reminder: modalForm_ReminderCheckbox.checked,
-        startReminder: reminder,
+        timeReminder: reminder,
         decription: modalForm_description.value,
 
         calendar: modalForm_EventType.value
     }
     console.log(newEvent)
-
+    return newEvent
  } 
 
 export function closeModal() {

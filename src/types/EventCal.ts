@@ -3,15 +3,15 @@ export interface EventCal {
     id?: number;
     title: string;
     isAllDay?: boolean;
-    startDate?: string;
+    startDate: string;
     startHour?: string
     endDate?: string;
     endHour?: string
     reminder?: boolean;
-    startReminder?: string;
+    timeReminder?: string;
     decription?: string;
 
-    calendar?: string;
+    calendar: string;
 }
 
 export enum Type {
