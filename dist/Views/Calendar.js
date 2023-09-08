@@ -1,3 +1,4 @@
+import { resetModal } from "../form.js";
 let Days = {
     id: '',
     dayNum: 0,
@@ -124,7 +125,7 @@ function createActiveDay(row) {
         assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {
             console.log(createDay.id);
-            openModalInDay();
+            resetModal(), openModalInDay();
         });
         todayDecoration(i, month, today, createDay);
     }

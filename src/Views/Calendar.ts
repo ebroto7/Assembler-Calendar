@@ -1,5 +1,6 @@
 import { Days } from "../Days.js";
 import { EventCal } from "../types/EventCal.js";
+import { resetModal } from "../form.js";
 let Days:Days = {
     id    : '' ,
     dayNum: 0,
@@ -146,7 +147,7 @@ function createActiveDay(row: HTMLDivElement){
         row?.appendChild(createDay);
         assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {console.log(createDay.id);
-                                                    openModalInDay()});
+            resetModal(), openModalInDay()});
         todayDecoration(i,month,  today, createDay);
         
     }

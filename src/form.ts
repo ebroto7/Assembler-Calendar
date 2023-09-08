@@ -41,6 +41,7 @@ const newEventModal_headerTitle = document.querySelector('#newEventModal_headerT
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
 
 function openModal(initialDate?: string, event?: EventCal) {
+    
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
     }
@@ -60,23 +61,13 @@ function openModal(initialDate?: string, event?: EventCal) {
         modalForm_description.value = event.decription
         modalForm_EventType.value = event.calendar
     }
+  
     console.log(event)
     console.log(initialDate)
 }
-function resetModal() {
+ export function resetModal() {
     formModal.reset()
-
-
-    // modalForm_eventTitle.value = "";
-    // modalForm_AllDayEventSwitch.checked = false;
-    // modalForm_startDate_dateInput.value = "";
-    // modalForm_endDate_hourInput.value = "";
-    // modalForm_startDate_hourInput.value = "";
-    // modalForm_endDate_dateInput.value = "";
-    // modalForm_endDate_hourInput.value = "";
-    // modalForm_ReminderCheckbox.checked = false;
-    // modalForm_description.value = "";
-    // modalForm_EventType.value = "Choose...";
+ console.log("reset")
 
     deleteErrorMessage('formTitleError')
     deleteErrorMessage('modalForm_startDate_errorMessage')

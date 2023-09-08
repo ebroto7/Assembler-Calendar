@@ -56,8 +56,9 @@ function openModal(initialDate, event) {
     console.log(event);
     console.log(initialDate);
 }
-function resetModal() {
+export function resetModal() {
     formModal.reset();
+    console.log("reset");
     deleteErrorMessage('formTitleError');
     deleteErrorMessage('modalForm_startDate_errorMessage');
     deleteErrorMessage('modalForm_endDate_errorMessage');
