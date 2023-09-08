@@ -1,16 +1,19 @@
 import { printMonth, printDays, printEvents } from './Views/Calendar.js';
-import { isValidForm, saveNewEvent } from "./form.js";
+import { isValidForm, setEventInfo, closeModal } from "./form.js";
 const event1 = {
+    calendar: "Cumpleaños",
     title: 'alex nace',
     startDate: '12-08-2023',
     endDate: '12-09-2023'
 };
 const event2 = {
+    calendar: "Cumpleaños",
     title: 'alex muere',
     startDate: '19-09-2023',
     endDate: '19-09-2023'
 };
 const event3 = {
+    calendar: "Cumpleaños",
     title: 'alex renace',
     startDate: '12-09-2023',
     endDate: '14-09-2023'
@@ -21,14 +24,10 @@ window.addEventListener('DOMContentLoaded', () => {
     printDays();
     printEvents(events);
 });
-import { isValidForm, setEventInfo, closeModal } from "./form.js";
 const main = document.querySelector("#main");
 const createEvent_Modal = document.querySelector('#createEvent_Modal');
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
 modalForm_saveEventBtn.addEventListener('click', () => {
-    saveNewEvent();
-    console.log("save event");
-    console.log(isValidForm());
     if (isValidForm() == true) {
         const newEvent = setEventInfo();
         closeModal();

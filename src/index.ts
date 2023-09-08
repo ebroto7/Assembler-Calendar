@@ -4,18 +4,21 @@ import { isValidForm, setEventInfo, closeModal } from "./form.js"
 import { Type, EventCal } from "./types/EventCal.js"
 
 const event1:EventCal = {
+    calendar: "Cumpleaños",
     title: 'alex nace',
     startDate : '12-08-2023',
     endDate : '12-09-2023'
     
 }
 const event2:EventCal = {
+    calendar: "Cumpleaños",
     title: 'alex muere',
     startDate : '19-09-2023',
     endDate : '19-09-2023'
 }
 
 const event3:EventCal = {
+    calendar: "Cumpleaños",
     title: 'alex renace',
     startDate : '12-09-2023',
     endDate : '14-09-2023'

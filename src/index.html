@@ -21,97 +21,103 @@
 <!-- partial -->
   
 
-    <header id="header">
+<header id="header">
+  Calendar
+  <button id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#createEvent_Modal">
+    New Task
+  </button>
 
-        <button id="openAddTaskModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEvent_Modal">
-            New Task
-          </button>
-          <button  id="todayButton"  class="btn-primary todayButton">Back to the future</button>
-          
-          <!-- Modal -->
-          <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newEventModal" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="newEventModal">Add new event</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                 
-                
-                  
-                  <form class="needs-validation" novalidate>
-                    
-                    <div id="eventTitle_container" class="input-group-text mb-3">
-                      <label for="eventTitle" class="form-label">Title:</label>
-                      <input id="modalForm_eventTitle" type="text" class="form-control" minlength="3" maxlength="50" required>
-                      <div id="formTitleError" class="errorMessage" hidden></div>
+  <!-- Modal -->
+  <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newEventModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="newEventModal_headerTitle">Add new event</h1>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
 
-                    </div>
-                    
-                    <div id="datesForm" class=" mb-3">
-                      <div class="form-check">
-                        <input id="modalForm_AllDayEventSwitch" class="form-check-input" type="checkbox" value="" >
-                        <label class="form-check-label" for="modalAllDayEventSwitch">
-                          All day
-                        </label>
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="form_startDate">Inital date</span>
-                        <input id="form_startDate_dateInput" type="date" class="form-control" required>
-                        <input id="form_startDate_hourInput" type="time" class="form-control" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
-                      </div>
-                      <div id="form_startDate_container" class="input-group mb-3">
-                        <span class="input-group-text" id="form_EndDate">End date</span>
-                        <input id="form_endDate_dateInput" type="date" class="form-control" required>
-                        <input id="form_endDate_hourInput" type="time" class="form-control" required>
-                      </div>
-                    </div>
-                    
-                    <div class="form-check">
-                      <input id="modalReminderSwitch" class="form-check-input" type="checkbox" value="" >
-                      <label class="form-check-label" for="modalReminderSwitch">
-                        reminder
-                      </label>
-                    </div>
-                    <div id="modalReminderOptions_container" class="input-group mb-3" hidden>
-                        <label class="input-group-text" for="modalReminderSwitch_options">Time</label>
-                        <select id="modalReminderSwitch_options" class="form-select">
-                         
-                        </select>
-                    </div>
 
-                    <div class="mb-3">
-                      <label for="modalForm_description" class="form-label">Description</label>
-                      <textarea id="modalForm_description" class="form-control" rows="3" maxlength="500"></textarea>
-                    </div>
-                    
+        <div id="modalForm_bodyContainer" class="modal-body">
 
-                    <div class="input-group mb-3">
-                      <label class="input-group-text" for="modalForm_EventType">Type</label>
-                      <select id="modalForm_EventType" class="form-select" >
-                        <option selected>Choose...</option>
-                      </select>
-                      <p id="modalForm_calendarError" class="errorMessage" hidden></p>
-
-                    </div>
-                  </form>
-                
-                  
-                
-                
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
-                </div>
-              </div>
+          <form id="formModal" class="needs-validation" novalidate>
+           
+            <div id="eventTitle_container" class="input-group-text mb-3">
+              <label for="modalForm_eventTitle" class="form-label">Title:</label>
+              <input id="modalForm_eventTitle" type="text" class="form-control" minlength="3" maxlength="50">
+              <div id="formTitleError" class="errorMessage" hidden></div>
             </div>
-          </div>
-    </header>
+
+            <div id="datesForm" class=" mb-3">
+              <div class="form-check">
+                <input id="modalForm_AllDayEventSwitch" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="modalForm_AllDayEventSwitch">
+                  All day
+                </label>
+              </div>
+
+              <article class="formArticle">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="form_startDate">Inital date</span>
+                    <input id="form_startDate_dateInput" type="date" class="form-control">
+                    <input id="form_startDate_hourInput" type="time" class="form-control">
+                  </div>
+                  <div id="modalForm_startDate_errorMessage" class="errorMessage" hidden></div>
+              </article>
+
+           
+              <article class="formArticle">
+                <div id="form_startDate_container" class="input-group mb-3">
+                  <span class="input-group-text" id="form_EndDate">End date</span>
+                  <input id="form_endDate_dateInput" type="date" class="form-control">
+                  <input id="form_endDate_hourInput" type="time" class="form-control">
+                </div>
+                <div id="modalForm_endDate_errorMessage" class="errorMessage" hidden></div>
+              </article>
+              
+            </div>
+
+            <div class="form-check">
+              <input id="modalReminderSwitch" class="form-check-input" type="checkbox" value="">
+              <label class="form-check-label" for="modalReminderSwitch">
+                reminder
+              </label>
+            </div>
+            <div id="modalReminderOptions_container" class="input-group mb-3" hidden>
+              <label class="input-group-text" for="modalReminderSwitch_options">Time</label>
+              <select id="modalReminderSwitch_options" class="form-select">
+
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="modalForm_description" class="form-label">Description</label>
+              <textarea id="modalForm_description" class="form-control" rows="3" maxlength="500"></textarea>
+            </div>
+
+            <article class="formArticle">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="modalForm_EventType">Type</label>
+                  <select id="modalForm_EventType" class="form-select">
+                    <option selected>Choose...</option>
+                  </select>
+                </div>
+                <p id="modalForm_calendarError" class="errorMessage" hidden></p>
+
+            </article>
+          </form>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
     <main id="main">
       <section>
         <div class="tittle-section">
@@ -145,111 +151,12 @@
 
     </main>
     <footer id="footer">copyright september 2023 ©</footer>
-  <header id="header">
-    Calendar
-    <button id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
-      data-bs-target="#createEvent_Modal">
-      New Task
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="newEventModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="newEventModal_headerTitle">Add new event</h1>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-          </div>
-
-
-          <div id="modalForm_bodyContainer" class="modal-body">
-
-            <form id="formModal" class="needs-validation" novalidate>
-             
-              <div id="eventTitle_container" class="input-group-text mb-3">
-                <label for="modalForm_eventTitle" class="form-label">Title:</label>
-                <input id="modalForm_eventTitle" type="text" class="form-control" minlength="3" maxlength="50">
-                <div id="formTitleError" class="errorMessage" hidden></div>
-              </div>
-
-              <div id="datesForm" class=" mb-3">
-                <div class="form-check">
-                  <input id="modalForm_AllDayEventSwitch" class="form-check-input" type="checkbox" value="">
-                  <label class="form-check-label" for="modalForm_AllDayEventSwitch">
-                    All day
-                  </label>
-                </div>
-
-                <article class="formArticle">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="form_startDate">Inital date</span>
-                      <input id="form_startDate_dateInput" type="date" class="form-control">
-                      <input id="form_startDate_hourInput" type="time" class="form-control">
-                    </div>
-                    <div id="modalForm_startDate_errorMessage" class="errorMessage" hidden></div>
-                </article>
-
-             
-                <article class="formArticle">
-                  <div id="form_startDate_container" class="input-group mb-3">
-                    <span class="input-group-text" id="form_EndDate">End date</span>
-                    <input id="form_endDate_dateInput" type="date" class="form-control">
-                    <input id="form_endDate_hourInput" type="time" class="form-control">
-                  </div>
-                  <div id="modalForm_endDate_errorMessage" class="errorMessage" hidden></div>
-                </article>
-                
-              </div>
-
-              <div class="form-check">
-                <input id="modalReminderSwitch" class="form-check-input" type="checkbox" value="">
-                <label class="form-check-label" for="modalReminderSwitch">
-                  reminder
-                </label>
-              </div>
-              <div id="modalReminderOptions_container" class="input-group mb-3" hidden>
-                <label class="input-group-text" for="modalReminderSwitch_options">Time</label>
-                <select id="modalReminderSwitch_options" class="form-select">
-
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label for="modalForm_description" class="form-label">Description</label>
-                <textarea id="modalForm_description" class="form-control" rows="3" maxlength="500"></textarea>
-              </div>
-
-              <article class="formArticle">
-                  <div class="input-group mb-3">
-                    <label class="input-group-text" for="modalForm_EventType">Type</label>
-                    <select id="modalForm_EventType" class="form-select">
-                      <option selected>Choose...</option>
-                    </select>
-                  </div>
-                  <p id="modalForm_calendarError" class="errorMessage" hidden></p>
-
-              </article>
-            </form>
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button id="modalForm_saveEventBtn" type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <main id="main"></main>
-  <footer id="footer">copyright september 2023 ©</footer>
-
+    <!-- ---------------------------------------------------------------- -->
+  
+  
+  
     <canvas id="stars" width="300" height="300"></canvas>
-
-
-
-    
 <script src='https://rawgit.com/ironwallaby/delaunay/master/delaunay.js'></script><script  src="./stars.js"></script>
 </body>
 

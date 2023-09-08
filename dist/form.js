@@ -231,6 +231,7 @@ export function setEventInfo() {
         calendar: modalForm_EventType.value
     };
     console.log(newEvent);
+    console.log(newEvent.startDate, newEvent.startHour);
     return newEvent;
 }
 export function closeModal() {
