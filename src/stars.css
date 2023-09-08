@@ -1,0 +1,19 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+
+  background: radial-gradient(ellipse at center, #40682e 0%, #000000 100%);
+}
+
+#stars {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1111;
+}

@@ -1,10 +1,8 @@
 body {
-    background-color: antiquewhite;
     height: 100vh;
 }
 
 #header {
-    background-color:lightcoral;
     height: 10%;
 }
 #main {
@@ -12,43 +10,66 @@ body {
 }
 
 #footer {
-    background-color: lightcoral;
+  color: white;
     height: 10%;
+    padding-left: 2em;
 }
 .container{
   padding: 0;
   width: 100%;
 }
 .container-days{
-  padding: 0;
+padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   /* border: 1px solid black; */
   
 }
 .col{
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     height: 10vh;
+
     background-color: white;
 }
 
-.inactive{
-  border: 1px solid black;
-  
-  background-color: lightgrey;
-}
 .today{
 background-color: pink;
-border: 0.15rem solid black;
+border: 0.15rem solid rgb(255, 255, 255);
 }
 .weekDay{
-  background-color: lightblue;
+  background-color: rgba(61, 251, 197, 0.38);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  height: 4em;
+  box-shadow: 0px 2px 10px 1px white;
 }
 .colHov:hover{
   cursor: pointer;
   transform: scale(1.0, 1.05);
 
 }
+
+.inactive{
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.504);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  box-shadow: 0px 2px 10px 1px white;
+  padding-left: 1em ;
+}
+.colHov{
+  background-color: rgba(0, 0, 0, 0.211);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  box-shadow: 0px 2px 10px 1px white;
+  padding-left: 1em ;
+}
+
+
+
 
 
 .tittle-section {
@@ -61,7 +82,7 @@ border: 0.15rem solid black;
 .arrow-button-left {
   position: relative;
   padding: 10px 20px;
-  background-color: #007bff00; /* Button background color */
+  background-color: #00070f00; /* Button background color */
   color: #fff; /* Text color */
   border: none;
   cursor: pointer;
@@ -71,10 +92,11 @@ border: 0.15rem solid black;
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  left: -10px; /* Ajustalo para cambiar la posicion de la flecha */
-  border-width: 20px;
+  left: 25em; 
+  top: 27em;
+  border-width: 50px;
   border-style: solid;
-  border-color: transparent transparent transparent #007bff; /* Arrow color */
+  border-color: transparent transparent transparent #000000; /* Arrow color */
   transform: translateY(-50%);
   transform: rotate(180deg);
 }
@@ -93,10 +115,11 @@ border: 0.15rem solid black;
   content: "";
   position: absolute;
   top: 3em;
-  left: -10px; /* Ajustalo para cambiar la posicion de la flecha */
-  border-width: 20px;
+  left: -25em; 
+  top: 30em;
+  border-width: 50px;
   border-style: solid;
-  border-color: transparent transparent transparent #007bff; /* Arrow color */
+  border-color: transparent transparent transparent #000000; /* Arrow color */
   transform: translateY(-50%);
 }
 
@@ -110,4 +133,25 @@ border: 0.15rem solid black;
     font-size: smaller;
     color: red;
   
+}
+
+.calendarDayTittle{
+  color: white;
+  font-size: 2.5em;
+  margin: 0.5em;
+}
+
+.todayButton{
+  background-color: rgba(40, 255, 7, 0.122);
+  color: white;
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  box-shadow: 0px 1px 10px 1px white;
+  border: solid 1px white;
+  width: 20em;
+  height: 2em;
+  font-size: 1.5em;
+  position: absolute;
+  top: 85vh;
+  left: 40vw;
 }

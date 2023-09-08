@@ -7,19 +7,25 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stars.css">
     <script type="module" src="../dist/index.js" defer></script>
-
+  <script></script>
     <script type="module" src="../dist/form.js" defer></script>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 </head>
 <body>
+
+
+<!-- partial -->
+  
+
     <header id="header">
-        Calendar
+
         <button id="openAddTaskModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createEvent_Modal">
             New Task
           </button>
-          <button id="todayButton"  class="btn-primary">Back to the future</button>
+          <button id="todayButton"  class="btn-primary todayButton">Back to the future</button>
           
           <!-- Modal -->
           <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newEventModal" aria-hidden="true">
@@ -113,7 +119,7 @@
           <button id="button-right" class="arrow-button-right"></button>
         </div>
         <div class="container">
-          <div class="row">
+          <div class="row rowWeek">
             <div class="col weekDay">Mon
             </div>
             <div class="col weekDay">Tue
@@ -139,6 +145,11 @@
     </main>
     <footer id="footer">copyright september 2023 ©</footer>
 
+    <canvas id="stars" width="300" height="300"></canvas>
 
+
+
+    <script src='http://requirejs.org/docs/release/2.1.15/minified/require.js'></script>
+<script src='https://rawgit.com/ironwallaby/delaunay/master/delaunay.js'></script><script  src="./stars.js"></script>
 </body>
 </html>
