@@ -1,37 +1,10 @@
- import { printMonth, printDays, printEvents  } from './Views/Calendar.js';
-
+ import { printMonth, printDays, printEvents } from './Views/Calendar.js';
 import { isValidForm, setEventInfo, closeModal } from "./form.js"
 import { Type, EventCal } from "./types/EventCal.js"
-
-const event1:EventCal = {
-    calendar: "Cumpleaños",
-    title: 'alex nace',
-    startDate : '12-08-2023',
-    endDate : '12-09-2023'
-    
-}
-const event2:EventCal = {
-    calendar: "Cumpleaños",
-    title: 'alex muere',
-    startDate : '19-09-2023',
-    endDate : '19-09-2023'
-}
-
-const event3:EventCal = {
-    calendar: "Cumpleaños",
-    title: 'alex renace',
-    startDate : '12-09-2023',
-    endDate : '14-09-2023'
-}
-
-const events = [event1, event2, event3]
-
-
 
  window.addEventListener('DOMContentLoaded', () => {
     printMonth();
     printDays();
-    // printEvents();
  } );
 
 
@@ -49,12 +22,13 @@ modalForm_saveEventBtn.addEventListener('click', ()=> {
         const newEvent = setEventInfo()
         closeModal()
         saveNewEvent(newEvent)
+        location.reload()
         console.log("new event:" + JSON.stringify(newEvent))
     }
 })
 
 /**  SAVE AND RECOVER DATA  **/
-function getAndParseLSinfo(key: string) {
+export function getAndParseLSinfo(key: string) {
     const objectsLS = localStorage.getItem(key)
 
     const parseInfoLS = JSON.parse(objectsLS)
@@ -70,12 +44,13 @@ function saveNewEvent(event: EventCal) {
     if (savedEvents !== null) {
         savedEvents.push(event)
       console.log('push: ' + savedEvents)
-      localStorage.setItem("scores", JSON.stringify(savedEvents))
+      localStorage.setItem("events", JSON.stringify(savedEvents))
 
     } else {
         let newArray = [event]
-        localStorage.setItem("scores", JSON.stringify(newArray))
+        localStorage.setItem("events", JSON.stringify(newArray))
         console.log('save: ' + savedEvents)
+        
     }
 
     console.log(event) 

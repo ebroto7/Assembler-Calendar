@@ -1,4 +1,5 @@
 import { openModal } from "../form.js";
+import { getAndParseLSinfo } from "../index.js";
 let Days = {
     id: '',
     dayNum: 0,
@@ -7,6 +8,7 @@ let Days = {
     mthStr: '',
     year: 0,
 };
+const events = getAndParseLSinfo('events');
 const Month = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 function getToday() {
@@ -80,9 +82,8 @@ export function printDays() {
 }
 function createActiveDay(row) {
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
-        const today = getTodayDay();
         const createDay = document.createElement('button');
-        createDay.classList.add("col", "colHov");
+        createDay.classList.add("col", "colHov", "dayButton");
         createDay.setAttribute("data-bs-toggle", "modal");
         createDay.setAttribute("data-bs-target", "#createEvent_Modal");
         let day = i;
@@ -106,19 +107,22 @@ function createActiveDay(row) {
         }
         createDay.innerText = `${i}`;
         row === null || row === void 0 ? void 0 : row.appendChild(createDay);
-        assignDayObject(createDay, month, i);
         createDay.addEventListener('click', () => {
             console.log(createDay.id);
             setInfoModalDay(createDay.id);
         });
-        todayDecoration(i, month, today, createDay);
+        todayDecoration(i, month, createDay);
+        assignDayObject(createDay, month, i);
+        if (events != undefined) {
+            printEvents(events, createDay);
+        }
     }
 }
 function createInactivePastDay(firstDay, row) {
     for (let i = firstDay; i > 0; i--) {
         let previousDays = daysInMonth(M, Y) - i + 1;
         const day = document.createElement('button');
-        day.classList.add("col", "inactive");
+        day.classList.add("col", "inactive", 'dayButton');
         day.addEventListener('click', () => {
             changeMinusMonth();
             printMonth();
@@ -132,7 +136,7 @@ function createInactiveNextDay(lastDay, row) {
     for (let i = lastDay; i < 10; i++) {
         const day = document.createElement('button');
         const nextDays = i - lastDay + 1;
-        day.classList.add("col", "inactive");
+        day.classList.add("col", "inactive", 'dayButton');
         day.addEventListener('click', () => {
             changePlusMonth();
             printMonth();
@@ -142,8 +146,8 @@ function createInactiveNextDay(lastDay, row) {
         row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
-function todayDecoration(i, month, today, createDay) {
-    if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
+function todayDecoration(i, month, createDay) {
+    if (i == getTodayDay() && month == getTodayMonth() + 1 && Y == getTodayYear()) {
         createDay.classList.add("col", "today");
     }
 }
@@ -156,11 +160,25 @@ function assignDayObject(createDay, month, i) {
 function setInfoModalDay(date) {
     openModal(date);
 }
-function printEvents(events, createDay) {
+function createEventOnCalendar(event, container) {
+    const containerEvent = document.createElement("div");
+    containerEvent.id = 'eventOnCalendar';
+    containerEvent.classList.add('eventOnCalendar-container');
+    const labelEvent = document.createElement("p");
+    labelEvent.classList.add('eventTitleOnCalendar');
+    labelEvent.innerText = event.title;
+    containerEvent.appendChild(labelEvent);
+    container.appendChild(containerEvent);
+    labelEvent.addEventListener('click', () => {
+        openModal('', event);
+    });
+}
+export function printEvents(events, container) {
     events.forEach(event => {
-        if (createDay.id == event.startDate) {
-            const day = document.getElementById(`${Days.id}`);
-            day.style.backgroundColor = 'red';
+        if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
+            createEventOnCalendar(event, container);
+            console.log(Days.id);
+            console.log(event.startDate);
         }
     });
 }
