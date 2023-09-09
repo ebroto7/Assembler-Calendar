@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { Type, ReminderTime } from "./types/EventCal.js";
 const calendarTypes = Object.keys(Type);
 const reminderTimes = Object.keys(ReminderTime);
@@ -26,16 +17,12 @@ const modalForm_ReminderOptions_container = document.querySelector('#modalRemind
 const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminderSwitch_options');
 const modalForm_description = document.querySelector('#modalForm_description');
 const modalForm_EventType = document.querySelector('#modalForm_EventType');
-let eventsList = [];
-const testDate = '2023-09-07';
-const testEvent = {
-    title: "testing",
-    startDate: '2023-09-07',
-    calendar: "Cumpleaños"
-};
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle');
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
 export function openModal(initialDate, event) {
+    createTypeFormView();
+    createReminderTimesFormView();
+    setMinStartDateHour();
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate;
     }
@@ -56,6 +43,13 @@ export function openModal(initialDate, event) {
     console.log(event);
     console.log(initialDate);
 }
+function setMinStartDateHour() {
+    const today = new Date().toJSON().slice(0, 10);
+    modalForm_startDate_dateInput.setAttribute("min", `${today}`);
+    modalForm_startDate_dateInput.value = today;
+    const now = new Date().toJSON().slice(11, 16);
+    modalForm_startDate_hourInput.value = now;
+}
 function resetModal() {
     formModal.reset();
     deleteErrorMessage('formTitleError');
@@ -63,15 +57,8 @@ function resetModal() {
     deleteErrorMessage('modalForm_endDate_errorMessage');
     deleteErrorMessage('modalForm_calendarError');
 }
-window.addEventListener("load", init);
-function init() {
-    return __awaiter(this, void 0, void 0, function* () {
-        createTypeFormView();
-        createReminderTimesFormView();
-    });
-}
 openAddEventModal_btn.addEventListener('click', () => {
-    openModal("", testEvent);
+    openModal();
 });
 modalForm_ReminderCheckbox.addEventListener('change', () => {
     hiddenReminderInput();

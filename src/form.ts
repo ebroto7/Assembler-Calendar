@@ -1,9 +1,8 @@
-// save at localStorage
 // compare start and end dates 
-// hidden error messages at init modal
 // array allDays for compare id's w/ calendar
 
 import { EventCal, Type, ReminderTime } from "./types/EventCal.js";
+
 const calendarTypes = Object.keys(Type)
 const reminderTimes = Object.keys(ReminderTime)
 
@@ -26,21 +25,13 @@ const modalForm_ReminderCheckbox_options = document.querySelector('#modalReminde
 const modalForm_description = document.querySelector('#modalForm_description') as HTMLTextAreaElement
 const modalForm_EventType = document.querySelector('#modalForm_EventType') as HTMLSelectElement
 
-let eventsList: EventCal[] = []
-const testDate: string = '2023-09-07'
-
-const testEvent: EventCal = {
-    title: "testing",
-    startDate: '2023-09-07',
-    calendar: "Cumpleaños"
-    
-}
-
-
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle') as HTMLHeadingElement;
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
 
 export function openModal(initialDate?: string, event?: EventCal) {
+    createTypeFormView()
+    createReminderTimesFormView()   
+    setMinStartDateHour()
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
     }
@@ -63,20 +54,18 @@ export function openModal(initialDate?: string, event?: EventCal) {
     console.log(event)
     console.log(initialDate)
 }
+
+function setMinStartDateHour() {
+    const today = new Date().toJSON().slice(0,10)
+    modalForm_startDate_dateInput.setAttribute("min", `${today}`)
+    modalForm_startDate_dateInput.value = today
+
+    const now = new Date().toJSON().slice(11, 16)
+    modalForm_startDate_hourInput.value = now
+}
+
 function resetModal() {
     formModal.reset()
-
-
-    // modalForm_eventTitle.value = "";
-    // modalForm_AllDayEventSwitch.checked = false;
-    // modalForm_startDate_dateInput.value = "";
-    // modalForm_endDate_hourInput.value = "";
-    // modalForm_startDate_hourInput.value = "";
-    // modalForm_endDate_dateInput.value = "";
-    // modalForm_endDate_hourInput.value = "";
-    // modalForm_ReminderCheckbox.checked = false;
-    // modalForm_description.value = "";
-    // modalForm_EventType.value = "Choose...";
 
     deleteErrorMessage('formTitleError')
     deleteErrorMessage('modalForm_startDate_errorMessage')
@@ -84,17 +73,10 @@ function resetModal() {
     deleteErrorMessage('modalForm_calendarError')
 }
 
-window.addEventListener("load", init)
-async function init() {
-    createTypeFormView()
-    createReminderTimesFormView()   
-}
 
 openAddEventModal_btn.addEventListener('click', () => {
-    openModal("", testEvent)
+    openModal()
 })
-
-
 
 modalForm_ReminderCheckbox.addEventListener('change', ()=> {
     hiddenReminderInput()
@@ -198,15 +180,16 @@ function validateDate(): boolean {
             } else if (endDate != '' && endHour == '') {
                 isValid = false
                 setErrorMessage("modalForm_endDate_errorMessage", "Please select a end hour")
-            
             } else {
                 deleteErrorMessage("modalForm_endDate_errorMessage")
             }
+
+
+
         } else {
             if ( startDate == '') {
                 isValid = false
                 setErrorMessage("modalForm_startDate_errorMessage", "Please select a initial date")
-           
             } else {
                 deleteErrorMessage("modalForm_startDate_errorMessage")
                 deleteErrorMessage("modalForm_endDate_errorMessage")

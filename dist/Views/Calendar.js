@@ -122,6 +122,7 @@ function createActiveDay(row) {
             setInfoModalDay(createDay.id);
         });
         todayDecoration(i, month, today, createDay, row);
+        printEvents(events, createDay);
     }
 }
 function createInactivePastDay(firstDay, row) {
