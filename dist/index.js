@@ -2,7 +2,8 @@ import { printMonth, printDays } from './Views/Calendar.js';
 import { isValidForm, setEventInfo, closeModal } from "./form.js";
 window.addEventListener('DOMContentLoaded', () => {
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
 });
 const main = document.querySelector("#main");
 const createEvent_Modal = document.querySelector('#createEvent_Modal');

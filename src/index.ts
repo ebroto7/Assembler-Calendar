@@ -4,7 +4,9 @@ import { Type, EventCal } from "./types/EventCal.js"
 
  window.addEventListener('DOMContentLoaded', () => {
     printMonth();
-    printDays();
+    printDays("days");
+    printDays("days2");
+    // printEvents();
  } );
 
 
@@ -55,3 +57,6 @@ function saveNewEvent(event: EventCal) {
 
     console.log(event) 
 }
+
+
+

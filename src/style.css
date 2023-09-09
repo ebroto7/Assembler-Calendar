@@ -16,21 +16,27 @@ body {
 }
 .container{
   padding: 0;
+  width: 100vh;
+}
+.container2{
+  padding: 0;
   width: 100%;
 }
-.container-days{
+.container-days2{
 padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   /* border: 1px solid black; */
   
 }
-.col{
-    border: 1px solid rgb(255, 255, 255);
-    height: 10vh;
+.container-days{
+  padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* border: 1px solid black; */
+    
+  }
 
-    background-color: white;
-}
 .modal{
   position: absolute;
 }
@@ -45,6 +51,23 @@ border: 0.15rem solid rgb(255, 255, 255);
   color: white;
   height: 4em;
   box-shadow: 0px 2px 10px 1px white;
+}
+.weekDay2{
+  background-color: rgba(61, 251, 197, 0.38);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  height: 2em;
+  width: 3.07em;
+  box-shadow: 0px 2px 10px 1px white;
+}
+.colHov{
+  background-color: rgba(0, 0, 0, 0.211);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  box-shadow: 0px 2px 10px 1px white;
+  padding-left: 1em ;
 }
 .colHov:hover{
   cursor: pointer;
@@ -66,15 +89,6 @@ border: 0.15rem solid rgb(255, 255, 255);
   box-shadow: 0px 2px 10px 1px white;
   padding-left: 1rem ;
 }
-.colHov{
-  background-color: rgba(0, 0, 0, 0.211);
-  backdrop-filter: blur(3px) saturate(200%);
-  -webkit-backdrop-filter: blur(3px) saturate(200%);
-  color: white;
-  box-shadow: 0px 2px 10px 1px white;
-  padding-left: 1em ;
-}
-
 
 .dayButton{
   display: flex;
@@ -103,7 +117,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  left: 5vw; 
+  left: -8vw; 
   top: 33vh;
   border-width: 50px;
   border-style: solid;
@@ -125,7 +139,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-right::before {
   content: "";
   position: absolute;
-  left: -8vw; 
+  left: 6vw; 
   top: 37vh;
   border-width: 50px;
   border-style: solid;
@@ -173,6 +187,69 @@ border: 0.15rem solid rgb(255, 255, 255);
   font-size: 1.5em;
   position: absolute;
   top: 85vh;
-  left: 40vw;
+  left: 48vw;
 }
 
+
+aside{
+  margin-top: 3.7em;
+ 
+  height:48.5em;
+  width:30em;
+  border:1px solid black;
+  border-radius: 0px 15px 15px 0px;
+  
+}
+.calendarContainer, .selectCalendarContainer{
+ margin-top:  5em;
+}
+h5{
+  border-radius:0px 13px 0px 0px;
+  text-align: center;
+  background-color: lightgray;
+}
+.form-check-label{
+  margin-left:.5em;
+}
+.form-check-input{
+  margin-left: 2em;
+}
+
+.miniCalendar{
+  width: 20em;
+  height: 20em;
+  margin-left: 4em;
+}
+
+.rowmini{
+  --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+.col{
+  border: 1px solid rgb(255, 255, 255);
+  height: 10vh;
+}
+
+.col2{
+  border: 1px solid rgb(255, 255, 255);
+  max-height: fit-content;
+}
+
+.flex{
+  display: flex;
+}
+
+#main{
+  position: absolute;
+  left: 32vw;
+  top: 5vh;
+}
