@@ -6,7 +6,6 @@ import { Type, EventCal } from "./types/EventCal.js"
     printMonth();
     printDays("days");
     printDays("days2");
-    // printEvents();
  } );
 
 

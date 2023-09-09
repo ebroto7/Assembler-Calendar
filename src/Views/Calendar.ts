@@ -150,7 +150,7 @@ function createActiveDay(row: HTMLDivElement) {
             setInfoModalDay(createDay.id)
         });
         todayDecoration(i, month, today, createDay, row);
-        // printEvents(events, createDay);
+        printEvents(events, createDay);
 
     }
 }
