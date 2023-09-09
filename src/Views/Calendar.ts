@@ -107,7 +107,6 @@ export function printDays(id: string) {
     createInactivePastDay(firstDay, row);
     createActiveDay(row);
     createInactiveNextDay(lastDay, row);
-    console.log('esto es last day' + lastDay)
 }
 
 
