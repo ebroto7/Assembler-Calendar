@@ -39,7 +39,6 @@ export function getAndParseLSinfo(key: string) {
 }
 
 function saveNewEvent(event: EventCal) {
-
     let savedEvents = getAndParseLSinfo('events')
 
     
@@ -52,9 +51,7 @@ function saveNewEvent(event: EventCal) {
         let newArray = [event]
         localStorage.setItem("events", JSON.stringify(newArray))
         console.log('save: ' + savedEvents)
-        
     }
-
     console.log(event) 
 }
 

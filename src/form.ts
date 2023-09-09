@@ -1,7 +1,5 @@
-// compare start and end dates 
-// array allDays for compare id's w/ calendar
-
 import { EventCal, Type, ReminderTime } from "./types/EventCal.js";
+
 
 const calendarTypes = Object.keys(Type)
 const reminderTimes = Object.keys(ReminderTime)
@@ -27,6 +25,8 @@ const modalForm_EventType = document.querySelector('#modalForm_EventType') as HT
 
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle') as HTMLHeadingElement;
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
+const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn') as HTMLButtonElement;
+
 
 export function openModal(initialDate?: string, event?: EventCal) {
     createTypeFormView()
@@ -39,6 +39,7 @@ export function openModal(initialDate?: string, event?: EventCal) {
     if (event != undefined) {
         newEventModal_headerTitle.innerText = "Edit event"
         modalForm_saveEventBtn.innerText = "Edit"
+        modalForm_deleteEventBtn.hidden = false
 
         modalForm_eventTitle.value = event.title
         modalForm_AllDayEventSwitch.checked = event.isAllDay
@@ -62,6 +63,7 @@ function setMinStartDateHour() {
 
     const now = new Date().toJSON().slice(11, 16)
     modalForm_startDate_hourInput.value = now
+    console.log("hour: "+now)
 }
 
 function resetModal() {
@@ -235,6 +237,7 @@ export function setEventInfo(): EventCal {
     }
 
     let newEvent: EventCal =  {
+        id: modalForm_eventTitle.value,
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value ,

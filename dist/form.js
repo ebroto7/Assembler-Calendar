@@ -19,6 +19,7 @@ const modalForm_description = document.querySelector('#modalForm_description');
 const modalForm_EventType = document.querySelector('#modalForm_EventType');
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle');
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
+const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn');
 export function openModal(initialDate, event) {
     createTypeFormView();
     createReminderTimesFormView();
@@ -29,6 +30,7 @@ export function openModal(initialDate, event) {
     if (event != undefined) {
         newEventModal_headerTitle.innerText = "Edit event";
         modalForm_saveEventBtn.innerText = "Edit";
+        modalForm_deleteEventBtn.hidden = false;
         modalForm_eventTitle.value = event.title;
         modalForm_AllDayEventSwitch.checked = event.isAllDay;
         modalForm_startDate_dateInput.value = event.startDate;
@@ -49,6 +51,7 @@ function setMinStartDateHour() {
     modalForm_startDate_dateInput.value = today;
     const now = new Date().toJSON().slice(11, 16);
     modalForm_startDate_hourInput.value = now;
+    console.log("hour: " + now);
 }
 function resetModal() {
     formModal.reset();
@@ -206,6 +209,7 @@ export function setEventInfo() {
         endDate = modalForm_startDate_dateInput.value;
     }
     let newEvent = {
+        id: modalForm_eventTitle.value,
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value,
