@@ -77,11 +77,12 @@ export function printDays(id) {
     const row = document.querySelector(`#${id}`);
     const lastDayMonth = daysInMonth(Y, M + 1);
     const firstDay = new Date(Y, M, 0).getDay();
-    const lastDay = new Date(Y, M + 1, lastDayMonth).getDay();
+    const lastDay = new Date(Y, (M + 1), 0).getDay();
     row === null || row === void 0 ? void 0 : row.replaceChildren();
     createInactivePastDay(firstDay, row);
     createActiveDay(row);
     createInactiveNextDay(lastDay, row);
+    console.log('esto es last day' + lastDay);
 }
 function createActiveDay(row) {
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
@@ -122,7 +123,7 @@ function createActiveDay(row) {
             setInfoModalDay(createDay.id);
         });
         todayDecoration(i, month, today, createDay, row);
-        printEvents(events, createDay);
+        printEvents(events, createDay, row);
     }
 }
 function createInactivePastDay(firstDay, row) {
@@ -146,23 +147,26 @@ function createInactivePastDay(firstDay, row) {
     }
 }
 function createInactiveNextDay(lastDay, row) {
-    for (let i = lastDay; i < 10; i++) {
-        const day = document.createElement('button');
-        const nextDays = i - lastDay + 1;
-        if (row.id == "days") {
-            day.classList.add("col", "colHov", "inactive");
+    if (lastDay != 0) {
+        console.log(lastDay + ' Last day dentro del if');
+        for (let i = lastDay; i < 7; i++) {
+            const day = document.createElement('button');
+            const nextDays = i - lastDay + 1;
+            if (row.id == "days") {
+                day.classList.add("col", "colHov", "inactive");
+            }
+            else if (row.id == "days2") {
+                day.classList.add("col2", "colHov", "inactive");
+            }
+            day.addEventListener('click', () => {
+                changePlusMonth();
+                printMonth();
+                printDays("days");
+                printDays("days2");
+            });
+            day.innerText = `${nextDays}`;
+            row === null || row === void 0 ? void 0 : row.appendChild(day);
         }
-        else if (row.id == "days2") {
-            day.classList.add("col2", "colHov", "inactive");
-        }
-        day.addEventListener('click', () => {
-            changePlusMonth();
-            printMonth();
-            printDays("days");
-            printDays("days2");
-        });
-        day.innerText = `${nextDays}`;
-        row === null || row === void 0 ? void 0 : row.appendChild(day);
     }
 }
 function todayDecoration(i, month, today, createDay, row) {
@@ -197,12 +201,19 @@ function createEventOnCalendar(event, container) {
         openModal('', event);
     });
 }
-export function printEvents(events, container) {
+export function printEvents(events, container, row) {
     events.forEach(event => {
-        if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
-            createEventOnCalendar(event, container);
-            console.log(Days.id);
-            console.log(event.startDate);
+        if (row.id == 'days') {
+            if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
+                createEventOnCalendar(event, container);
+                console.log(Days.id);
+                console.log(event.startDate);
+            }
+        }
+        else if (row.id == 'days2') {
+            if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
+                container.style.backgroundColor = 'red';
+            }
         }
     });
 }

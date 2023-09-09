@@ -2,8 +2,8 @@ import { Days } from "../Days.js";
 import { EventCal } from "../types/EventCal.js";
 import { openModal } from "../form.js";
 import { getAndParseLSinfo } from "../index.js";
-let Days:Days = {
-    id    : '' ,
+let Days: Days = {
+    id: '',
     dayNum: 0,
     dayStr: '',
     mthNum: 0,
@@ -11,9 +11,9 @@ let Days:Days = {
     year: 0,
 }
 
-const events =  getAndParseLSinfo('events'); //[event1, event2, event3]
-const Month = ["January", "February", "March", "April", "May", "June", "July", 
-"August", "September", "October", "November", "December"] 
+const events = getAndParseLSinfo('events'); //[event1, event2, event3]
+const Month = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"]
 
 
 function getToday() {
@@ -102,12 +102,12 @@ export function printDays(id: string) {
     const row = document.querySelector(`#${id}`) as HTMLDivElement;
     const lastDayMonth = daysInMonth(Y, M + 1)
     const firstDay = new Date(Y, M, 0).getDay();
-    const lastDay = new Date(Y, M + 1, lastDayMonth).getDay();
+    const lastDay = new Date(Y, (M+1), 0).getDay();
     row?.replaceChildren()
     createInactivePastDay(firstDay, row);
     createActiveDay(row);
     createInactiveNextDay(lastDay, row);
-
+    console.log('esto es last day' + lastDay)
 }
 
 
@@ -150,7 +150,7 @@ function createActiveDay(row: HTMLDivElement) {
             setInfoModalDay(createDay.id)
         });
         todayDecoration(i, month, today, createDay, row);
-        printEvents(events, createDay);
+        printEvents(events, createDay, row);
 
     }
 }
@@ -178,25 +178,28 @@ function createInactivePastDay(firstDay: number, row: HTMLDivElement) {
     }
 }
 function createInactiveNextDay(lastDay: number, row: HTMLDivElement) {
-    for (let i = lastDay; i < 10; i++) {
-        const day = document.createElement('button');
-        const nextDays = i - lastDay + 1;
-        if (row.id == "days") {
-            day.classList.add("col", "colHov", "inactive");
-        } else if (row.id == "days2") {
-            day.classList.add("col2", "colHov", "inactive");
+    if (lastDay != 0){
+        console.log(lastDay + ' Last day dentro del if')
+        for (let i = lastDay; i < 7; i++) {
+            const day = document.createElement('button');
+            const nextDays = i - lastDay + 1;
+            if (row.id == "days") {
+                day.classList.add("col", "colHov", "inactive");
+            } else if (row.id == "days2") {
+                day.classList.add("col2", "colHov", "inactive");
+            }
+
+            day.addEventListener('click', () => {
+                changePlusMonth();
+                printMonth();
+                printDays("days");
+                printDays("days2");
+            });
+
+            day.innerText = `${nextDays}`;
+            row?.appendChild(day);
         }
-
-        day.addEventListener('click', () => {
-            changePlusMonth();
-            printMonth();
-            printDays("days");
-            printDays("days2");
-        });
-
-        day.innerText = `${nextDays}`;
-        row?.appendChild(day);
-    }
+    }   
 }
 function todayDecoration(i: number, month: number, today: number, createDay: HTMLButtonElement, row) {
     if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
@@ -217,7 +220,7 @@ function setInfoModalDay(date: string) {
     openModal(date);
 }
 
-function createEventOnCalendar(event:EventCal, container:HTMLButtonElement){
+function createEventOnCalendar(event: EventCal, container: HTMLButtonElement) {
     const containerEvent = document.createElement("div") as HTMLDivElement;
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
@@ -226,20 +229,33 @@ function createEventOnCalendar(event:EventCal, container:HTMLButtonElement){
     labelEvent.innerText = event.title;
     containerEvent.appendChild(labelEvent);
     container.appendChild(containerEvent);
-    labelEvent.addEventListener ('click', () =>{
-        openModal('' ,event)
+    labelEvent.addEventListener('click', () => {
+        openModal('', event)
     });
-    
+
 }
 
-export function printEvents(events:EventCal[], container:HTMLButtonElement){
-        events.forEach(event => {
-            if(Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate){
+export function printEvents(events: EventCal[], container: HTMLButtonElement, row: HTMLDivElement) {
+    events.forEach(event => {
+        if (row.id == 'days') {
+            if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
                 createEventOnCalendar(event, container);
                 console.log(Days.id)
                 console.log(event.startDate);
-            }   
-        });
+            }
+        }
+        else if (row.id == 'days2') {
+            if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
+                container.style.backgroundColor = 'red';
+            }
+
+
+        }
+
+
+
+
+    });
 }
 
 
