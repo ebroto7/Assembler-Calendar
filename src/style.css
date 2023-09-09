@@ -61,11 +61,20 @@ border: 0.15rem solid rgb(255, 255, 255);
   width: 3.07em;
   box-shadow: 0px 2px 10px 1px white;
 }
+.colHov{
+  background-color: rgba(0, 0, 0, 0.211);
+  backdrop-filter: blur(3px) saturate(200%);
+  -webkit-backdrop-filter: blur(3px) saturate(200%);
+  color: white;
+  box-shadow: 0px 2px 10px 1px white;
+  padding-left: 1em ;
+}
 .colHov:hover{
   cursor: pointer;
   transform: scale(1.0, 1.05);
 
 }
+
 
 .inactive{
   border: 1px solid rgb(255, 255, 255);
@@ -76,15 +85,6 @@ border: 0.15rem solid rgb(255, 255, 255);
   box-shadow: 0px 2px 10px 1px white;
   padding-left: 1rem ;
 }
-.colHov{
-  background-color: rgba(0, 0, 0, 0.211);
-  backdrop-filter: blur(3px) saturate(200%);
-  -webkit-backdrop-filter: blur(3px) saturate(200%);
-  color: white;
-  box-shadow: 0px 2px 10px 1px white;
-  padding-left: 1em ;
-}
-
 
 
 

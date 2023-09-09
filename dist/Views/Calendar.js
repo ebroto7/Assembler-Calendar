@@ -87,12 +87,12 @@ function createActiveDay(row) {
         const createDay = document.createElement('button');
         if (row.id == "days") {
             createDay.classList.add("col", "colHov");
+            createDay.setAttribute("data-bs-toggle", "modal");
+            createDay.setAttribute("data-bs-target", "#createEvent_Modal");
         }
         else if (row.id == "days2") {
             createDay.classList.add("col2", "colHov");
         }
-        createDay.setAttribute("data-bs-toggle", "modal");
-        createDay.setAttribute("data-bs-target", "#createEvent_Modal");
         let day = i;
         let month = M + 1;
         let zeroDay = '0' + day;
@@ -127,10 +127,10 @@ function createInactivePastDay(firstDay, row) {
         let previousDays = daysInMonth(M, Y) - i + 1;
         const day = document.createElement('button');
         if (row.id == "days") {
-            day.classList.add("col", "colHov");
+            day.classList.add("col", "colHov", "inactive");
         }
         else if (row.id == "days2") {
-            day.classList.add("col2", "colHov");
+            day.classList.add("col2", "colHov", "inactive");
         }
         day.addEventListener('click', () => {
             changeMinusMonth();
@@ -147,10 +147,10 @@ function createInactiveNextDay(lastDay, row) {
         const day = document.createElement('button');
         const nextDays = i - lastDay + 1;
         if (row.id == "days") {
-            day.classList.add("col", "colHov");
+            day.classList.add("col", "colHov", "inactive");
         }
         else if (row.id == "days2") {
-            day.classList.add("col2", "colHov");
+            day.classList.add("col2", "colHov", "inactive");
         }
         day.addEventListener('click', () => {
             changePlusMonth();
