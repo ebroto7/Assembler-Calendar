@@ -20,6 +20,10 @@ const modalForm_EventType = document.querySelector('#modalForm_EventType');
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle');
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
 const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn');
+const modalForm_cancelSaveEventBtn = document.querySelector('#modalForm_cancelSaveEventBtn');
+modalForm_cancelSaveEventBtn.addEventListener('click', () => {
+    resetModal();
+});
 export function openModal(initialDate, event) {
     createTypeFormView();
     createReminderTimesFormView();
@@ -31,6 +35,7 @@ export function openModal(initialDate, event) {
         newEventModal_headerTitle.innerText = "Edit event";
         modalForm_saveEventBtn.innerText = "Edit";
         modalForm_deleteEventBtn.hidden = false;
+        modalForm_deleteEventBtn.id = event.id;
         modalForm_eventTitle.value = event.title;
         modalForm_AllDayEventSwitch.checked = event.isAllDay;
         modalForm_startDate_dateInput.value = event.startDate;
@@ -47,12 +52,10 @@ function setMinStartDateHour() {
     const today = new Date().toJSON().slice(0, 10);
     modalForm_startDate_dateInput.setAttribute("min", `${today}`);
     modalForm_startDate_dateInput.value = today;
-    const now = new Date().toJSON().slice(11, 16);
-    modalForm_startDate_hourInput.value = now;
-    console.log("hour: " + now);
 }
 function resetModal() {
     formModal.reset();
+    modalForm_deleteEventBtn.removeAttribute("id");
     deleteErrorMessage('formTitleError');
     deleteErrorMessage('modalForm_startDate_errorMessage');
     deleteErrorMessage('modalForm_endDate_errorMessage');
@@ -229,6 +232,6 @@ export function closeModal() {
     resetModal();
 }
 function createEventID() {
-    const id = new Date().getTime();
+    const id = new Date().getTime().toString();
     return id;
 }

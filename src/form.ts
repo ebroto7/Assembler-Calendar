@@ -26,20 +26,27 @@ const modalForm_EventType = document.querySelector('#modalForm_EventType') as HT
 const newEventModal_headerTitle = document.querySelector('#newEventModal_headerTitle') as HTMLHeadingElement;
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement;
 const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn') as HTMLButtonElement;
+const modalForm_cancelSaveEventBtn = document.querySelector('#modalForm_cancelSaveEventBtn') as HTMLButtonElement;
 
+modalForm_cancelSaveEventBtn.addEventListener('click', () => {
+    resetModal()
+})
 
 export function openModal(initialDate?: string, event?: EventCal) {
     createTypeFormView()
     createReminderTimesFormView()   
     setMinStartDateHour()
+
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
+    
     }
 
     if (event != undefined) {
         newEventModal_headerTitle.innerText = "Edit event"
         modalForm_saveEventBtn.innerText = "Edit"
         modalForm_deleteEventBtn.hidden = false
+        modalForm_deleteEventBtn.id = event.id
 
         modalForm_eventTitle.value = event.title
         modalForm_AllDayEventSwitch.checked = event.isAllDay
@@ -59,13 +66,14 @@ function setMinStartDateHour() {
     modalForm_startDate_dateInput.setAttribute("min", `${today}`)
     modalForm_startDate_dateInput.value = today
 
-    const now = new Date().toJSON().slice(11, 16)
-    modalForm_startDate_hourInput.value = now
-    console.log("hour: "+now)
+    // const now = new Date().toJSON().slice(11, 16)
+    // modalForm_startDate_hourInput.value = now
+    // console.log("hour: "+now)
 }
 
 function resetModal() {
     formModal.reset()
+    modalForm_deleteEventBtn.removeAttribute("id")
 
     deleteErrorMessage('formTitleError')
     deleteErrorMessage('modalForm_startDate_errorMessage')
@@ -259,7 +267,7 @@ export function closeModal() {
     resetModal()
 }
 
-function createEventID(): number {
-    const id = new Date().getTime()
+function createEventID(): string {
+    const id = new Date().getTime().toString()
     return id
 }

@@ -236,8 +236,6 @@ export function printEvents(events:EventCal[], container:HTMLButtonElement){
         events.forEach(event => {
             if(Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate){
                 createEventOnCalendar(event, container);
-                console.log(Days.id)
-                console.log(event.startDate);
             }   
         });
 }

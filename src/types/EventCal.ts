@@ -1,6 +1,6 @@
 
 export interface EventCal {
-    id: number;
+    id: string;
     title: string;
     isAllDay?: boolean;
     startDate: string;
