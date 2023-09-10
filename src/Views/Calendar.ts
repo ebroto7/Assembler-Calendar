@@ -200,12 +200,12 @@ function createInactiveNextDay(lastDay: number, row: HTMLDivElement) {
         }
     }   
 }
-function todayDecoration(i: number, month: number, today: number, createDay: HTMLButtonElement, row) {
+function todayDecoration(i: number, month: number, today: number, createDay: HTMLButtonElement, row: HTMLDivElement) {
     if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
         if (row.id == "days") {
-            createDay.classList.add("col", "colHov");
+            createDay.classList.add("col", "colHov", "today");
         } else if (row.id == "days2") {
-            createDay.classList.add("col2", "colHov");
+            createDay.classList.add("col2", "colHov", "today");
         }
     }
 }
@@ -245,7 +245,7 @@ export function printEvents(events: EventCal[], container: HTMLButtonElement, ro
         }
         else if (row.id == 'days2') {
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
-                container.style.backgroundColor = 'red';
+                container.style.backgroundColor = 'rgba(0, 255, 38, 0.514)';
             }
 
 

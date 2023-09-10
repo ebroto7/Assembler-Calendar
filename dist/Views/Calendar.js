@@ -82,7 +82,6 @@ export function printDays(id) {
     createInactivePastDay(firstDay, row);
     createActiveDay(row);
     createInactiveNextDay(lastDay, row);
-    console.log('esto es last day' + lastDay);
 }
 function createActiveDay(row) {
     for (let i = 1; i <= daysInMonth(M + 1, Y); i++) {
@@ -172,10 +171,10 @@ function createInactiveNextDay(lastDay, row) {
 function todayDecoration(i, month, today, createDay, row) {
     if (i == today && month == getTodayMonth() + 1 && Y == getTodayYear()) {
         if (row.id == "days") {
-            createDay.classList.add("col", "colHov");
+            createDay.classList.add("col", "colHov", "today");
         }
         else if (row.id == "days2") {
-            createDay.classList.add("col2", "colHov");
+            createDay.classList.add("col2", "colHov", "today");
         }
     }
 }
@@ -212,7 +211,7 @@ export function printEvents(events, container, row) {
         }
         else if (row.id == 'days2') {
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
-                container.style.backgroundColor = 'red';
+                container.style.backgroundColor = 'rgba(0, 255, 38, 0.514)';
             }
         }
     });
