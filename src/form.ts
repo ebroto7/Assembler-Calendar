@@ -52,8 +52,6 @@ export function openModal(initialDate?: string, event?: EventCal) {
         modalForm_description.value = event.decription
         modalForm_EventType.value = event.calendar
     }
-    console.log(event)
-    console.log(initialDate)
 }
 
 function setMinStartDateHour() {
@@ -235,9 +233,10 @@ export function setEventInfo(): EventCal {
     if (modalForm_AllDayEventSwitch.checked == true) {
         endDate = modalForm_startDate_dateInput.value
     }
+    const id = createEventID()
 
     let newEvent: EventCal =  {
-        id: modalForm_eventTitle.value,
+        id: id,
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value ,
@@ -260,3 +259,7 @@ export function closeModal() {
     resetModal()
 }
 
+function createEventID(): number {
+    const id = new Date().getTime()
+    return id
+}

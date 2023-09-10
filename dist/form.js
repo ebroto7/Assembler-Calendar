@@ -42,8 +42,6 @@ export function openModal(initialDate, event) {
         modalForm_description.value = event.decription;
         modalForm_EventType.value = event.calendar;
     }
-    console.log(event);
-    console.log(initialDate);
 }
 function setMinStartDateHour() {
     const today = new Date().toJSON().slice(0, 10);
@@ -208,8 +206,9 @@ export function setEventInfo() {
     if (modalForm_AllDayEventSwitch.checked == true) {
         endDate = modalForm_startDate_dateInput.value;
     }
+    const id = createEventID();
     let newEvent = {
-        id: modalForm_eventTitle.value,
+        id: id,
         title: modalForm_eventTitle.value,
         isAllDay: modalForm_AllDayEventSwitch.checked,
         startDate: modalForm_startDate_dateInput.value,
@@ -228,4 +227,8 @@ export function setEventInfo() {
 export function closeModal() {
     createEvent_Modal.hidden = true;
     resetModal();
+}
+function createEventID() {
+    const id = new Date().getTime();
+    return id;
 }
