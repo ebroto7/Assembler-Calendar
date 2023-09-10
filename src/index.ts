@@ -14,6 +14,7 @@ const main = document.querySelector("#main") as HTMLDivElement
 const createEvent_Modal = document.querySelector('#createEvent_Modal')
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn') as HTMLButtonElement
 const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn') as HTMLButtonElement
+const modalForm_editEventBtn = document.querySelector('#modalForm_editEventBtn') as HTMLButtonElement
 
 
 
@@ -24,16 +25,23 @@ modalForm_saveEventBtn.addEventListener('click', ()=> {
         closeModal()
         saveNewEvent(newEvent)
         location.reload()
-        console.log("new event:" + JSON.stringify(newEvent))
     }
 })
+
 modalForm_deleteEventBtn.addEventListener('click', ()=> {
   deleteEvent(modalForm_deleteEventBtn.id)
   closeModal()
   location.reload()
   console.log("delete: " + modalForm_deleteEventBtn.id)
 })
-
+modalForm_editEventBtn.addEventListener('click', ()=> {
+    if (isValidForm() == true) {
+        const edited = setEventInfo()
+        closeModal()
+        editEvent(edited)
+        location.reload()
+    }
+})
 
 /**  SAVE AND RECOVER DATA  **/
 export function getAndParseLSinfo(key: string) {
@@ -62,19 +70,25 @@ function saveNewEvent(event: EventCal) {
 }
 function deleteEvent(id: string) {
     let savedEvents = getAndParseLSinfo('events')
-    console.log("old: " +savedEvents)
 
     savedEvents.forEach(element => {
-        console.log(element.id)
         if (element.id == id) {
             let i = savedEvents.indexOf(element)
             const removed = savedEvents.splice(i, 1)
-            console.log("new: "+savedEvents)
-            console.log("index: "+i)
-            console.log("element: "+element)
             localStorage.setItem("events", JSON.stringify(savedEvents))
-            console.log("new array: "+removed)
         }
     });
 
+}
+
+function editEvent(event: EventCal) {
+    let savedEvents = getAndParseLSinfo('events')
+
+    savedEvents.forEach(element => {
+        if (element.id == event.id) {
+            let i = savedEvents.indexOf(element)
+            const removed = savedEvents.splice(i, 1, event)
+            localStorage.setItem("events", JSON.stringify(savedEvents))
+        }
+    });
 }

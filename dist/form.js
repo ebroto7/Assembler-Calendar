@@ -21,6 +21,7 @@ const newEventModal_headerTitle = document.querySelector('#newEventModal_headerT
 const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn');
 const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn');
 const modalForm_cancelSaveEventBtn = document.querySelector('#modalForm_cancelSaveEventBtn');
+const modalForm_editEventBtn = document.querySelector('#modalForm_editEventBtn');
 modalForm_cancelSaveEventBtn.addEventListener('click', () => {
     resetModal();
 });
@@ -31,9 +32,17 @@ export function openModal(initialDate, event) {
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate;
     }
-    if (event != undefined) {
+    if (event == undefined) {
+        newEventModal_headerTitle.innerText = "Add new event";
+        modalForm_saveEventBtn.hidden = false;
+        modalForm_editEventBtn.hidden = true;
+        modalForm_deleteEventBtn.hidden = true;
+        console.log("open modal w/out event");
+    }
+    else {
         newEventModal_headerTitle.innerText = "Edit event";
-        modalForm_saveEventBtn.innerText = "Edit";
+        modalForm_saveEventBtn.hidden = true;
+        modalForm_editEventBtn.hidden = false;
         modalForm_deleteEventBtn.hidden = false;
         modalForm_deleteEventBtn.id = event.id;
         modalForm_eventTitle.value = event.title;
@@ -46,6 +55,7 @@ export function openModal(initialDate, event) {
         modalForm_ReminderCheckbox_options.value = event.timeReminder;
         modalForm_description.value = event.decription;
         modalForm_EventType.value = event.calendar;
+        console.log("open modal w event");
     }
 }
 function setMinStartDateHour() {
@@ -209,7 +219,10 @@ export function setEventInfo() {
     if (modalForm_AllDayEventSwitch.checked == true) {
         endDate = modalForm_startDate_dateInput.value;
     }
-    const id = createEventID();
+    let id = createEventID();
+    if (modalForm_deleteEventBtn.id != undefined) {
+        id = modalForm_deleteEventBtn.id;
+    }
     let newEvent = {
         id: id,
         title: modalForm_eventTitle.value,

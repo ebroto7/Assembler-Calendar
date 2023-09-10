@@ -120,6 +120,7 @@ function createActiveDay(row) {
         createDay.addEventListener('click', () => {
             console.log(createDay.id);
             setInfoModalDay(createDay.id);
+            console.log("function createActiveDay createDay.addEventListener click");
         });
         todayDecoration(i, month, today, createDay, row);
         printEvents(events, createDay);
@@ -190,11 +191,14 @@ function createEventOnCalendar(event, container) {
     containerEvent.classList.add('eventOnCalendar-container');
     const labelEvent = document.createElement("p");
     labelEvent.classList.add('eventTitleOnCalendar');
+    labelEvent.id = 'eventTitleOnCalendar';
+    labelEvent.setAttribute("onclick", "event.stopPropagation();");
     labelEvent.innerText = event.title;
     containerEvent.appendChild(labelEvent);
     container.appendChild(containerEvent);
     labelEvent.addEventListener('click', () => {
         openModal('', event);
+        console.log("function createEventOnCalendar labelEvent.addEventListener click");
     });
 }
 export function printEvents(events, container) {
