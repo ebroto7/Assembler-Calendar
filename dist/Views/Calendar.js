@@ -189,6 +189,7 @@ function createEventOnCalendar(event, container) {
     const containerEvent = document.createElement("div");
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
+    containerEvent.style.backgroundColor = getEventColor(event.calendar);
     const labelEvent = document.createElement("p");
     labelEvent.classList.add('eventTitleOnCalendar');
     labelEvent.id = 'eventTitleOnCalendar';
@@ -200,6 +201,24 @@ function createEventOnCalendar(event, container) {
         openModal('', event);
         console.log("function createEventOnCalendar labelEvent.addEventListener click");
     });
+}
+function getEventColor(calendar) {
+    switch (calendar) {
+        case "Birthday":
+            return 'lightgreen';
+        case "Assembler":
+            return 'lightcoral';
+        case "Family":
+            return 'lightgoldenrodyellow';
+        case "Gym":
+            return 'lightblue';
+        case "Personal":
+            return 'lightsalmon';
+        case "Work":
+            return 'lightgray';
+        default:
+            console.log(`Non-existent type in switch: ${calendar}`);
+    }
 }
 export function printEvents(events, container) {
     events.forEach(event => {

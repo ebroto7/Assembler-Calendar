@@ -1,5 +1,5 @@
 import { Days } from "../Days.js";
-import { EventCal } from "../types/EventCal.js";
+import { EventCal, Type } from "../types/EventCal.js";
 import { openModal } from "../form.js";
 import { getAndParseLSinfo } from "../index.js";
 let Days:Days = {
@@ -222,6 +222,7 @@ function createEventOnCalendar(event:EventCal, container:HTMLButtonElement){
     const containerEvent = document.createElement("div") as HTMLDivElement;
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
+    containerEvent.style.backgroundColor = getEventColor(event.calendar)
     const labelEvent = document.createElement("p") as HTMLParagraphElement;
     labelEvent.classList.add('eventTitleOnCalendar');
     labelEvent.id = 'eventTitleOnCalendar'
@@ -235,7 +236,28 @@ function createEventOnCalendar(event:EventCal, container:HTMLButtonElement){
     });
     
 }
+function getEventColor(calendar: string) {
+    switch (calendar) {
+        case "Birthday": 
+            return 'lightgreen';
+        case "Assembler": 
+            return 'lightcoral';
+        case "Family": 
+            return 'lightgoldenrodyellow';
+        case "Gym": 
+            return 'lightblue';
+        case "Personal": 
+            return 'lightsalmon';
+        case "Work": 
+            return 'lightgray';
+        
+        default:
+            // throw new Error(`Non-existent type in switch: ${calendar}`);
+            console.log(`Non-existent type in switch: ${calendar}`)
+        
+    }
 
+}
 export function printEvents(events:EventCal[], container:HTMLButtonElement){
         events.forEach(event => {
             if(Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate){
