@@ -248,6 +248,10 @@ function createEventOnCalendar(event: EventCal, container: HTMLButtonElement) {
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
     containerEvent.style.backgroundColor = getEventColor(event.calendar)
+    if (event.startDate < getToday().toJSON()){
+        containerEvent.style.backgroundColor = 'rgba(6, 46, 0, 0.691)';
+        containerEvent.style.textDecoration = 'line-through';
+        }
     const labelEvent = document.createElement("p") as HTMLParagraphElement;
     labelEvent.classList.add('eventTitleOnCalendar');
     labelEvent.id = 'eventTitleOnCalendar'
@@ -286,11 +290,12 @@ function getEventColor(calendar: string) {
 }
 export function printEvents(events: EventCal[], container: HTMLButtonElement, row: HTMLDivElement) {
     events.forEach(event => {
+
         if (row.id == 'days') {
             if (Days.id == event.startDate || Days.id == event.endDate) {
                 createEventOnCalendar(event, container);
             }
-
+            
         }
         else if (row.id == 'days2') {
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
@@ -300,8 +305,4 @@ export function printEvents(events: EventCal[], container: HTMLButtonElement, ro
     });
 }
 
-
-function setFirstEvent() {
-
-    // createEventOnCalendar(firstEvent, )
-}
+console.log('esto es today' + getTodayDay() + 'y esto gettoday' + getToday())

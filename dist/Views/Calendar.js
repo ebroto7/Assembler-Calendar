@@ -204,6 +204,10 @@ function createEventOnCalendar(event, container) {
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
     containerEvent.style.backgroundColor = getEventColor(event.calendar);
+    if (event.startDate < getToday().toJSON()) {
+        containerEvent.style.backgroundColor = 'rgba(6, 46, 0, 0.691)';
+        containerEvent.style.textDecoration = 'line-through';
+    }
     const labelEvent = document.createElement("p");
     labelEvent.classList.add('eventTitleOnCalendar');
     labelEvent.id = 'eventTitleOnCalendar';
@@ -248,5 +252,4 @@ export function printEvents(events, container, row) {
         }
     });
 }
-function setFirstEvent() {
-}
+console.log('esto es today' + getTodayDay() + 'y esto gettoday' + getToday());

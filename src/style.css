@@ -41,8 +41,7 @@ padding: 0;
   position: absolute;
 }
 .today{
-background-color: rgba(0, 255, 174, 0.617) !important;
-border: 0.15rem solid rgb(255, 255, 255);
+color: rgba(0, 2, 1, 0.78) !important;
 }
 .weekDay{
   background-color: rgba(61, 251, 197, 0.38);
@@ -62,6 +61,7 @@ border: 0.15rem solid rgb(255, 255, 255);
   box-shadow: 0px 2px 10px 1px white;
 }
 .colHov{
+  
   background-color: rgba(0, 0, 0, 0.211);
   backdrop-filter: blur(3px) saturate(200%);
   -webkit-backdrop-filter: blur(3px) saturate(200%);
@@ -97,7 +97,8 @@ border: 0.15rem solid rgb(255, 255, 255);
 }
 
 
-.tittle-section {
+.title-section {
+  width: 100%;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -106,7 +107,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 
 .arrow-button-left {
   position: relative;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #00070f00; /* Button background color */
   color: #fff; /* Text color */
   border: none;
@@ -117,9 +118,9 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  left: -8vw; 
-  top: 33vh;
-  border-width: 50px;
+  /* left: 12vw;
+  top: 3.5vh;  */
+  border-width: 20px;
   border-style: solid;
   border-color: transparent transparent transparent #000000; /* Arrow color */
   transform: translateY(-50%);
@@ -128,7 +129,7 @@ border: 0.15rem solid rgb(255, 255, 255);
 
 .arrow-button-right {
   position: relative;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #007bff00; /* Button background color */
   color: #fff; /* Text color */
   border: none;
@@ -139,9 +140,9 @@ border: 0.15rem solid rgb(255, 255, 255);
 .arrow-button-right::before {
   content: "";
   position: absolute;
-  left: 6vw; 
-  top: 37vh;
-  border-width: 50px;
+  /* left: -12vw;
+  top: 5.5vh; */
+  border-width: 20px;
   border-style: solid;
   border-color: transparent transparent transparent #000000; /* Arrow color */
   transform: translateY(-50%);
@@ -190,16 +191,6 @@ border: 0.15rem solid rgb(255, 255, 255);
   left: 48vw;
 }
 
-
-aside{
-  margin-top: 3.7em;
- 
-  height:48.5em;
-  width:30em;
-  border:1px solid black;
-  border-radius: 0px 15px 15px 0px;
-  
-}
 .calendarContainer, .selectCalendarContainer{
  margin-top:  5em;
 }
@@ -214,8 +205,25 @@ h5{
 .form-check-input{
   margin-left: 2em;
 }
+.sideBar{
+  
+  width: 25%;
+  margin-top: 3.7em;
+  height:48.5em;
+  width:30em;
+  box-shadow: 0px 0px 3px 4px rgba(90, 223, 70, 0.753);
+  border-radius: 0px 15px 15px 0px;
+  
+}
+.miniTitle{
+  width: 100%;
+  background-color: rgba(40, 255, 7, 0.122);
+  background-color: rgba(6, 46, 0, 0.691);
+  color: white;
+}
 
 .miniCalendar{
+  margin-top: 5vh;
   width: 20em;
   height: 20em;
   margin-left: 4em;
@@ -248,8 +256,9 @@ h5{
   display: flex;
 }
 
-#main{
+.main{
   position: absolute;
   left: 32vw;
   top: 5vh;
+  width: 50%;
 }
