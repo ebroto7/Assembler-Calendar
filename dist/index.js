@@ -19,10 +19,10 @@ modalForm_saveEventBtn.addEventListener('click', () => {
     }
 });
 modalForm_deleteEventBtn.addEventListener('click', () => {
-    deleteEvent(modalForm_deleteEventBtn.id);
+    const edited = setEventInfo();
+    deleteEvent(edited.id);
     closeModal();
     location.reload();
-    console.log("delete: " + modalForm_deleteEventBtn.id);
 });
 modalForm_editEventBtn.addEventListener('click', () => {
     if (isValidForm() == true) {

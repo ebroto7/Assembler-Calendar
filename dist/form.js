@@ -22,6 +22,7 @@ const modalForm_saveEventBtn = document.querySelector('#modalForm_saveEventBtn')
 const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventBtn');
 const modalForm_cancelSaveEventBtn = document.querySelector('#modalForm_cancelSaveEventBtn');
 const modalForm_editEventBtn = document.querySelector('#modalForm_editEventBtn');
+let temporaryEvent;
 modalForm_cancelSaveEventBtn.addEventListener('click', () => {
     resetModal();
 });
@@ -40,11 +41,12 @@ export function openModal(initialDate, event) {
         console.log("open modal w/out event");
     }
     else {
+        temporaryEvent = event;
+        console.log("function openModal temporay event: " + temporaryEvent);
         newEventModal_headerTitle.innerText = "Edit event";
         modalForm_saveEventBtn.hidden = true;
         modalForm_editEventBtn.hidden = false;
         modalForm_deleteEventBtn.hidden = false;
-        modalForm_deleteEventBtn.id = event.id;
         modalForm_eventTitle.value = event.title;
         modalForm_AllDayEventSwitch.checked = event.isAllDay;
         modalForm_startDate_dateInput.value = event.startDate;
@@ -65,7 +67,7 @@ function setMinStartDateHour() {
 }
 function resetModal() {
     formModal.reset();
-    modalForm_deleteEventBtn.removeAttribute("id");
+    temporaryEvent = null;
     deleteErrorMessage('formTitleError');
     deleteErrorMessage('modalForm_startDate_errorMessage');
     deleteErrorMessage('modalForm_endDate_errorMessage');
@@ -220,8 +222,9 @@ export function setEventInfo() {
         endDate = modalForm_startDate_dateInput.value;
     }
     let id = createEventID();
-    if (modalForm_deleteEventBtn.id != undefined) {
-        id = modalForm_deleteEventBtn.id;
+    if (temporaryEvent != null) {
+        id = temporaryEvent.id;
+        console.log("temporaryEvent id: " + id);
     }
     let newEvent = {
         id: id,
