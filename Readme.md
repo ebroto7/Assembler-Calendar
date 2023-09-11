@@ -53,7 +53,7 @@ npm i bootstrap@5.3.1
 
 [Enric Broto] (https://github.com/ebroto7);
 
-[Yann Parés](https://github.com/YannPares)
+[Yann Parés] (https://github.com/YannPares)
 [Amina Seye]
 [Aday]
 
