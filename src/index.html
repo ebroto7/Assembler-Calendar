@@ -25,12 +25,6 @@
 
 
   <header id="header">
-    Calendar
-    <button id="openAddEventModal_btn" type="button" class="btn btn-primary" data-bs-toggle="modal"
-      data-bs-target="#createEvent_Modal">
-      New Task
-    </button>
-    <button id="todayButton" class="btn-primary todayButton">Back to the future</button>
     <!-- Modal -->
     <div class="modal fade" id="createEvent_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="newEventModal" aria-hidden="true">
@@ -114,7 +108,8 @@
 
           </div>
           <div class="modal-footer">
-            <button id="modalForm_cancelSaveEventBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="modalForm_cancelSaveEventBtn" type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Cancel</button>
             <button id="modalForm_saveEventBtn" type="button" class="btn btn-success">Save</button>
             <button id="modalForm_editEventBtn" type="button" class="btn btn-primary" hidden>Edit</button>
             <button id="modalForm_deleteEventBtn" type="button" class="btn btn-danger" hidden>Delete</button>
@@ -123,13 +118,11 @@
       </div>
     </div>
   </header>
-  <div class="flex">
-    <aside id="aside">
-      <h5>my calendar &#9660;</h5> <!--dropdown boostrap-->
+  <article id="superContainer" class="superContainer">
+    <aside class="sideBar" id="aside">
+      <h5 class="miniTitle">my calendar </h5>
       <section class="miniCalendar">
-        <div class="tittle-section">
-        </div>
-        <div class="container2">
+        <div class="asideCalendar_container">
           <div class="rowmini rowWeek">
             <div class="col2 weekDay2">Mon
             </div>
@@ -154,44 +147,50 @@
       </section>
     </aside>
 
-    <main id="main">
+    <main id="main" class="main">
+      <div class="title-section">
+        <button id="button-left" class="arrow-button-left"></button>
+        <div class="calendarDayTittle" id="calendarTitle"></div>
+        <button id="button-right" class="arrow-button-right"></button>
+      </div>
 
-
-
-      <section>
-        <div class="tittle-section">
-          <button id="button-left" class="arrow-button-left"></button>
-          <div class="calendarDayTittle" id="calendarTitle"></div>
-          <button id="button-right" class="arrow-button-right"></button>
-        </div>
-        <div class="container">
-          <div class="row rowWeek">
-            <div class="col weekDay">Mon
-            </div>
-            <div class="col weekDay">Tue
-            </div>
-            <div class="col weekDay">Wed
-            </div>
-            <div class="col weekDay">Thu
-            </div>
-            <div class="col weekDay">Fri
-            </div>
-            <div class="col weekDay">Sat
-            </div>
-            <div class="col weekDay">Sun
-            </div>
+      <div class="title-section">
+        <button id="openAddEventModal_btn" class="btn-7" type="button"  data-bs-toggle="modal" data-bs-target="#createEvent_Modal">
+          <span>New event</span> 
+         </button>
+      </div>
+    
+      <div class="calendar_container">
+        <div class="row rowWeek">
+          <div class="col weekDay">Mon
           </div>
-          <div class="row">
-            <div class="container-days" id="days">
-            </div>
+          <div class="col weekDay">Tue
+          </div>
+          <div class="col weekDay">Wed
+          </div>
+          <div class="col weekDay">Thu
+          </div>
+          <div class="col weekDay">Fri
+          </div>
+          <div class="col weekDay">Sat
+          </div>
+          <div class="col weekDay">Sun
           </div>
         </div>
+        <div class="row">
+          <div class="container-days" id="days">
+          </div>
+        </div>
+      </div>
+      <div class="title-section">
+        <button id="todayButton" class="btn-primary todayButton">Back to the future</button>
+      </div>
+    
 
-      </section>
 
     </main>
-  </div>
-  <footer id="footer">copyright september 2023 ©</footer>
+  </article>
+  <!-- <footer id="footer">copyright september 2023 ©</footer> -->
 
   <!-- ---------------------------------------------------------------- -->
 
