@@ -10,8 +10,19 @@ let Days: Days = {
     mthStr: '',
     year: 0,
 }
+const firstEvent: EventCal = {
+    id: "1",
+    title: "first event",
+    startDate: "1970-01-01",
+    calendar: "Work",
+    decription: "First ever event created for initialize calendar"
+}
+const allevents = getAndParseLSinfo('events');
+let events = [firstEvent]
+if (allevents != null){
+    events = allevents;
+}
 
-const events = getAndParseLSinfo('events'); //[event1, event2, event3]
 const Month = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"]
 
@@ -264,18 +275,14 @@ function getEventColor(calendar: string) {
 export function printEvents(events: EventCal[], container: HTMLButtonElement, row: HTMLDivElement) {
     events.forEach(event => {
         if (row.id == 'days') {
-            if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
-                createEventOnCalendar(event, container);
-                console.log(Days.id)
-                console.log(event.startDate);
-            }
-            else if (Days.id == event.endDate){
+            if (Days.id == event.startDate || Days.id == event.endDate) {
                 createEventOnCalendar(event, container);
             }
+
         }
         else if (row.id == 'days2') {
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
-                container.style.backgroundColor = 'rgba(0, 255, 38, 0.514)';
+                container.style.backgroundColor = 'rgba(0, 255, 38, 0.614)';
             }
         }
     });
@@ -291,11 +298,6 @@ console.log(Days.id);
 
 
 function setFirstEvent() {
-    const firstEvent: EventCal = {
-        id: "1",
-        title: "first event",
-        startDate: "1970-01-01",
-        calendar: "first event"
-    }
+
     // createEventOnCalendar(firstEvent, )
 }
