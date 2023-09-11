@@ -16,6 +16,9 @@
 
 
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha384-**********************" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -155,11 +158,12 @@
       </div>
 
       <div class="title-section">
-        <button id="openAddEventModal_btn" class="btn-7" type="button"  data-bs-toggle="modal" data-bs-target="#createEvent_Modal">
-          <span>New event</span> 
-         </button>
+        <button id="openAddEventModal_btn" class="mainButtons" type="button" data-bs-toggle="modal"
+          data-bs-target="#createEvent_Modal">
+          <span>New event</span>
+        </button>
       </div>
-    
+
       <div class="calendar_container">
         <div class="row rowWeek">
           <div class="col weekDay">Mon
@@ -183,18 +187,30 @@
         </div>
       </div>
       <div class="title-section">
-        <button id="todayButton" class="btn-primary todayButton">Back to the future</button>
+        <button id="todayButton" class="mainButtons">Back to the future</button>
       </div>
-    
+
 
 
     </main>
   </article>
-  <!-- <footer id="footer">copyright september 2023 ©</footer> -->
 
   <!-- ---------------------------------------------------------------- -->
-
-
+  <footer class="footerContainer">
+    <div class="footerLogoAIT">
+        <a id="footerAssemblerLink" href="https://assemblerinstitute.com"></a>
+    </div>
+    <div class="footerAuthors">
+        <a class="authorLink" href="https://www.linkedin.com/in/ian-parés/">Ian Parés <i class="fab fa-linkedin"></i></a>
+        <a class="authorLink" href="https://www.linkedin.com/in/amina-seye-b1597027b/">Amina Seye <i class="fab fa-linkedin"></i></a>
+        <a class="authorLink" href="https://www.linkedin.com/in//">Aday  <i class="fab fa-linkedin"></i></a>
+        <a class="authorLink" href="https://www.linkedin.com/in/ebroto/">Enric Broto <i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="footerOtherInfo">
+      <a class="authorLink" href="https://github.com/ebroto7/Assembler-Calendar.git"> github repository  <i class="fa-brands fa-github-square"></i></a>
+        <h4>©Copyright september 2023</h4>
+    </div>
+</footer>
 
   <canvas id="stars" width="300" height="300"></canvas>
 
