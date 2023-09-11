@@ -1,4 +1,4 @@
- import { printMonth, printDays, printEvents } from './Views/Calendar.js';
+ import { printMonth, printDays, printEvents} from './Views/Calendar.js';
 import { isValidForm, setEventInfo, closeModal } from "./form.js"
 import { Type, EventCal } from "./types/EventCal.js"
 
@@ -16,14 +16,17 @@ const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventB
 const modalForm_editEventBtn = document.querySelector('#modalForm_editEventBtn') as HTMLButtonElement
 
 
-
-
 modalForm_saveEventBtn.addEventListener('click', ()=> {
     if (isValidForm() == true) {
         const newEvent = setEventInfo()
         closeModal()
         saveNewEvent(newEvent)
+         
         location.reload()
+        
+        // goToEventDate(newEvent); 
+        // function to return at event date. 
+        // Conflict with reload page, must save the date in localStorage and then load it.
     }
 })
 

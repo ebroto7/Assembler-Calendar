@@ -106,6 +106,18 @@ buttonToday?.addEventListener('click', () => {
     printDays("days2");
 })
 
+// export function goToEventDate(event: EventCal) {
+//     const date = event.startDate;
+//     const month = parseFloat(date.slice(5, 7));
+//     const year = parseFloat(date.slice(0, 3));
+//     console.log('fecha del evento ' + month + year)
+//     M = month;
+//     Y = year;
+//     printMonth();
+//     printDays("days");
+//     printDays("days2");
+// }
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // print dias
@@ -287,14 +299,6 @@ export function printEvents(events: EventCal[], container: HTMLButtonElement, ro
         }
     });
 }
-
-
-// console.log(getDate(123456));
-console.log(getTodayDay());
-console.log(getTodayMonth());
-console.log(getTodayYear());
-console.log(Days.id);
-
 
 
 function setFirstEvent() {

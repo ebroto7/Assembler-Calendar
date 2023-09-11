@@ -248,9 +248,5 @@ export function printEvents(events, container, row) {
         }
     });
 }
-console.log(getTodayDay());
-console.log(getTodayMonth());
-console.log(getTodayYear());
-console.log(Days.id);
 function setFirstEvent() {
 }
