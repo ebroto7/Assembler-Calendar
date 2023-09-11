@@ -51,13 +51,13 @@ npm i bootstrap@5.3.1
 
 ## Author
 
-[Enric Broto] (https://github.com/ebroto7);
+[ Enric Broto] (https://github.com/ebroto7);
 
 [Yann Parés] (https://github.com/YannPares);
 
-[Amina Seye] (https://github.com/amina);
+[Amina Seye];
 
-[Aday]
+[Aday] (https://github.com/kaynmertens19)
 
 ## License 
 

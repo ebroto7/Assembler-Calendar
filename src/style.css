@@ -149,8 +149,8 @@ color: rgba(0, 2, 1, 0.78) !important;
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  left: 12vw;
-  top: 3.5vh; 
+  left: 20vw;
+  top: 2.7vh; 
   border-width: 20px;
   border-style: solid;
   border-color: transparent transparent transparent #000000; /* Arrow color */
