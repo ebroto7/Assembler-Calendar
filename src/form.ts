@@ -29,6 +29,8 @@ const modalForm_deleteEventBtn = document.querySelector('#modalForm_deleteEventB
 const modalForm_cancelSaveEventBtn = document.querySelector('#modalForm_cancelSaveEventBtn') as HTMLButtonElement;
 const modalForm_editEventBtn = document.querySelector('#modalForm_editEventBtn') as HTMLButtonElement;
 
+let temporaryEvent: EventCal;
+
 modalForm_cancelSaveEventBtn.addEventListener('click', () => {
     resetModal()
 })
@@ -50,11 +52,12 @@ export function openModal(initialDate?: string, event?: EventCal) {
         modalForm_deleteEventBtn.hidden = true
         console.log("open modal w/out event")
     } else {
+        temporaryEvent = event
+        console.log("function openModal temporay event: "+temporaryEvent)
         newEventModal_headerTitle.innerText = "Edit event"
         modalForm_saveEventBtn.hidden = true
         modalForm_editEventBtn.hidden = false
         modalForm_deleteEventBtn.hidden = false
-        modalForm_deleteEventBtn.id = event.id
 
         modalForm_eventTitle.value = event.title
         modalForm_AllDayEventSwitch.checked = event.isAllDay
@@ -83,8 +86,8 @@ function setMinStartDateHour() {
 
 function resetModal() {
     formModal.reset()
-    modalForm_deleteEventBtn.removeAttribute("id")
-    modalForm_endDate_dateInput.setAttribute
+    // modalForm_deleteEventBtn.removeAttribute("id")
+    temporaryEvent = null
 
     deleteErrorMessage('formTitleError')
     deleteErrorMessage('modalForm_startDate_errorMessage')
@@ -258,8 +261,9 @@ export function setEventInfo(): EventCal {
 
 
     let id = createEventID()
-    if (modalForm_deleteEventBtn.id != undefined) {
-        id = modalForm_deleteEventBtn.id
+    if (temporaryEvent != null) {
+        id = temporaryEvent.id
+        console.log("temporaryEvent id: "+ id)
     }
     let newEvent: EventCal =  {
         id: id,
