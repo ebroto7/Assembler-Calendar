@@ -1,5 +1,5 @@
 import { Days } from "../Days.js";
-import { EventCal } from "../types/EventCal.js";
+import { EventCal, Type } from "../types/EventCal.js";
 import { openModal } from "../form.js";
 import { getAndParseLSinfo } from "../index.js";
 let Days: Days = {
@@ -147,6 +147,7 @@ function createActiveDay(row: HTMLDivElement) {
         createDay.addEventListener('click', () => {
             console.log(createDay.id);
             setInfoModalDay(createDay.id)
+            console.log("function createActiveDay createDay.addEventListener click")
         });
         todayDecoration(i, month, today, createDay, row);
         printEvents(events, createDay, row);
@@ -223,17 +224,43 @@ function createEventOnCalendar(event: EventCal, container: HTMLButtonElement) {
     const containerEvent = document.createElement("div") as HTMLDivElement;
     containerEvent.id = 'eventOnCalendar';
     containerEvent.classList.add('eventOnCalendar-container');
+    containerEvent.style.backgroundColor = getEventColor(event.calendar)
     const labelEvent = document.createElement("p") as HTMLParagraphElement;
     labelEvent.classList.add('eventTitleOnCalendar');
+    labelEvent.id = 'eventTitleOnCalendar'
+    labelEvent.setAttribute("onclick", "event.stopPropagation();")
     labelEvent.innerText = event.title;
     containerEvent.appendChild(labelEvent);
     container.appendChild(containerEvent);
     labelEvent.addEventListener('click', () => {
         openModal('', event)
+        console.log("function createEventOnCalendar labelEvent.addEventListener click")
+
     });
+    
+}
+function getEventColor(calendar: string) {
+    switch (calendar) {
+        case "Birthday": 
+            return 'lightgreen';
+        case "Assembler": 
+            return 'lightcoral';
+        case "Family": 
+            return 'lightgoldenrodyellow';
+        case "Gym": 
+            return 'lightblue';
+        case "Personal": 
+            return 'lightsalmon';
+        case "Work": 
+            return 'lightgray';
+        
+        default:
+            // throw new Error(`Non-existent type in switch: ${calendar}`);
+            console.log(`Non-existent type in switch: ${calendar}`)
+        
+    }
 
 }
-
 export function printEvents(events: EventCal[], container: HTMLButtonElement, row: HTMLDivElement) {
     events.forEach(event => {
         if (row.id == 'days') {
@@ -256,8 +283,6 @@ export function printEvents(events: EventCal[], container: HTMLButtonElement, ro
 
     });
 }
-
-
 
 
 // console.log(getDate(123456));

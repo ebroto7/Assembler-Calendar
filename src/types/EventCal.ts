@@ -1,6 +1,6 @@
 
 export interface EventCal {
-    id?: number;
+    id: string;
     title: string;
     isAllDay?: boolean;
     startDate: string;
@@ -15,12 +15,12 @@ export interface EventCal {
 }
 
 export enum Type {
-    Cumpleaños = "cumpleaños",
-    Trabajo = "trabajo",
-    Familia = "familia",
-    Personal = "personal",
-    Gimnasio = "gimnasio",
-    Assembler = "assembler",
+    Birthday = "Birthday",
+    Work = "Work",
+    Family = "Family",
+    Personal = "Personal",
+    Gym = "Gym",
+    Assembler = "Assembler",
 }
 
 export enum ReminderTime {
