@@ -247,7 +247,7 @@ h5{
 .miniCalendar{
   margin-top: 5vh;
   width: 20em;
-  height: 20em;
+  height: 12em;
   margin-left: 4em;
 }
 
@@ -275,15 +275,12 @@ h5{
 }
 
 
-
 .main{
   position: absolute;
   left: 32vw;
   top: 5vh;
   width: 50%;
 }
-
-
 
 
 /* MAIN BUTTONS */
@@ -339,11 +336,29 @@ h5{
  }
 
 
+/* SIDEBAR */
+.checkbox_container {
+  display: flex;
+  flex-direction: column;
+}
+.form-check-label {
+  color: white;
+}
+
+.list-group {
+  margin: 0.5rem;
+  height: 2rem;
+  background-color: white;
+  text-align: center;
+  line-height: 2rem;
+
+}
+.list-group:hover {
+  transform: scale(1.0, 1.1);
+}
 
  /* FOOTER */
 
-
-/* init footer */
 .footerContainer {
   color: white;
   height: 10%;
