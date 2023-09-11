@@ -1,11 +1,13 @@
- import { printMonth, printDays, printEvents} from './Views/Calendar.js';
-import { isValidForm, setEventInfo, closeModal } from "./form.js"
+import { printMonth, printDays, printEvents} from './Views/Calendar.js';
+import { isValidForm, setEventInfo, closeModal, calendarTypes } from "./form.js"
 import { Type, EventCal } from "./types/EventCal.js"
 
  window.addEventListener('DOMContentLoaded', () => {
     printMonth();
     printDays("days");
     printDays("days2");
+    createCheckboxCalendar();
+    nextEvents();
  } );
 
 
@@ -23,10 +25,6 @@ modalForm_saveEventBtn.addEventListener('click', ()=> {
         saveNewEvent(newEvent)
          
         location.reload()
-        
-        // goToEventDate(newEvent); 
-        // function to return at event date. 
-        // Conflict with reload page, must save the date in localStorage and then load it.
     }
 })
 
@@ -95,3 +93,84 @@ function editEvent(event: EventCal) {
         }
     });
 }
+
+
+
+
+// aside
+
+const asideBar = document.querySelector("#aside");
+const checkboxCalendar = document.createElement("div");
+
+function createCheckboxCalendar() {
+    console.log("function createCheckboxCalendar")
+    asideBar!.appendChild(checkboxCalendar);
+
+
+    const titleNE = document.createElement("h5");
+    titleNE.setAttribute("id", "titleNE")
+    titleNE.classList.add('miniTitle')
+    titleNE.innerHTML="calendars:";
+    asideBar!.appendChild(titleNE);
+    titleNE.style.backgroundColor = "rgba(6, 46, 0, 0.691)";
+    const checkbox_container = document.createElement("div");
+    checkbox_container.classList.add("checkbox_container")
+    checkbox_container.appendChild(titleNE)
+    checkboxCalendar.appendChild(checkbox_container);
+
+    calendarTypes.forEach((element)=> {
+        const inputTitle_container = document.createElement("div");
+        inputTitle_container.classList.add("inputTitle_container")
+
+        const createInput = document.createElement("input");
+        createInput.setAttribute("class", "form-check-input");
+        createInput.setAttribute("type", "checkbox");
+        createInput.setAttribute("value", "");
+        createInput.setAttribute("id", "flexCheckDefault");
+
+        const createLabel = document.createElement("label");
+        createLabel.setAttribute("class", "form-check-label");
+        createLabel.setAttribute("name", "my calendars");
+        createLabel.setAttribute("for", "flexCheckDefault");
+        createLabel.innerText= element;
+
+        inputTitle_container.appendChild(createInput)
+        inputTitle_container.appendChild(createLabel);
+        checkbox_container.appendChild(inputTitle_container);
+            createInput.addEventListener("change" ,()=>{
+                    if (createInput.checked == true ) {
+                        createLabel.style.backgroundColor= "grey";
+                        console.log("marked");
+                    } else {
+                        createLabel.style.backgroundColor = "transparent";
+                    }
+                   
+            })
+     
+    })
+}
+
+function nextEvents(){
+    const titleNE = document.createElement("h5");
+    titleNE.classList.add('miniTitle')
+    titleNE.setAttribute("id", "titleNE")
+    titleNE.innerHTML=" Next Events:";
+    asideBar!.appendChild(titleNE);
+    titleNE.style.backgroundColor = "rgba(6, 46, 0, 0.691)";
+
+
+    const createEvent = ["comida familiar","excursion amigos"];
+    const listEvent = document.createElement("ul");
+    asideBar?.appendChild(listEvent);
+
+    createEvent.forEach((element)=>{
+        const singleEvent = document.createElement("li");
+
+        singleEvent.classList.add('list-group', "card");
+        singleEvent.textContent= `${element}`;
+        listEvent?.appendChild(singleEvent);
+     })
+
+}
+
+

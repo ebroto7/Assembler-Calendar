@@ -1,5 +1,5 @@
 import { Type, ReminderTime } from "./types/EventCal.js";
-const calendarTypes = Object.keys(Type);
+export const calendarTypes = Object.keys(Type);
 const reminderTimes = Object.keys(ReminderTime);
 const openAddEventModal_btn = document.querySelector("#openAddEventModal_btn");
 const createEvent_Modal = document.querySelector("#createEvent_Modal");
