@@ -231,6 +231,9 @@ export function printEvents(events, container, row) {
                 console.log(Days.id);
                 console.log(event.startDate);
             }
+            else if (Days.id == event.endDate) {
+                createEventOnCalendar(event, container);
+            }
         }
         else if (row.id == 'days2') {
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
