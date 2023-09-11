@@ -3,10 +3,26 @@ body {
 }
 
 #header {
-    height: 10%;
+    height: 5vh;
+}
+
+.superContainer{
+  height: 90vh;
+  display: flex;
+  width: 100%;
+}
+.sideBar{
+  
+  width: 25%;
+  /* margin-top: 3.7em; */
+  height: 80vh;
+  box-shadow: 0px 0px 3px 4px rgba(90, 223, 70, 0.753);
+  border-radius: 0px 15px 15px 0px;
+  
 }
 #main {
-    height: 80%;
+  width: 65%;
+  height: 80%;
 }
 
 #footer {
@@ -14,12 +30,10 @@ body {
     height: 10%;
     padding-left: 2em;
 }
-.container{
-  padding: 0;
-  width: 100vh;
+.calendar_container{
+  width: 90%;
 }
-.container2{
-  padding: 0;
+.asideCalendar_container {
   width: 100%;
 }
 .container-days2{
@@ -27,7 +41,7 @@ padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   /* border: 1px solid black; */
-  
+  font-size: small;
 }
 .container-days{
   padding: 0;
@@ -61,7 +75,8 @@ color: rgba(0, 2, 1, 0.78) !important;
   box-shadow: 0px 2px 10px 1px white;
 }
 .colHov{
-  
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.211);
   backdrop-filter: blur(3px) saturate(200%);
   -webkit-backdrop-filter: blur(3px) saturate(200%);
@@ -72,10 +87,27 @@ color: rgba(0, 2, 1, 0.78) !important;
 .colHov:hover{
   cursor: pointer;
   transform: scale(1.0, 1.05);
-
 }
 
+
+.colHov::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.colHov::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+.frame::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+.colHov::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 1px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
+}
 .labelEvent{
+  display: flex;
   display: flex;
   align-items: center;
 }
@@ -98,15 +130,14 @@ color: rgba(0, 2, 1, 0.78) !important;
 
 
 .title-section {
-  width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .arrow-button-left {
-  position: relative;
   padding: 5px 10px;
   background-color: #00070f00; /* Button background color */
   color: #fff; /* Text color */
@@ -118,8 +149,8 @@ color: rgba(0, 2, 1, 0.78) !important;
 .arrow-button-left::before {
   content: "";
   position: absolute;
-  /* left: 12vw;
-  top: 3.5vh;  */
+  left: 12vw;
+  top: 3.5vh; 
   border-width: 20px;
   border-style: solid;
   border-color: transparent transparent transparent #000000; /* Arrow color */
@@ -173,10 +204,12 @@ color: rgba(0, 2, 1, 0.78) !important;
 }
 .eventOnCalendar-container{
   border-radius: 0.5rem;
-  /* background-color: rgba(0, 255, 38, 0.514) !important; */
-}
+  /* overflow: ellipsis; */
+  color: black;
+  }
 
 .todayButton{
+  margin-top: 1em;
   background-color: rgba(40, 255, 7, 0.122);
   color: white;
   backdrop-filter: blur(3px) saturate(200%);
@@ -185,15 +218,13 @@ color: rgba(0, 2, 1, 0.78) !important;
   border: solid 1px white;
   width: 20em;
   height: 2em;
-  font-size: 1.5em;
-  position: absolute;
-  top: 85vh;
-  left: 48vw;
+
 }
 
 .calendarContainer, .selectCalendarContainer{
  margin-top:  5em;
 }
+
 h5{
   border-radius:0px 13px 0px 0px;
   text-align: center;
@@ -205,16 +236,7 @@ h5{
 .form-check-input{
   margin-left: 2em;
 }
-.sideBar{
-  
-  width: 25%;
-  margin-top: 3.7em;
-  height:48.5em;
-  width:30em;
-  box-shadow: 0px 0px 3px 4px rgba(90, 223, 70, 0.753);
-  border-radius: 0px 15px 15px 0px;
-  
-}
+
 .miniTitle{
   width: 100%;
   background-color: rgba(40, 255, 7, 0.122);
@@ -252,9 +274,7 @@ h5{
   max-height: fit-content;
 }
 
-.flex{
-  display: flex;
-}
+
 
 .main{
   position: absolute;
@@ -262,3 +282,58 @@ h5{
   top: 5vh;
   width: 50%;
 }
+
+
+
+
+/* MAIN BUTTONS */
+
+.mainButtons {
+  --glow-color: rgb(124, 245, 134);
+  --glow-spread-color: rgba(165, 255, 123, 0.781);
+  --enhanced-glow-color: rgb(129, 255, 75);
+  --btn-color: rgb(9, 62, 1);
+  border: .25em solid var(--glow-color);
+  padding: 0.5em 3em;
+  margin-bottom:  1em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em .25em var(--glow-color),
+         0 0 4em 1em var(--glow-spread-color),
+         inset 0 0 .75em .25em var(--glow-color);
+  text-shadow: 0 0 .5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+ }
+ 
+ .mainButtons::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: .7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+ }
+ 
+ .mainButtons:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em .25em var(--glow-color),
+         0 0 4em 2em var(--glow-spread-color),
+         inset 0 0 .75em .25em var(--glow-color);
+ }
+ 
+ .mainButtons:active {
+  box-shadow: 0 0 0.6em .25em var(--glow-color),
+         0 0 2.5em 2em var(--glow-spread-color),
+         inset 0 0 .5em .25em var(--glow-color);
+ }
