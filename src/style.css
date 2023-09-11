@@ -96,7 +96,9 @@ border: 0.15rem solid rgb(255, 255, 255);
   
 }
 
-
+#calendarTitle:hover{
+  cursor: pointer;
+}
 .tittle-section {
     display: flex;
     flex-direction: row;

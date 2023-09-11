@@ -46,9 +46,8 @@ let Y = getTodayYear();
 export function printMonth() {
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle!.textContent = `${Month[M]} of ${Y}`;
-
-
 }
+
 
 // funcionalidad de los botones de la calendar
 
@@ -100,7 +99,6 @@ buttonToday?.addEventListener('click', () => {
 // print dias
 export function printDays(id: string) {
     const row = document.querySelector(`#${id}`) as HTMLDivElement;
-    const lastDayMonth = daysInMonth(Y, M + 1)
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, (M+1), 0).getDay();
     row?.replaceChildren()

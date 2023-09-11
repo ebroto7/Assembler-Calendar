@@ -36,6 +36,13 @@ let Y = getTodayYear();
 export function printMonth() {
     const calendarTitle = document.querySelector('#calendarTitle');
     calendarTitle.textContent = `${Month[M]} of ${Y}`;
+    calendarTitle.setAttribute("data-toggle", "modal");
+    calendarTitle.setAttribute("data-target", "#modalMonth");
+    calendarTitle.addEventListener("click", () => {
+        selectMonthAndYear();
+    });
+}
+function selectMonthAndYear() {
 }
 const buttonLeft = document.getElementById('button-left');
 const buttonRight = document.getElementById('button-right');
@@ -75,7 +82,6 @@ buttonToday === null || buttonToday === void 0 ? void 0 : buttonToday.addEventLi
 });
 export function printDays(id) {
     const row = document.querySelector(`#${id}`);
-    const lastDayMonth = daysInMonth(Y, M + 1);
     const firstDay = new Date(Y, M, 0).getDay();
     const lastDay = new Date(Y, (M + 1), 0).getDay();
     row === null || row === void 0 ? void 0 : row.replaceChildren();
