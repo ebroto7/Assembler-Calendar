@@ -277,13 +277,7 @@ export function printEvents(events: EventCal[], container: HTMLButtonElement, ro
             if (Days.id == event.startDate || Days.id == event.startDate && Days.id == event.endDate) {
                 container.style.backgroundColor = 'rgba(0, 255, 38, 0.514)';
             }
-
-
         }
-
-
-
-
     });
 }
 
@@ -293,3 +287,15 @@ console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
 console.log(Days.id);
+
+
+
+function setFirstEvent() {
+    const firstEvent: EventCal = {
+        id: "1",
+        title: "first event",
+        startDate: "1970-01-01",
+        calendar: "first event"
+    }
+    // createEventOnCalendar(firstEvent, )
+}

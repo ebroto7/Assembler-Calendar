@@ -31,6 +31,7 @@ export function openModal(initialDate, event) {
     setMinStartDateHour();
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate;
+        modalForm_endDate_dateInput.setAttribute("min", `${initialDate}`);
     }
     if (event == undefined) {
         newEventModal_headerTitle.innerText = "Add new event";
@@ -62,10 +63,12 @@ function setMinStartDateHour() {
     const today = new Date().toJSON().slice(0, 10);
     modalForm_startDate_dateInput.setAttribute("min", `${today}`);
     modalForm_startDate_dateInput.value = today;
+    modalForm_endDate_dateInput.setAttribute("min", `${today}`);
 }
 function resetModal() {
     formModal.reset();
     modalForm_deleteEventBtn.removeAttribute("id");
+    modalForm_endDate_dateInput.setAttribute;
     deleteErrorMessage('formTitleError');
     deleteErrorMessage('modalForm_startDate_errorMessage');
     deleteErrorMessage('modalForm_endDate_errorMessage');
@@ -79,6 +82,9 @@ modalForm_ReminderCheckbox.addEventListener('change', () => {
 });
 modalForm_AllDayEventSwitch.addEventListener('change', () => {
     hiddenDateInput();
+});
+modalForm_startDate_dateInput.addEventListener('change', () => {
+    changeFinalDateInput();
 });
 function createTypeFormView() {
     modalForm_EventType.replaceChildren();
@@ -248,4 +254,8 @@ export function closeModal() {
 function createEventID() {
     const id = new Date().getTime().toString();
     return id;
+}
+function changeFinalDateInput() {
+    const minDate = modalForm_startDate_dateInput.value;
+    modalForm_endDate_dateInput.setAttribute("min", `${minDate}`);
 }

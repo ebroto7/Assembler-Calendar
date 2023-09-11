@@ -246,3 +246,11 @@ console.log(getTodayDay());
 console.log(getTodayMonth());
 console.log(getTodayYear());
 console.log(Days.id);
+function setFirstEvent() {
+    const firstEvent = {
+        id: "1",
+        title: "first event",
+        startDate: "1970-01-01",
+        calendar: "first event"
+    };
+}

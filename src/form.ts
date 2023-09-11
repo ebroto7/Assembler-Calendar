@@ -40,6 +40,7 @@ export function openModal(initialDate?: string, event?: EventCal) {
 
     if (initialDate != undefined && initialDate != "") {
         modalForm_startDate_dateInput.value = initialDate
+        modalForm_endDate_dateInput.setAttribute("min", `${initialDate}`)
     }
 
     if (event == undefined) {
@@ -73,6 +74,7 @@ function setMinStartDateHour() {
     const today = new Date().toJSON().slice(0,10)
     modalForm_startDate_dateInput.setAttribute("min", `${today}`)
     modalForm_startDate_dateInput.value = today
+    modalForm_endDate_dateInput.setAttribute("min", `${today}`)
 
     // const now = new Date().toJSON().slice(11, 16)
     // modalForm_startDate_hourInput.value = now
@@ -82,6 +84,7 @@ function setMinStartDateHour() {
 function resetModal() {
     formModal.reset()
     modalForm_deleteEventBtn.removeAttribute("id")
+    modalForm_endDate_dateInput.setAttribute
 
     deleteErrorMessage('formTitleError')
     deleteErrorMessage('modalForm_startDate_errorMessage')
@@ -100,7 +103,9 @@ modalForm_ReminderCheckbox.addEventListener('change', ()=> {
 modalForm_AllDayEventSwitch.addEventListener('change', ()=> {
     hiddenDateInput()
 })
-
+modalForm_startDate_dateInput.addEventListener('change', () => {
+    changeFinalDateInput()
+})
 function createTypeFormView() {
     modalForm_EventType.replaceChildren()
     calendarTypes.forEach((type) => {
@@ -283,4 +288,9 @@ export function closeModal() {
 function createEventID(): string {
     const id = new Date().getTime().toString()
     return id
+}
+
+function changeFinalDateInput() {
+    const minDate = modalForm_startDate_dateInput.value
+    modalForm_endDate_dateInput.setAttribute("min", `${minDate}`)
 }
